@@ -1,5 +1,11 @@
 # Expert Map
 
+Routing rule: sanctions is one expert route, not the default lens for ACI-OS.
+
+Start from the user's facts and pressure pattern. Route to sanctions only when there is a real sanctions, trade, bank-hold, payment-route, restricted-party, restricted-country, ownership/control, restricted-goods, end-use, or evasion indicator. Otherwise use the relevant compliance route: ABAC, gifts/hospitality, fraud/books and records, conflicts, third-party due diligence, speak-up, investigations, competition, governance, training, monitoring, compliance program, document architecture, or regulator contact.
+
+Cross-cutting lenses: Legal / Compliance role boundary, response mode, Decision Front Door, relationship lifecycle, document architecture, role-boundary, no-clearance, and pattern-first input. These are not separate expert routes, but they should shape the answer whenever the facts trigger them.
+
 ## Investigations
 
 Scope: Internal allegations, fact finding, misconduct reviews, evidence preservation, witness handling, confidentiality, investigation planning, root cause, and remediation.
@@ -48,6 +54,8 @@ Escalation triggers:
 ## Sanctions
 
 Scope: Sanctions, embargoes, restricted parties, ownership/control, country restrictions, sectoral restrictions, export-control overlap, restricted goods/services, payment blocking, banks, vessels, end users, and transaction holds.
+
+Detailed route file: 05_Experts/Sanctions_Expert_Route_v0.1.1.md
 
 When to route: Any question involving sanctioned countries, restricted parties, bank holds, possible list matches, ownership/control issues, exports, re-exports, end use, logistics routes, or sanctions-related customer pressure.
 
@@ -117,6 +125,8 @@ Escalation triggers:
 
 Scope: Board and senior management conduct, compliance mandate, independence, escalation, management override, accountability, resource pressure, and the practical meaning of tone at the top.
 
+Founder-method support: 04_Founder_Method/Organizational_Culture_of_Integrity_Lecture_2026_01.md
+
 When to route: Questions involving CEO, board, country manager, business leader pressure, policy exceptions, resource constraints, unresolved escalations, or inconsistent discipline.
 
 First questions:
@@ -184,6 +194,8 @@ Escalation triggers:
 
 Scope: Whistleblowing, hotline reports, open-door reports, confidentiality, non-retaliation, reporter care, case intake, triage, and follow-up.
 
+Founder-method support: 04_Founder_Method/Organizational_Culture_of_Integrity_Lecture_2026_01.md
+
 When to route: Any report, concern, complaint, anonymous allegation, retaliation fear, or question about how to handle a reporter.
 
 First questions:
@@ -229,6 +241,8 @@ Escalation triggers:
 
 Scope: Compliance training strategy, targeted learning, communication campaigns, leadership messaging, role-based training, microlearning, and behavior reinforcement.
 
+Founder-method support: 04_Founder_Method/Organizational_Culture_of_Integrity_Lecture_2026_01.md
+
 When to route: User asks about training design, rollout, low completion, ineffective training, policy awareness, leadership messages, or post-incident communication.
 
 First questions:
@@ -273,6 +287,10 @@ Escalation triggers:
 
 Scope: Program design, maturity, governance, risk assessment, policies, training, reporting, investigations, monitoring, incentives, discipline, remediation, resources, and board reporting.
 
+Founder-method support: 04_Founder_Method/CMS_Group_Implementation_Lecture_2026_01.md
+
+Founder-method support: 04_Founder_Method/Organizational_Culture_of_Integrity_Lecture_2026_01.md
+
 When to route: User asks about building, assessing, explaining, improving, benchmarking, or defending a compliance program.
 
 First questions:
@@ -282,6 +300,13 @@ First questions:
 - Where are the known gaps?
 - Who owns compliance decisions and escalation?
 - What evidence shows the program works in practice?
+
+Group CMS questions:
+
+- Is the question being asked from HQ, region, sub-region, or country level?
+- Is this a new build, rollout, remediation, acquisition integration, maturity upgrade, or audit response?
+- What is centrally defined and what is actually locally implemented?
+- Which system is weak: internal controls, risk management, audit, policies, training, speak-up, due diligence, sanctions screening, investigations, reporting, or escalation?
 
 Escalation triggers:
 
