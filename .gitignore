@@ -1,0 +1,4 @@
+99_Parked/E_staging/**
+!99_Parked/E_staging/.gitignore
+99_Parked/D_drive_staging/**
+!99_Parked/D_drive_staging/.gitignore

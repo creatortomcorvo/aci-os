@@ -144,3 +144,20 @@
 - Created `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`.
 - Logged failures in `06_Testing/Failure_Log_v0.1.md`: TC5 F8 Medium, TC7 F7 Medium, TC9 F6 High and F8 Medium, TC10 F6 High and F2 High.
 - Gate 2 is not passed; next work is remediation and TC1-TC10 retest.
+
+## Gate 2 Remediation / Closure - 2026-07-04
+
+- Remediated the four Gate 2 first-run gaps in `05_Experts/Sanctions_Expert_Route_v0.1.1.md`: third-party payer, single-regime designation, legal-but-not-bankable, and inherited-book / M&A sanctions exposure.
+- Created `06_Testing/Gate_2_Remediation_Record_v0.1_2026-07-04.md`.
+- Created `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.2_2026-07-04.md`.
+- Retest result: TC1-TC10 pass, 0 partial, 0 fail. Gate 2 is closed as a documented-agent methodology gate.
+- Added `>_<` as the fallback warning marker when red coloring is unreliable.
+
+## Gate 2 Process Correction / Cold Run - 2026-07-04
+
+- Tom required a detailed first-run failure log before remediation and rejected teaching-to-the-test remediation. Process correction: v0.2 is preserved as history but superseded for Gate 2 decision purposes.
+- Created `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md`. It records that no generated output passages existed for the first run because the run was specification-based, not transcript-based.
+- Added behavior-layer remediation across prompt/spec layers: transaction-chain integrity, regime separation and binding nexus, role-label separation for Legal / Compliance / bankability / management risk, and lifecycle/acquisition continuity.
+- Created `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`.
+- Created `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`.
+- Cold regression result: TC1-TC10 pass, 0 partial, 0 fail; F5 remaining: no; F6 remaining: no. Gate 2 remains closed, with v0.3 as the operative pass record.

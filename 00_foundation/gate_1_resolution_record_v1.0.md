@@ -33,14 +33,16 @@ Foundation Map v1.0: add the OFAC crosswalk column; insert D1 and D4 footnotes; 
 
 ## Updated Phase Block
 
-> **Phase:** Stage 2 - Sanctions Agent v1 toward Gate 2 (Stage 4 journal running in parallel)
+> **Phase:** Post-Gate-2 internal consolidation (Stage 4 journal running in parallel)
 > **Stage 0a (CLOSED, 04.07.2026):** private build permitted - hobby basis, own time/equipment, no employer resources or data. Memo on file.
 > **Stage 0b (OPEN):** employer approval required before any commercial/external step. Checked at Stage 3/5 entry - no per-session reminders.
 > **Gate 1 (CLOSED 04.07.2026):** five resolutions per Gate 1 Resolution Record v1.0; integrated into Foundation Map v1.0.
-> **Gate 2 (ACTIVE - first run complete, not passed):** 10/10 sanctions test cases specified; first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; failures logged F1-F9. Next work is remediation of TC5, TC7, TC9, and TC10 gaps, then rerun TC1-TC10.
-> **Stages 3 & 5 (BLOCKED):** by 0b + Gate 2. Pilot spec parked with activation lock.
+> **Gate 2 (CLOSED / PASSED 04.07.2026):** first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; detailed first-run addendum logged in `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md`; behavior-layer remediation logged in `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`; cold 10/10 regression pass logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. Earlier v0.2 pass is preserved as history but superseded for Gate 2 decision purposes.
+> **Stages 3 & 5 (BLOCKED):** by 0b. Pilot spec parked with activation lock.
 
 ## Change Log
 
 - v1.0 - Gate 1 decisions D1-D5 recorded and closed; anchor set finalized at eight; 7-element backbone confirmed against Annex A; Foundation Map integration task assigned and completed.
 - v1.0.1 - Updated phase block after Gate 2 Run v0.1: 10/10 sanctions test cases specified, first formal run complete, Gate 2 not passed.
+- v1.0.2 - Updated phase block after Gate 2 remediation and 10/10 retest pass; Stage 3/5 remain blocked by Stage 0b.
+- v1.0.3 - Updated phase block after Gate 2 process correction: v0.3 cold regression is operative pass record; v0.2 retained as superseded history.

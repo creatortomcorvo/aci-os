@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: ACI-OS GPT Feedback Intake
+  description: Submit anonymized Chief Consigliere GPT feedback into a quarantine inbox for later Codex review. This action does not update ACI-OS files and does not accept confidential information.
+  version: 0.1.0
+servers:
+  - url: https://aci-os-feedback-intake.your-subdomain.workers.dev
+    description: Replace this placeholder with the real deployed Cloudflare Worker URL before testing.
+paths:
+  /v1/feedback:
+    post:
+      operationId: submitFeedbackToACIOS
+      summary: Submit anonymized GPT feedback to the ACI-OS quarantine inbox.
+      description: Creates a GitHub issue for later human/Codex review. Use only when the user explicitly asks to send feedback to ACI-OS or confirms that feedback should be submitted. Do not submit real names, client names, personal data, privileged material, live investigation facts, company secrets, or confidential documents.
+      x-openai-isConsequential: true
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - source_gpt
+                - date
+                - question_pattern
+                - answer_problem
+                - confidential
+                - action_proposed
+              properties:
+                source_gpt:
+                  type: string
+                  description: GPT name and version, for example Chief Consigliere - ACI-OS Gate 2 / v0.2.
+                  maxLength: 120
+                date:
+                  type: string
+                  description: Date of the feedback in YYYY-MM-DD format.
+                  maxLength: 20
+                question_pattern:
+                  type: string
+                  description: Anonymized question pattern only. No real names or confidential facts.
+                  maxLength: 1000
+                answer_problem:
+                  type: string
+                  description: What seemed wrong, missing, too long, unsafe, unclear, or useful.
+                  maxLength: 2000
+                what_i_liked:
+                  type: string
+                  description: Useful behavior to preserve.
+                  maxLength: 2000
+                what_failed:
+                  type: string
+                  description: Specific failure or user reaction.
+                  maxLength: 2000
+                suggested_fix:
+                  type: string
+                  description: Proposed rule, wording, test, or article idea.
+                  maxLength: 2000
+                confidential:
+                  type: boolean
+                  description: Must be false. If true, the endpoint rejects the submission.
+                action_proposed:
+                  type: string
+                  enum:
+                    - ACT
+                    - PARK
+                    - DISCARD
+                  description: User/GPT proposed action; final decision is made by Codex/Tom after review.
+                full_answer_included:
+                  type: boolean
+                  description: Whether the feedback includes a full answer excerpt. It must be anonymized if true.
+                full_answer_excerpt:
+                  type: string
+                  description: Optional anonymized excerpt. Do not include confidential facts.
+                  maxLength: 6000
+      responses:
+        "201":
+          description: Feedback accepted into quarantine inbox.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - accepted
+                  intake_id:
+                    type: string
+                  issue_url:
+                    type: string
+                  message:
+                    type: string
+        "400":
+          description: Bad request or validation error.
+        "401":
+          description: Missing or invalid API key.
+        "422":
+          description: Confidential or unsafe content rejected.
+        "500":
+          description: Server or GitHub API error.
+  /health:
+    get:
+      operationId: getFeedbackIntakeHealth
+      summary: Check feedback intake endpoint health.
+      description: Returns a basic health response. Does not expose secrets or stored feedback.
+      responses:
+        "200":
+          description: Health response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  service:
+                    type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

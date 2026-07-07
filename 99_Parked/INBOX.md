@@ -15,7 +15,7 @@ Source: pasted "Project Instructions - Asymmetry / Compliance Consigliere v0.2" 
 ### Parked Items
 
 - Exact Blueprint v0.1 / Development Plan v0.3 authority structure. Reason: these documents are not currently established in the ACI-OS repository as governing files. Revisit if Tom provides or adopts them.
-- Exact "Days 1-45 - Foundation Map + Sanctions Agent v1" wording. Reason: superseded by Gate 1 closure. Current phase is Stage 2 - Sanctions Agent v1 toward Gate 2, with Stage 4 journal running internally.
+- Exact "Days 1-45 - Foundation Map + Sanctions Agent v1" wording. Reason: superseded by Gate 1 closure and later Gate 2 closure. Current phase is post-Gate-2 internal consolidation, with Stage 4 journal running internally.
 - Sanctions-only build restriction. Reason: outdated against current project memory; the useful principle is one expert route at a time.
 - Employment contract / IP / side-activity check as a recurring blocker. Reason: important founder governance issue, but not an active per-session reminder unless Tom requests it. It should be revisited before external exposure, commercial launch, investor discussion, friend cohort, or public product testing.
 - Cross-cutting third-party/M&A lens. Resolved by Gate 1: formally approved and integrated into Foundation Map v1.0.

@@ -8,7 +8,7 @@ Status: in progress.
 
 ## Current Phase
 
-Phase: Stage 2 - Sanctions Agent v1 toward Gate 2 (Stage 4 journal running in parallel)
+Phase: Post-Gate-2 internal consolidation (Stage 4 journal running in parallel)
 
 Stage 0a (CLOSED, 04.07.2026): private build permitted - hobby basis, own time/equipment, no employer resources or data. Memo on file.
 
@@ -16,11 +16,11 @@ Stage 0b (OPEN): employer approval required before any commercial/external step.
 
 Gate 1 (CLOSED, 04.07.2026): five resolutions per Gate 1 Resolution Record v1.0, integrated into Foundation Map v1.0.
 
-Gate 2 (ACTIVE - first run complete, not passed): 10/10 sanctions test cases specified; first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; failures logged F1-F9. Next work is remediation of TC5, TC7, TC9, and TC10 gaps, then rerun TC1-TC10.
+Gate 2 (CLOSED / PASSED, 04.07.2026): 10/10 sanctions test cases specified; first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; detailed first-run addendum logged in `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md`; behavior-layer remediation logged in `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`; cold 10/10 regression pass logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. Earlier v0.2 pass is preserved as history but superseded.
 
-Stage 4 (STARTED, internal only): decision journal live from today, pattern form, no real facts; tool in shadow mode until Gate 2.
+Stage 4 (STARTED, internal only): decision journal live from today, pattern form, no real facts; Gate 2 no longer blocks internal methodology use, but outputs remain decision support, not legal advice or clearance.
 
-Stages 3 & 5 (BLOCKED): by 0b + Gate 2. Pilot spec parked with activation lock.
+Stages 3 & 5 (BLOCKED): by 0b. Pilot spec parked with activation lock.
 
 ## Sprint Purpose
 
@@ -106,6 +106,11 @@ This sprint turns the project from a concept into an operating prototype. The fi
 - 06_Testing/Career_Patterns_v0.1.md
 - 06_Testing/Gate_2_Sanctions_Test_Library_v0.1.md
 - 06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md
+- 06_Testing/Gate_2_Remediation_Record_v0.1_2026-07-04.md
+- 06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.2_2026-07-04.md
+- 06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md
+- 06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md
+- 06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md
 
 - Frozen payment / substitute-route baseline case in Raw_vs_Consigliere_Baseline_Tests_v0.1.md
 
@@ -180,6 +185,8 @@ The sprint is successful when the Chief Consigliere can:
 
 - Make clear, where appropriate, that ACI-OS is specialized compliance decision support, not general chat.
 
+- Use `>_<` as the fallback warning marker when red coloring cannot be rendered reliably.
+
 - Coach users to describe patterns without names or identifiers in no-secret mode.
 
 - Offer a Reasoning Record for serious matters without implying clearance, privilege, or proof of correctness.
@@ -219,6 +226,14 @@ The sprint is successful when the Chief Consigliere can:
 - Keep similar answers consistent in underlying reasoning unless facts, user/company calibration, policy/source context, lifecycle stage, requested depth/channel, or product version changes.
 
 - Preserve no-clearance and no-secret standards in future voice use; adapt tone to stress or confusion without lowering controls.
+
+- Handle third-party / unknown payer cases by treating payer identity as part of the transaction and refusing to book, allocate, refund, or reassure until payer authority, ownership/control, bank route, message, rationale, and prior pattern are resolved.
+
+- Handle single-regime sanctions findings by rejecting regime averaging and mapping which regimes bind the company, group, staff, bank, currency, goods/services, route, local operation, and contractual bank rules.
+
+- Handle lawful-but-not-bankable sanctions matters by separating legal conclusion, gray risk, bankability, and management risk decision, with CEO-facing language that does not falsely call the client illegal.
+
+- Handle inherited or M&A sanctions books by separating signed-then from performed/collected/communicated/terminated-now and routing collection, communication, wind-down, license, derogation, reporting, asset-freeze, and making-available questions to counsel where plausible.
 
 - Produce a practical next step the user can act on.
 
@@ -294,16 +309,14 @@ Every first answer should show:
 
 ## Next Work
 
-1. Remediate the first Gate 2 run failures without changing the failure record: TC5 third-party payer, TC7 single-regime designation, TC9 legal-but-not-bankable, and TC10 inherited book.
+1. Commit and push the Gate 2 remediation and retest records to GitHub using GitHub Desktop if command-line git remains unavailable.
 
-2. Update the Sanctions Agent route only after preserving Run v0.1, then rerun TC1-TC10.
+2. Keep Stage 4 journal running in pattern form, with no real facts and no company secrets.
 
-3. Gate 2 passes only after retest shows no blocking failures or only accepted residual issues.
+3. Keep Stage 0b as the blocker for peer validation, pilot, publication, testers, or revenue.
 
-4. Keep Stage 4 journal running in pattern form, with no real facts and no company secrets.
+4. Use Gate 2 data plus journal frequency data before choosing Agent #2.
 
-5. Keep ACI-OS outputs in shadow mode until Gate 2 passes: drafts to test, not advice to rely on; record every override or delta.
+5. Continue internal product hardening without treating Gate 2 as legal clearance, live screening certification, or external readiness.
 
 6. Stage 0b is checked only at Stage 3/5 or before any external/commercial step; no per-session contract reminders.
-
-7. Do not start Agent #2 until journal and Gate 2 data support the choice.

@@ -31,17 +31,19 @@ Triage before answers (3–5 sharp questions unless "just draft it") · layered 
 
 Repo-layout rule: the actual ACI-OS folder structure is canonical. If an incoming document names a conflicting or proposed path, correct the file location to the current repo layout; do not rename existing repo folders to match the incoming document.
 
-## Current phase (updated 04.07.2026 — Gate 1 closed)
-> **Phase: Stage 2 — Sanctions Agent v1 toward Gate 2** (Stage 4 journal running in parallel)
+Warning marker rule: if red coloring cannot be rendered reliably, use `>_<` before any item that is not OK, open, or needs fixing.
+
+## Current phase (updated 04.07.2026 — Gate 2 closed)
+> **Phase: Post-Gate-2 internal consolidation** (Stage 4 journal running in parallel)
 > **Stage 0a (CLOSED 04.07.2026):** private build permitted — hobby basis, own time/equipment, no employer resources/data. Memo on file. No per-session reminders.
 > **Stage 0b (OPEN):** employer approval required before ANY commercial/external step — publishing, testers, pilot links, revenue. Checked at Stage 3/5 entry.
 > **Gate 1 (CLOSED 04.07.2026):** five resolutions per `00_foundation/gate_1_resolution_record_v1.0.md`; integrated into `00_foundation/Foundation_Map_v1.0.md`.
-> **Gate 2 (ACTIVE — first run complete, not passed):** 10/10 sanctions test cases specified; first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; failures logged F1–F9. Next: remediate TC5, TC7, TC9, and TC10 gaps, then rerun TC1–TC10. Instrumentation live before daily *reliance*.
-> **Stage 4 (STARTED, internal only):** decision journal live — pattern form, no real facts; tool in shadow mode until Gate 2 passes.
-> **Stages 3 & 5 (BLOCKED by 0b + Gate 2):** peer validation and pilot. Pilot_Spec_v0.1 parked with activation lock.
+> **Gate 2 (CLOSED / PASSED 04.07.2026):** first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; detailed first-run addendum logged in `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md`; behavior-layer remediation logged in `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`; cold 10/10 regression pass logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. Earlier v0.2 pass is preserved as history but superseded for Gate 2 decision purposes.
+> **Stage 4 (STARTED, internal only):** decision journal live — pattern form, no real facts; Gate 2 no longer blocks internal methodology use, but outputs remain decision support, not legal advice or clearance.
+> **Stages 3 & 5 (BLOCKED by 0b):** peer validation and pilot. Pilot_Spec_v0.1 parked with activation lock.
 
 ## Standing outputs
-Foundation Map v1.0 (done) · Gate 1 Resolution Record v1.0 (done) · Core Spec v0.5.1 (done) · Sanctions Agent v1 (active) · 10-case sanctions library (10/10 specified; first formal run complete; Gate 2 not passed) · Crisis-header library · Decision journal (live) · Failure log F1–F9 · Response Pattern Cards v0.1 (done) · Pilot Spec v0.1 (parked) · Development Plan v0.4 · Monthly article drafts (publication gated by 0b).
+Foundation Map v1.0 (done) · Gate 1 Resolution Record v1.0 (done) · Core Spec v0.5.1 (done) · Sanctions Agent v1 (Gate 2 passed as documented-agent methodology gate) · 10-case sanctions library (10/10 passed on retest) · Crisis-header library · Decision journal (live) · Failure log F1–F9 · Response Pattern Cards v0.1 (done) · Pilot Spec v0.1 (parked) · Development Plan v0.4 · Monthly article drafts (publication gated by 0b).
 
 ---
-*Change log: v0.4.1 — added repo-layout rule: actual ACI-OS folders are canonical and incoming document paths are corrected, not used to rename repo folders; Gate 2 updated to 10/10 specified, first formal run complete, not passed. v0.4 — post-Gate-1 update: first-line conflict rule added; backbone marked validated with D1–D5 baked in; Foundation Map v1.0 integrated; anchor set final at eight; Stage 0 split (0a closed / 0b open); phase moved to Stage 2/Gate 2; Core Spec v0.5.1 referenced as behavior source of truth; Codex added to external-input discipline. v0.3 — standalone rewrite. v0.2 — hierarchy, scope-vs-sequence, HC6, F9, Annex A. v0.1 — original.*
+*Change log: v0.4.3 — Gate 2 operative pass record moved to v0.3 cold regression after detailed first-run failure log and behavior-layer remediation; v0.2 retained as superseded history. v0.4.2 — Gate 2 closed after remediation and 10/10 retest pass; added `>_<` warning marker fallback when red coloring is unavailable. v0.4.1 — added repo-layout rule: actual ACI-OS folders are canonical and incoming document paths are corrected, not used to rename repo folders; Gate 2 updated to 10/10 specified, first formal run complete, not passed. v0.4 — post-Gate-1 update: first-line conflict rule added; backbone marked validated with D1–D5 baked in; Foundation Map v1.0 integrated; anchor set final at eight; Stage 0 split (0a closed / 0b open); phase moved to Stage 2/Gate 2; Core Spec v0.5.1 referenced as behavior source of truth; Codex added to external-input discipline. v0.3 — standalone rewrite. v0.2 — hierarchy, scope-vs-sequence, HC6, F9, Annex A. v0.1 — original.*

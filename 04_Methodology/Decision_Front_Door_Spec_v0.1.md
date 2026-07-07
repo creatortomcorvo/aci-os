@@ -23,7 +23,7 @@ For every non-trivial live matter, use this sequence.
 3. Role-boundary echo.
 4. Initial view with controlled color.
 5. First answer.
-6. Two to four tool-chosen questions.
+6. Two to five tool-chosen questions: missing facts plus direction of discussion, without printing those category labels to the user.
 7. Output menu.
 
 The full sequence renders only when stakes justify it. Trivial questions may compress into one or two sentences. Crisis matters get Speed 1 before questions.
@@ -78,6 +78,8 @@ Use six labels. One role label should be visible in the output for non-trivial l
 - Escalation mandatory: the matter must move to the designated owner before business action.
 
 The mandate check lives inside "Compliance approval." If policy does not give Compliance approval authority, do not let the answer become approval by tone.
+
+Where a matter separates legal permissibility from operational feasibility, use the visible role label instead of collapsing the decision. Example behavior: Legal owns whether there is a legal prohibition; Compliance owns the risk/evidence/control view; management owns the commercial decision inside law and policy; banks or external systems may still make the matter operationally unbankable. This is a role-label rule, not a sanctions-only test pattern.
 
 ## Step 4 - Controlled Color
 
@@ -175,10 +177,17 @@ The user may choose the situation type or write freely. The user should not have
 
 Default question budget:
 
-- Two to four visible questions for non-trivial matters.
+- Two to five visible questions for non-trivial matters.
 - The timing question counts toward the budget.
 - Crisis and escalation-mandatory modes may use fewer questions.
 - Trivial matters may use no visible question or one visible assumption.
+
+The question set should usually cover two internal buckets:
+
+1. **Missing facts** - facts that would change the risk read, role label, escalation path, or safe next action.
+2. **Direction of discussion** - what the user wants next: quick risk view, business-facing wording, CEO/board argument, checklist, formal memo, program design, personal preparation, or deeper reasoning.
+
+If the first user question is broad, the product should not guess the altitude or output. It should give a short directional answer, then ask natural questions that cover both fact gaps and desired output. Do not print "Missing facts" or "Direction" as headings in user-facing answers unless the user explicitly asks for diagnostic labels.
 
 Each question should support:
 
@@ -278,3 +287,6 @@ Discard:
 ## Change Log
 
 - v0.1 - Created active Decision Front Door spec: situation picker, mandatory timing question, six role labels, controlled color with advisory and earned routine green, first answer, tool-chosen questions, output menu, pressure detector, and proportional rendering.
+- v0.1.1 - Added role-label separation for legal permissibility versus operational feasibility and management risk decision.
+- v0.1.2 - Added two-bucket question rule: missing facts and direction of discussion.
+- v0.1.3 - Made two-bucket rule internal-only for user-facing rendering and expanded broad-question budget to 2-5 questions.

@@ -1,8 +1,8 @@
 # Gate 2 Sanctions Test Library v0.1
 
-Status: active Gate 2 test library.
+Status: active Gate 2 test library. Gate 2 closed after remediation and retest.
 
-Gate status: 10/10 specified; first formal run logged separately. Gate 2 is not passed until the formal run has no blocking failures or only accepted residual issues.
+Gate status: 10/10 specified; first formal run logged separately; detailed failure addendum logged separately; behavior-layer remediation logged separately; cold regression passed on 2026-07-04 in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. The earlier v0.2 retest is preserved as history but superseded for Gate 2 decision purposes.
 
 Current agent under test:
 
@@ -11,7 +11,7 @@ Current agent under test:
 - `04_Methodology/Decision_Front_Door_Spec_v0.1.md`
 - `04_Methodology/Question_Mode_Router_v0.1.md`
 
-No agent behavior was changed before the first full run.
+No agent behavior was changed before the first full run. After the first run, a detailed failure-log addendum was created, behavior-layer remediation was made, and all 10 cases were retested cold.
 
 ## Pass Rule
 
@@ -23,6 +23,8 @@ Gate 2 passes only after:
 2. Every failure is logged using F1-F9 with severity.
 3. Blocking failures are remediated.
 4. The remediated agent passes retest.
+
+Gate 2 decision: **PASSED / CLOSED** on 2026-07-04 as a documented-agent methodology gate. Operative pass record: `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. This does not authorize external testing, publication, customer pilot, legal advice, live sanctions clearance, or commercial use.
 
 ## TC1 - Frozen Payment / Substitute Route
 
@@ -227,3 +229,5 @@ Run order:
 ## Change Log
 
 - v0.1 - Created formal 10-case Gate 2 sanctions library from existing TC1-TC4 and career-pattern TC5-TC10; added run procedure.
+- v0.1.1 - Updated Gate status after first run, remediation, and formal retest; Gate 2 passed as documented-agent methodology gate on 2026-07-04.
+- v0.1.2 - Updated operative Gate status to v0.3 cold regression after detailed first-run failure addendum and behavior-layer remediation.

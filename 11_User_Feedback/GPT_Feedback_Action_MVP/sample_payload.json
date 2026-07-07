@@ -1,0 +1,14 @@
+{
+  "source_gpt": "Chief Consigliere - ACI-OS Gate 2 / v0.2",
+  "date": "2026-07-05",
+  "question_pattern": "A user asks whether an unknown third-party payment can be booked because invoice numbers match.",
+  "answer_problem": "The answer was substantively good but too long before the action block.",
+  "what_i_liked": "It said do not book first, used HOLD, listed needed facts, and put executive summary at the end.",
+  "what_failed": "The first screen still included more detail than needed.",
+  "suggested_fix": "Keep the first screen to status, role, HOLD, DO NOW, DO NOT, and one mini-table. Move scripts below.",
+  "confidential": false,
+  "action_proposed": "ACT",
+  "full_answer_included": false,
+  "full_answer_excerpt": ""
+}
+

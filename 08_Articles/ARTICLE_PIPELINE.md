@@ -21,3 +21,8 @@ Publishing or public promotion remains blocked until external-exposure precondit
 - Not Every Compliance Question Deserves An Answer: Five Modes Of A Good Compliance Response
 - A Tool That Answers Every Question The Same Way Understands None Of Them
 - Advice Is Not Approval: How Compliance Officers Get Turned Into Cover
+- Lawful Is Not Bankable: The Compliance Layer Between Legal Advice And Management Risk
+- Tone At The Top Is Not A Plank - It Is The Floor Of The Barrel
+- Your CEO Does Not Know How To Help You - Compliance Officers Must Manage Upward
+- Do Not Start With The Risk Assessment: Learn The Company First
+- The Contract Is The Middle, Not The Beginning: Third-Party Compliance As A Lifecycle

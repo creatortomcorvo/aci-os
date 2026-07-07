@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: ACI-OS GPT Feedback Intake MOCK
+  description: Import-only mock for checking GPT Builder Action UI. This does not connect to ACI-OS and must not be used for real feedback.
+  version: 0.1.0
+servers:
+  - url: https://example.com
+    description: Mock URL only. Replace with the real deployed Worker URL before any real test.
+paths:
+  /v1/feedback:
+    post:
+      operationId: submitFeedbackToACIOSMock
+      summary: Mock submit anonymized GPT feedback to ACI-OS quarantine inbox.
+      description: Mock only. Do not use for real feedback. The production action requires a deployed HTTPS endpoint.
+      x-openai-isConsequential: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - source_gpt
+                - date
+                - question_pattern
+                - answer_problem
+                - confidential
+                - action_proposed
+              properties:
+                source_gpt:
+                  type: string
+                date:
+                  type: string
+                question_pattern:
+                  type: string
+                answer_problem:
+                  type: string
+                what_i_liked:
+                  type: string
+                what_failed:
+                  type: string
+                suggested_fix:
+                  type: string
+                confidential:
+                  type: boolean
+                action_proposed:
+                  type: string
+                  enum:
+                    - ACT
+                    - PARK
+                    - DISCARD
+      responses:
+        "200":
+          description: Mock response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string

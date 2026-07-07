@@ -30,7 +30,25 @@ It exists so future claims about failure transparency are earned through real te
 | 2026-07-04 | Gate 2 Run v0.1 | TC10 - Inherited book. | F6 | High | Current route lacks a dedicated inherited-book / M&A sanctions pattern and could treat the matter as ordinary screening. | Foundation M&A lens has not yet been translated into sanctions-route operating logic. | Add inherited-book / M&A sanctions template with timeline, receivables, communications, and collection logic. | Retest TC10 in Gate 2 sanctions library. |
 | 2026-07-04 | Gate 2 Run v0.1 | TC10 - Inherited book. | F2 | High | Counsel-boundary triggers for collection attempts, communications, wind-down, licenses, derogations, reporting, and asset-freeze implications are not explicit enough. | Sanctions route lacks M&A-specific escalation triggers. | Add counsel escalation triggers before collection or customer communication where restrictions/licensing questions exist. | Retest TC10 in Gate 2 sanctions library. |
 
+## Retest Closure
+
+Gate 2 retest v0.2 on 2026-07-04 is preserved as history but superseded for Gate 2 decision purposes because the remediation was too close to test-case labels.
+
+Gate 2 cold regression v0.3 on 2026-07-04 closed the TC5, TC7, TC9, and TC10 first-run failures after detailed first-run logging and behavior-layer remediation.
+
+Evidence:
+
+- Detailed first-run addendum: `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md`
+- Superseded remediation record: `06_Testing/Gate_2_Remediation_Record_v0.1_2026-07-04.md`
+- Behavior-layer remediation record: `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`
+- Operative retest record: `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`
+- Retest result: 10 pass, 0 partial, 0 fail.
+- F5 remaining: no.
+- F6 remaining: no.
+
 ## Change Log
 
 - v0.1 - Created internal failure log template to support F1-F9 QA discipline and future evidence-backed transparency claims.
 - v0.1.1 - Added Gate 2 Run v0.1 failures from TC5, TC7, TC9, and TC10 with F1-F9 classifications and severity.
+- v0.1.2 - Added Gate 2 retest closure note after remediation and 10/10 pass in Run v0.2.
+- v0.1.3 - Superseded v0.2 closure with detailed first-run addendum, behavior-layer remediation, and v0.3 cold regression; no F5/F6 remains.

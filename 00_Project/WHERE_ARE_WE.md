@@ -12,7 +12,7 @@ Sprint 1 - Chief Consigliere Prototype.
 
 ## Current Phase
 
-Phase: Stage 2 - Sanctions Agent v1 toward Gate 2 (Stage 4 journal running in parallel)
+Phase: Post-Gate-2 internal consolidation (Stage 4 journal running in parallel)
 
 Stage 0a (CLOSED, 04.07.2026): private build permitted - hobby basis, own time/equipment, no employer resources or data. Memo on file.
 
@@ -20,11 +20,11 @@ Stage 0b (OPEN): employer approval required before any commercial/external step.
 
 Gate 1 (CLOSED, 04.07.2026): five resolutions per Gate 1 Resolution Record v1.0, integrated into Foundation Map v1.0.
 
-Gate 2 (ACTIVE - first run complete, not passed): 10/10 sanctions test cases specified; first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; failures logged F1-F9. Next work is remediation of TC5, TC7, TC9, and TC10 gaps, then rerun TC1-TC10.
+Gate 2 (CLOSED / PASSED, 04.07.2026): 10/10 sanctions test cases specified; first formal run logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.1_2026-07-04.md`; detailed first-run addendum logged in `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md`; behavior-layer remediation logged in `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`; cold 10/10 regression pass logged in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. Earlier v0.2 pass is preserved as history but superseded.
 
-Stage 4 (STARTED, internal only): decision journal live from today, pattern form, no real facts; tool in shadow mode until Gate 2.
+Stage 4 (STARTED, internal only): decision journal live from today, pattern form, no real facts; Gate 2 no longer blocks internal methodology use, but outputs remain decision support, not legal advice or clearance.
 
-Stages 3 & 5 (BLOCKED): by 0b + Gate 2. Pilot spec parked with activation lock.
+Stages 3 & 5 (BLOCKED): by 0b. Pilot spec parked with activation lock.
 
 ## Completed So Far
 
@@ -117,10 +117,12 @@ Stages 3 & 5 (BLOCKED): by 0b + Gate 2. Pilot spec parked with activation lock.
 
 - Closed Gate 1 by integrating Gate 1 Resolution Record v1.0 into Foundation Map v1.0. The foundation backbone is now validated: 7 elements, 12-element Annex A with no orphans, OFAC added as eighth anchor, D1/D4 footnotes, D2 AI rows, and D3 third-party/M&A lens.
 
-- Integrated career-pattern mining into `06_Testing/Career_Patterns_v0.1.md`, created `06_Testing/Gate_2_Sanctions_Test_Library_v0.1.md`, ran Gate 2 Run v0.1, and logged failures in `06_Testing/Failure_Log_v0.1.md`. Gate 2 is not passed.
+- Integrated career-pattern mining into `06_Testing/Career_Patterns_v0.1.md`, created `06_Testing/Gate_2_Sanctions_Test_Library_v0.1.md`, ran Gate 2 Run v0.1, and logged failures in `06_Testing/Failure_Log_v0.1.md`.
+
+- Created `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md` after process review showed that the first run had no quoted generated outputs. Superseded the template-style v0.2 remediation with behavior-layer remediation in `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`, reran TC1-TC10 cold, and recorded 10 pass / 0 partial / 0 fail in `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. Gate 2 is passed as a documented-agent methodology gate.
 
 - Created project journal, project history, and article pipeline.
 
 ## Next Step
 
-Remediate the first Gate 2 run failures: TC5 third-party payer, TC7 single-regime designation, TC9 legal-but-not-bankable, and TC10 inherited book. Then rerun TC1-TC10. Stage 4 journal continues in pattern form; Stage 0b is checked only before Stage 3/5 or any external/commercial step.
+Commit and push the Gate 2 remediation and retest records to GitHub. Then continue Stage 4 journal in pattern form and use journal frequency data before choosing Agent #2. Stage 0b remains the blocker for Stage 3/5, external testing, publication, pilot links, or commercial use.

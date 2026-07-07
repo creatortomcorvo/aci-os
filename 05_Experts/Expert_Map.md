@@ -4,7 +4,7 @@ Routing rule: sanctions is one expert route, not the default lens for ACI-OS.
 
 Start from the user's facts and pressure pattern. Route to sanctions only when there is a real sanctions, trade, bank-hold, payment-route, restricted-party, restricted-country, ownership/control, restricted-goods, end-use, or evasion indicator. Otherwise use the relevant compliance route: ABAC, gifts/hospitality, fraud/books and records, conflicts, third-party due diligence, speak-up, investigations, competition, governance, training, monitoring, compliance program, document architecture, or regulator contact.
 
-Cross-cutting lenses: Legal / Compliance role boundary, response mode, Decision Front Door, relationship lifecycle, document architecture, role-boundary, no-clearance, and pattern-first input. These are not separate expert routes, but they should shape the answer whenever the facts trigger them.
+Cross-cutting lenses: Legal / Compliance role boundary, response mode, Decision Front Door, relationship lifecycle, document architecture, role-boundary, no-clearance, cultural calibration, and pattern-first input. These are not separate expert routes, but they should shape the answer whenever the facts trigger them.
 
 ## Investigations
 
@@ -57,7 +57,7 @@ Scope: Sanctions, embargoes, restricted parties, ownership/control, country rest
 
 Detailed route file: 05_Experts/Sanctions_Expert_Route_v0.1.1.md
 
-When to route: Any question involving sanctioned countries, restricted parties, bank holds, possible list matches, ownership/control issues, exports, re-exports, end use, logistics routes, or sanctions-related customer pressure.
+When to route: Any question involving sanctioned countries, restricted parties, bank holds, possible list matches, ownership/control issues, exports, re-exports, end use, logistics routes, payment-chain mismatch, regime divergence, bankability/account-continuity pressure, acquired or legacy relationship exposure, or sanctions-related customer pressure.
 
 First questions:
 
@@ -65,6 +65,7 @@ First questions:
 - What countries, currencies, goods, services, software, or technology are involved?
 - What screening was performed and when?
 - Is there an ownership/control concern beyond direct list matching?
+- Does any payer, bank, route, invoice, beneficiary, end user, or inherited relationship differ from the documented contract path?
 - Is a payment, shipment, service, or contract deadline imminent?
 
 Escalation triggers:
@@ -75,6 +76,14 @@ Escalation triggers:
 - Bank freeze or payment rejection.
 - Evasion indicators.
 - Restricted goods, military end use, dual-use item, or unusual routing.
+- Unresolved payer / route / bank / beneficiary mismatch.
+- One-regime listing or list divergence without binding-nexus analysis.
+- Lawful-but-operationally-unbankable relationship requiring management risk decision.
+- Acquired, inherited, renewed, or legacy relationship requiring current-action analysis.
+
+Sanctions route change note:
+
+- v0.1.1 - Added behavior-level routing for transaction-chain mismatch, regime divergence, bankability/account-continuity, and acquired/legacy relationship exposure.
 
 ## Third Party Due Diligence
 
@@ -126,6 +135,8 @@ Escalation triggers:
 Scope: Board and senior management conduct, compliance mandate, independence, escalation, management override, accountability, resource pressure, and the practical meaning of tone at the top.
 
 Founder-method support: 04_Founder_Method/Organizational_Culture_of_Integrity_Lecture_2026_01.md
+
+Methodology support: 04_Methodology/Culture_Of_Integrity_Diagnostic_v0.1.md
 
 When to route: Questions involving CEO, board, country manager, business leader pressure, policy exceptions, resource constraints, unresolved escalations, or inconsistent discipline.
 
@@ -260,6 +271,30 @@ Escalation triggers:
 - High-risk roles excluded.
 - Leadership undermines the message.
 - No evidence of completion or understanding.
+
+## Cultural Calibration
+
+Scope: Country or regional implementation of global compliance rules, policy rollouts, local adoption, training reception, monitoring timing, enforcement credibility, and culture-of-integrity diagnostics.
+
+Detailed route file: 05_Experts/Cultural_Calibration_Pack_v0.1.md
+
+When to route: User asks about global procedures across countries, local subsidiary resistance, why a rule is ignored after rollout, how to adapt training by country, when to start monitoring, or how to enforce a standard fairly across different cultures.
+
+First questions:
+
+- Which countries or regions are affected?
+- Is this a new rule, a revised rule, or a rule people already ignore?
+- Is local management visibly supporting it?
+- Is monitoring already active, planned, or absent?
+- Has anyone faced consequences for breach yet?
+
+Escalation triggers:
+
+- Cultural explanation is being used to excuse misconduct.
+- Local adaptation would weaken a mandatory legal, sanctions, bribery, speak-up, evidence-preservation, or anti-retaliation requirement.
+- Local management is undermining the rule.
+- Monitoring shows persistent non-compliance after training and leadership endorsement.
+- First disciplinary action may be needed and fairness / proportionality must be protected.
 
 ## Monitoring
 

@@ -50,6 +50,8 @@ The external Core Spec v0.5.1 proposed different F1-F9 meanings. Those meanings 
 
 Do not remap failure codes silently. If the project later adopts a different taxonomy, create an explicit migration table and update all affected tests and logs.
 
+Claude's 2026-07-05 review note also described a different F1-F9 ordering. That description conflicts with this active repo taxonomy and is not adopted. The GPT prompt must align to this file, not the external note.
+
 ## Change Log
 
 - v0.1 - Created F1-F9 taxonomy for ACI-OS QA and failure logging.
@@ -57,3 +59,4 @@ Do not remap failure codes silently. If the project later adopts a different tax
 - v0.1.2 - Extended F1 to cover visual green-lighting / UI severity signals that imply safety before analysis.
 - v0.1.3 - Refined F1 after Decision Front Door v0.1: advisory green and earned routine green may exist, but unearned or misleading green on a live matter remains a clearance failure.
 - v0.1.4 - Added compatibility note that Core Spec v0.5.1 F-code meanings are not adopted without explicit migration.
+- v0.1.5 - Added explicit note that Claude's 2026-07-05 alternate F-code ordering is not adopted.

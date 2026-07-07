@@ -14,7 +14,7 @@ This is different from expert routing. Expert routing asks: sanctions, ABAC, inv
 
 Active companion front-door spec: 04_Methodology/Decision_Front_Door_Spec_v0.1.md.
 
-The Decision Front Door helps the user start: situation picker or pattern recognition, timing question, role-boundary echo, controlled color / provisional status, first answer, tool-chosen questions, and output menu where useful. The mode router then decides the answer shape.
+The Decision Front Door helps the user start: situation picker or pattern recognition, timing question, role-boundary echo, controlled color / provisional status, first answer, tool-chosen questions, and output menu where useful. Tool-chosen questions should usually clarify both missing facts and the direction of discussion, but without showing those labels to the user. The mode router then decides the answer shape.
 
 ## The Six Modes
 
@@ -66,10 +66,13 @@ Examples:
 | --- | --- | --- |
 | Bank froze payment and counterparty offers Dubai reroute | 1 Crisis + 5 Escalation-mandatory if sanctions/financial-crime trigger appears | Sanctions; Third Party Due Diligence; Business Expectations; Governance |
 | Success fee for ministry-connected agent | 2 Judgment call | ABAC; Third Party Due Diligence; Governance / Tone at the Top |
+| How should we manage third parties? | 4 Program self-assessment or 2 Judgment call if tied to a live party | Third Party Lifecycle; ABAC; Sanctions; Governance; Monitoring |
 | How to preserve privilege across jurisdictions | 3 Counsel-boundary | Investigations; Governance; Data/Privacy; Legal escalation |
 | Was our remediation sufficient after repeated breaches? | 4 Program self-assessment | Compliance Program; Monitoring; Training; Governance |
 | Suspected dual-use diversion and emails found | 5 Escalation-mandatory, often with crisis timing | Sanctions; Investigations; Trade/Export; Legal / external counsel |
 | Sales asks "you're fine with it, right?" and the officer is unsure which role they are in | 6 Mirror, with possible 2 Judgment call | Governance; Business Expectations; Legal / Compliance role boundary |
+| Legal says a relationship may be lawful but the bank, operational system, or control owner may not support it | 2 Judgment call, with role-label separation | Sanctions or relevant expert route; Legal / Compliance role boundary; Business Expectations; Governance |
+| A relationship, receivable, payment, shipment, or contract changed over time or was inherited/acquired | 2 Judgment call or 3 Counsel-boundary if legal rights/licensing/termination turns | Relationship lifecycle; Sanctions or relevant expert route; Legal / Compliance role boundary |
 
 ## Response Shapes By Mode
 
@@ -86,6 +89,7 @@ Examples:
 - Direction: what can happen now, what cannot, and under what conditions.
 - Conditions memo where the user is being pushed for a yes.
 - Epistemic block and if-thens.
+- Separate decision layers when needed: legal permissibility, Compliance risk/control view, operational feasibility, banking/system acceptance, and management risk decision.
 
 ### Mode 3 - Counsel-Boundary
 
@@ -100,6 +104,12 @@ Examples:
 - Use evidence-of-operation logic.
 - Ask what material risks, controls, monitoring, incidents, incentives, discipline, resources, and board decisions exist.
 - Distinguish benchmark lens from professional judgment and unresolved governance choices.
+- For top-management support questions, do not only say what to request. Convert support into prepared leadership actions: mandate text, escalation line, decision menu, calendar slot, and wins report.
+- For compliance-officer qualities and compliance-department organization questions, start person-first before structure: courage with judgment is the engine; authority, autonomy, direct board access, sufficient resources, and experience are the armor. Include the negotiate-before-joining point where relevant, then ask 2-4 questions about the user's direction: career checklist, CEO/board argument, org design, or job-interview negotiation list.
+- For "how fast should I do a risk assessment after joining" questions, do not answer only "immediately." Separate learning phase, initial risk hypothesis, baseline assessment, and formal presentation. Ask time in role, probation/mandate, company size/geography, and urgent red flags before giving the plan.
+- For general risk-assessment how-to questions, first determine the governing standard or mandate: ISO 37301/37001, ECCP/FCPA exposure, sector regulator, board review, internal annual plan, post-incident remediation, M&A, or new-market entry. Hold one altitude only: big picture, planning, or execution. End substantive answers with a source/basis footer and label practitioner templates as practitioner method, not regulation.
+- For third-party-management how-to questions, use lifecycle framing before forms: need, risk classification, tiered due diligence ladder, safeguards, monitoring, renewal/change, exit/afterlife. Never reduce third-party management to one onboarding form.
+- For training-design questions, use the Kruk Training Design Schema: target audience/risk, three behavior objectives, hook case first, stakes, minimum viable rules, gray-zone scenarios, practice, red flags/contact, one-page card, behavior metrics. Cases come before policy text.
 
 ### Mode 5 - Escalation-Mandatory
 
@@ -130,6 +140,10 @@ The mode tells the product how to answer. The element map tells the product what
 
 ## Change Log
 
+- v0.1.9 - Added front-door question rule: questions clarify missing facts and direction of discussion.
+- v0.1.10 - Added officer-qualities hierarchy: courage as engine, authority/autonomy/resources as armor, and negotiate-before-joining direction.
+- v0.1.11 - Added Training Design Schema reference and made missing-facts/direction labels internal-only.
+- v0.1.8 - Added Upward Management Kit behavior for Element 1 leadership-support questions.
 - v0.1 - Created five-mode router methodology: Crisis, Judgment Call, Counsel-Boundary, Program Self-Assessment, and Escalation-Mandatory.
 - v0.1.1 - Linked Response Pattern Cards v0.1 as the mode-example library and clarified that the cards are design specs, not legal answers.
 - v0.1.2 - Updated companion card library to v0.2 and added apparatus-weight selection: light, medium, heavy.
@@ -137,3 +151,4 @@ The mode tells the product how to answer. The element map tells the product what
 - v0.1.4 - Added Decision Front Door Spec v0.1 as the active refinement before mode routing: timing question, role-boundary labels, controlled color, output menu, and pressure detector.
 - v0.1.5 - Added Mode 6 Mirror for officer-position questions and aligned mode logic with Core Spec v0.5.1 while preserving the current 12-element map.
 - v0.1.6 - Updated program-map relationship after the phase correction: 7-element backbone governs Gate 1; the 12-element practitioner map is Annex A calibration.
+- v0.1.7 - Added behavior-level routing for legal-versus-operational feasibility and relationship lifecycle / acquired exposure questions.
