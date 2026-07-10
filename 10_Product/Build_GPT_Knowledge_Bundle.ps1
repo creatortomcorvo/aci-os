@@ -8,7 +8,10 @@ $files = @(
   "07_Research\Source_Register_v0.1.md",
   "07_Research\External_Source_And_Example_Use_Rule_v0.1.md",
   "03_Kruk_Principles\Kruk_Way_Operating_Doctrines_v0.1.md",
+  "03_Kruk_Principles\Kruk_Way_Leadership_v0.1.md",
+  "03_Kruk_Principles\Case_The_Last_Control_v1.0.md",
   "10_Product\Chief_Consigliere_Response_Front_Door_Rules_v0.1.md",
+  "10_Product\ACI_OS_Document_Standards_v1_0.md",
   "04_Methodology\Decision_Front_Door_Spec_v0.1.md",
   "04_Methodology\Question_Mode_Router_v0.1.md",
   "04_Methodology\Response_Pattern_Cards_v0.2.md",
@@ -22,6 +25,8 @@ $files = @(
   "04_Founder_Method\Compliance_Organization_Person_First_v0.1.md",
   "04_Founder_Method\Risk_Assessment_After_Joining_v0.1.md",
   "05_Experts\Cultural_Calibration_Pack_v0.1.md",
+  "05_Experts\Sports_Media_Compliance_Source_Routing_v0.1.md",
+  "05_Experts\Sanctions_Report_Mode_Bridge_v0.1.md",
   "05_Experts\Sanctions_Expert_Route_v0.1.1.md"
 )
 
@@ -34,7 +39,7 @@ Generated: $(Get-Date -Format "yyyy-MM-dd HH:mm")
 
 Purpose: upload this single file instead of many separate Knowledge files. Do not upload Gate 2 tests, transcripts, failure logs, journal, parked inbox, raw attachments, or private notes.
 
-Instruction file remains separate: paste `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v1.7_under8000.md` into the GPT Instructions box.
+Instruction file remains separate: paste `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.2_under8000.md` into the GPT Instructions box.
 
 ---
 

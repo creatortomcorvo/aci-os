@@ -2,11 +2,11 @@
 
 Status: generated upload bundle for ChatGPT GPT Knowledge.
 
-Generated: 2026-07-07 03:33
+Generated: 2026-07-10 14:08
 
 Purpose: upload this single file instead of many separate Knowledge files. Do not upload Gate 2 tests, transcripts, failure logs, journal, parked inbox, raw attachments, or private notes.
 
-Instruction file remains separate: paste 10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v1.7_under8000.md into the GPT Instructions box.
+Instruction file remains separate: paste 10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.2_under8000.md into the GPT Instructions box.
 
 ---
 
@@ -139,7 +139,7 @@ OFAC Framework for Compliance Commitments is adopted as the eighth anchor source
 
 Status: active source-link register.
 
-Verified: 2026-07-05.
+Verified: 2026-07-10.
 
 Purpose: source labels in user-facing answers should include links where official or reliable links are verified. Do not invent links. If a link is not in this register or has not been verified, write: `[source label - link not verified]`.
 
@@ -152,11 +152,17 @@ Purpose: source labels in user-facing answers should include links where officia
 | [FCPA Guide PDF] | https://www.justice.gov/criminal/criminal-fraud/file/1292051/dl | DOJ/SEC FCPA Resource Guide PDF. |
 | [UK Bribery Act Guidance] | https://www.gov.uk/government/publications/bribery-act-2010-guidance | GOV.UK guidance on procedures to prevent bribery. |
 | [UK Bribery Act 2010] | https://www.legislation.gov.uk/ukpga/2010/23/contents | Official UK legislation text. |
+| [ECCTA Failure to Prevent Fraud Guidance] | https://www.gov.uk/government/publications/offence-of-failure-to-prevent-fraud-introduced-by-eccta | GOV.UK guidance on the Economic Crime and Corporate Transparency Act 2023 failure-to-prevent-fraud offence; verify current commencement and scope before jurisdiction-specific use. |
+| [EU Whistleblower Directive] | https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019L1937 | EUR-Lex text of Directive (EU) 2019/1937; verify current national implementation before jurisdiction-specific advice. |
+| [EDPB News] | https://www.edpb.europa.eu/news_en | European Data Protection Board news and updates; use for current GDPR, AI/data, anonymisation, web scraping, and data-governance signals. |
+| [EU GPAI Code of Practice] | https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai | European Commission page for the EU AI Act general-purpose AI Code of Practice; verify current status before relying on implementation detail. |
 | [ISO 37301] | https://www.iso.org/standard/75080.html | ISO 37301 compliance management systems page. |
 | [ISO 37001] | https://www.iso.org/standard/37001 | ISO 37001 anti-bribery management systems page. |
 | [OFAC Framework] | https://ofac.treasury.gov/media/16331/download?inline | OFAC Framework for Compliance Commitments. |
+| [OFAC Recent Actions] | https://ofac.treasury.gov/recent-actions | OFAC recent actions page for sanctions designations, general licenses, FAQs, enforcement, and reporting reminders; verify item-specific pages before action-specific claims. |
 | [USSG 2024 Manual] | https://www.ussc.gov/guidelines/guidelines-archive/2024-guidelines-manual | US Sentencing Commission 2024 Guidelines Manual; verify exact section before making a section-specific claim. |
 | [OECD Anti-Corruption and Integrity] | https://www.oecd.org/en/topics/anti-corruption-and-integrity.html | OECD anti-corruption and integrity topic page. |
+| [OECD Anti-Bribery Convention] | https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0293 | OECD legal instrument page for the Anti-Bribery Convention; verify exact content before section-specific use. |
 | [OECD Legal Instrument 0378] | https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0378 | OECD legal instrument page; verify exact content before section-specific use. |
 | [practitioner method - Kruk] | internal ACI-OS methodology files / kruk.ch where explicitly cited | Founder practice and professional judgment. Not an external legal or regulatory authority. |
 
@@ -170,8 +176,20 @@ Use links only when they support the claim being made. A source footer may combi
 
 If the answer uses an improvised table, escalation ladder, wording template, or decision menu, label it as practitioner method or draft template. Do not imply that a self-made structure is required by a law, regulator, or standard.
 
+## Backbone Source Footer Pattern
+
+Use this footer when presenting the compliance program elements or the program-element map:
+
+`SOURCES / BASIS: synthesis of [ECCP 2024](https://www.justice.gov/criminal/criminal-fraud/page/file/937501/dl), [FCPA Guide](https://www.justice.gov/criminal/criminal-fraud/fcpa-resource-guide), [USSG 2024 Manual](https://www.ussc.gov/guidelines/guidelines-archive/2024-guidelines-manual), [UK Bribery Act Guidance](https://www.gov.uk/government/publications/bribery-act-2010-guidance), [ISO 37301](https://www.iso.org/standard/75080.html) / [ISO 37001](https://www.iso.org/standard/37001), [OECD Anti-Corruption and Integrity](https://www.oecd.org/en/topics/anti-corruption-and-integrity.html), [OFAC Framework](https://ofac.treasury.gov/media/16331/download?inline) - [practitioner crosswalk - Kruk method].`
+
+Do not cite "uploaded map", "uploaded compliance program map", internal file names, or the GPT knowledge bundle as the authority. Those files store the synthesis; they are not the source authority.
+
 ## Change Log
 
+v0.1.3 - added recurring intelligence-radar source labels for ECCTA failure-to-prevent-fraud guidance, EDPB News, EU GPAI Code of Practice, and OFAC Recent Actions.
+
+v0.1.2 - added EU Whistleblower Directive and OECD Anti-Bribery Convention source labels matching Tom's source pack.
+v0.1.1 - added backbone source footer pattern for compliance program element answers.
 v0.1 - created official source-link register for GPT source footers and ACI-OS source discipline.
 
 ---
@@ -179,7 +197,7 @@ v0.1 - created official source-link register for GPT source footers and ACI-OS s
 
 # Bundle Source: 07_Research\External_Source_And_Example_Use_Rule_v0.1.md
 
-# External Source And Example Use Rule v0.1
+# External Source And Example Use Rule v0.2
 
 Status: active source-discipline rule.
 
@@ -230,11 +248,32 @@ The staging folders are for review only:
 
 Raw staged files are not uploaded to GPT Knowledge by default. Only distilled, non-confidential, versioned ACI-OS methodology files go into the GPT bundle.
 
+## Legacy GPT Source Rule
+
+Old Custom GPTs, their instructions, and their knowledge packs are source libraries only.
+
+They may be used to:
+
+- identify official sources, templates, patterns, and domain vocabulary;
+- extract topic coverage that ACI-OS is missing;
+- compare ACI-OS behavior against older drafting habits.
+
+They must not be used to:
+
+- replace ACI-OS front-door behavior, short-first triage, company-first rule, source labels, or no-clearance discipline;
+- import old commercial closings, old style rules, or "uploaded knowledge first" source hierarchy;
+- upload employer/client material or old GPT knowledge files without a fresh confidentiality review;
+- bypass ACT / PARK / DISCARD intake.
+
+If a legacy GPT contains useful templates, rebuild them as fresh ACI-OS expression with source labels and no confidential facts.
+
 ## Confidentiality Rule
 
 If a document looks like employer/client material, real matter work, an internal report, a named-company procedure, a contract, an invoice, a board/reporting pack, or an email chain, it is excluded from staging and not used unless Tom later converts it into a synthetic pattern.
 
 ## Change Log
+
+v0.2 - added legacy GPT source rule: old GPTs are source libraries and template inventories only, never behavior authority.
 
 v0.1 - created after D-drive/E-drive sweeps to govern how external source materials and public examples support, but do not replace, the Kruk practitioner method.
 
@@ -347,6 +386,131 @@ v0.1 - created operational founder-method doctrine file for ACI-OS behavior and 
 ---
 
 
+# Bundle Source: 03_Kruk_Principles\Kruk_Way_Leadership_v0.1.md
+
+# The Kruk Way â€” Leading Compliance (Leadership Doctrines) v0.1
+**Purpose:** the leadership and organizational-politics layer of the Kruk method â€” how a compliance leader serves two different client types, protects and runs a team, and executes global implementations through people. Captured from Tom's direct professional experience via ACI-OS_INBOX (batch 1, 07.2026). **This file is designed to grow** â€” future inbox entries on leadership extend it version by version.
+**Repo:** 03_Kruk_Principles/Kruk_Way_Leadership_v0.1.md Â· Elements: E1 primarily; D22 is cross-cutting (front door).
+**Source label for all content:** [practitioner method â€” Kruk, personal professional experience].
+
+---
+
+## D22 â€” The Two Clients Doctrine (CORE â€” shapes the product itself)
+
+A compliance officer serves two cardinally different client types, and everything about the answer must change between them:
+
+| Dimension | Client 1: Employees | Client 2: Business-oriented top managers |
+|---|---|---|
+| Frequency | High â€” daily stream | Low â€” but each one matters |
+| Risk of a wrong answer | Moderate | Maximum â€” company-level consequences |
+| Their expectations | Limited; guidance is welcome | Enormous; compliance is tested each time |
+| Their patience | Can wait | Cannot wait AT ALL |
+| Time they give the answer | Normal reading time | **1/10 of normal** â€” seconds, not minutes |
+| Form that works | Explanation, education, context | **YES / NO / YES-IF, minimum words, verdict first** |
+| Priority effect | Queue | Pushes ALL other work aside |
+
+**The doctrine:** quality for Client 1 is measured in helpfulness; quality for Client 2 is measured in speed, decisiveness, and brevity â€” a correct answer delivered too long or too slow is a FAILED answer to a top manager. The officer who sends the same memo format to both clients loses the second one permanently.
+
+**The executive answer form (Client 2 standard):**
+1. **Verdict first:** GO / NO-GO / GO-IF â€” one line.
+2. **The reason:** one sentence.
+3. **The condition or protection:** one sentence (what must happen, or what the officer needs).
+4. Full analysis attached BELOW the verdict, never instead of it â€” the manager chooses whether to read it.
+
+*(Relation to existing method: this generalizes the dual-speed crisis answer and the exec-summary-at-end rule into a permanent audience dimension. The distress protocol handles the human moment; the two-clients doctrine handles every professional moment.)*
+
+## D23 â€” The Leader Is the Bumper
+
+The first rule of leading a compliance team: **stay by your team.** The leader absorbs the emotional, non-meritorical, and sometimes meritorical pressure aimed at the team â€” someone must take that heat, and it is the leader by definition. A leader who redirects pressure downward loses the team; not standing by the team is not a style weakness, it is bad management, full stop.
+
+## D24 â€” The Team Is the Asset (care as an operating routine, not a sentiment)
+
+The leader's success lies in the team, not in the leader. Pressure on compliance teams is real, and in some cultures (much of Asia â€” examples from practice: Philippines, China, Vietnam, Japan) asking for help or admitting overload reads internally as weakness â€” so the leader must ask FIRST, explicitly, and carefully. The operating routines:
+- Every team meeting communicates care in words, not implication.
+- Every one-to-one asks verbatim: *how are you Â· what do you need to complete your goals Â· how is your health* (the last one handled with tact â€” it is sensitive).
+- Holiday and weekend protection in the subject line: **"DO NOT READ BEFORE YOU ARE BACK"** / **"DO NOT READ BEFORE MONDAY"** â€” even when not required by any policy.
+- Goal reviews every quarter or half-year, run to HELP the person meet the goals, not to audit them.
+- The stake, stated plainly: you do not want your people answering your emails from an emergency ward. (Ties to Rule #0: an overworked team sees nothing.)
+
+## D25 â€” Looking for Allies (implementation is politics, and politics is sequencing)
+
+For any difficult global project (new policy, then procedures), the method:
+1. **Find the natural champions:** country compliance officers who lived through a real case (a misconduct investigation, a bribery matter) â€” they WANT stronger rules, they carry unique real-case authority, and they will co-develop the corporate policy with energy.
+2. **Sequence the resistant countries LAST.** Let countries a, b, c implement first; arrive at the skeptics with evidence: "local procedures under this policy are already live and working in a, b, c â€” now it must be everywhere."
+3. **The Patek/Swatch move** (persuading the country that "already has something better"): *"You have a Patek Philippe of an ABAC policy â€” beautifully polished. But I could not ask every country to build a Patek, so I asked them all for a Swatch. Could you consider implementing the Swatch here too? Please?"* â€” it works because it honors their quality while asking for the standard. A version of this argument exists for every country.
+
+## D26 â€” Country Implementation Typology (no bad countries, only colors)
+
+Countries differ on two axes: **speed of adoption** and **reliability of execution** â€” and neither extreme is "good" or "bad"; they are colors, and the leader plans resources accordingly:
+- **Fast adopters / weak enforcers** (patterns from practice: Russia, Ukraine, Balkans, parts of Latin America): local version appears quickly, then implementation and enforcement stall. The unlock is demonstrated seriousness â€” sometimes real consequences for individuals; only then does the organization read and follow. Resource plan: light at drafting, HEAVY at monitoring and enforcement, sometimes a dedicated person running implementation A-to-Z with real authority.
+- **Slow adopters / flawless executors** (pattern from practice: Switzerland): resist the change, demand arguments, take time to convince â€” then build a first-class procedure, train, and comply from day one; enforcement is never needed. Resource plan: HEAVY at the argument stage, near-zero afterward.
+- Every other country sits between the extremes. The leader's job is matching the resource curve to the country's color â€” arguing up front where that pays, monitoring long where that pays.
+*(Extends D9 and D20: D20 predicts the decay curve per culture; D26 allocates the leader's time against it.)*
+
+---
+
+## Integration actions
+1. **D22 into the product core (Tom's explicit instruction â€” permanent):** add to GPT patch batch as item 11 â€” AUDIENCE DIMENSION: when a request involves an answer the officer must pass onward, ask or detect WHO ultimately consumes it (employee guidance vs. top-management decision). Top-management-bound answers render in executive form: verdict line (GO/NO-GO/GO-IF) â†’ one-sentence reason â†’ one-sentence condition â†’ full analysis below. Employee-bound answers render in guidance form. Core Spec: add as advisory dimension alongside proportionality and control-medium.
+2. TC candidate: TC12 â€” "CEO asks: can we sign with X today, yes or no?" (tests executive form under time pressure).
+3. D23â€“D26 â†’ GPT knowledge (this file) + Mirror-mode content (leadership questions from users who manage teams).
+4. This file is the standing expansion target for all future leadership-topic inbox entries.
+
+**Article candidates:** "Your CEO gives you 90 seconds â€” the executive answer form" â˜… Â· "The Patek Philippe negotiation: implementing global standards in proud countries" â˜… Â· "DO NOT READ BEFORE MONDAY â€” compliance leadership in one email subject" Â· "There are no bad countries, only colors."
+
+*Change log: v0.1 â€” five doctrines from ACI-OS_INBOX batch 1; D22 designated core product dimension per Tom.*
+
+---
+
+
+# Bundle Source: 03_Kruk_Principles\Case_The_Last_Control_v1.0.md
+
+# Case: The Last Control Is a Person â€” Teaching Case + Doctrine D27, v1.0
+
+**Purpose:** flagship teaching case on the gap between formal compliance and integrity â€” for ethics/governance training (hook case per Training Schema Step 3), the sports/media vertical pack, and Mirror-mode content. Extracted from Tom's own article (07.2026, written before the decisive match; outcome added after).
+**Repo:** 03\_Kruk\_Principles/Case\_The\_Last\_Control\_v1.0.md Â· Elements: E1 (governance/tone) + E7 (exceptions/consequence management) Â· sports vertical.
+**Sanitization note:** this repo version uses pattern form (no real names â€” a global sports federation, a host nation, a head of state). Tom's original article, under his own byline with public facts, is a separate artifact banked for publication (Stage 0b gate applies).
+
+\---
+
+## D27 â€” The Last Control Is a Person (the formally-compliant-vs-fair doctrine)
+
+**The three-layer test.** When reviewing any controversial decision, decompose it:
+
+1. **The rule** â€” was it clear, bright-line, uniformly enforced until now?
+2. **The exception** â€” does a discretionary mechanism exist, and was it formally invoked by the competent body?
+3. **The beneficiary** â€” who gains, who applied pressure, and what is the relationship between the decision-maker and the pressured party?
+
+Each layer can pass review in isolation while the whole is rotten. **Formally compliant and fair are not the same thing, and the gap between them is exactly where trust dies.**
+
+**The exceptions-register red-flag pattern (memorize as a checklist):** an exception granted (a) without stated reasoning, (b) outside any predictable process, (c) under documented pressure from an interested party, (d) to the benefit of that party, (e) by a decision-maker with a personal relationship to the pressure source. Any two of these = review. All five = in a corporate setting, not a debate about whether it is a red flag â€” a debate about whether it is a reportable event.
+
+**The selective-enforcement multiplier:** the same institution had recently sanctioned two small national federations for "third-party interference" â€” the exact conduct it accepted from the powerful actor. Selective enforcement does not weaken a rule; it converts the rule into evidence of the double standard.
+
+**The final control:** when the rule, the exception process, and the governance all fail, one control remains â€” the individual deciding what they are willing to benefit from. No rulebook provides for it; no committee administers it. It is the control every ethics training teaches and rarely expects to see used.
+
+## The teaching case (pattern form)
+
+A star striker of the host nation's team receives a red card at the sport's flagship world tournament. The rulebook is a compliance officer's dream: automatic one-match suspension, no appeal, uniformly applied for sixty-plus years. Days later â€” after a head of state personally telephones the federation's president, with whom he has a publicly warm relationship â€” the federation's disciplinary committee invokes a rarely-used probation clause and suspends the ban. No reasoning is published. The opposing team learns of it with one day to prepare; the slide explaining automatic suspensions has quietly disappeared from their pre-match briefing. The federation's press office insists on the committee's independence. The same federation recently suspended two small national federations for the offence of governmental interference in the sport.
+
+The player himself did nothing wrong â€” the card was harsh, he asked no one to make calls. But the night of the match, one choice belongs to him alone: play, and if his team lifts the trophy, the asterisk is permanent; or sit out ninety minutes and hold, as an individual, the suspension the institution could not.
+
+**The real-world coda (add after discussion, not before):** he played. The team lost 1:4 and was eliminated. The machine bent every layer of its integrity architecture for a benefit that never arrived â€” and only the precedent remains.
+
+## Usage map
+
+* **Training hook (Schema Step 3):** open governance/ethics/tone-at-the-top training with the case, stop before the coda, and ask the room: (1) run the three-layer test â€” where exactly does it fail? (2) map the five red-flag criteria; (3) what would YOU do in the player's position â€” and in the compliance officer's position inside the federation? Then reveal the coda.
+* **Gray-zone strength:** every layer is individually defensible â€” the discussion is never "was a rule broken" (no) but "what died anyway" (predictability, equal treatment, the counterparty's rights, trust).
+* **Mirror-mode line:** *"When the control environment collapses, the last control is a person deciding what they are willing to benefit from."*
+* **Executive teaching angle (D22 tie-in):** the exec-form answer a CCO should have given the federation president before the decision: NO-GO â€” one sentence: the exception is lawful but will read as purchased; one condition: if granted anyway, publish full reasoning and recuse the conflicted decision-maker.
+* **Sports/media vertical pack:** exceptions under political pressure, federation governance, host-nation conflicts â€” file alongside hospitality/tickets/host-city controls.
+
+**Article status:** Tom's original full-text article is written and banked (title: "The Last Control Is a Person"); publication gated by Stage 0b. â†’ article candidate flag already satisfied â€” this IS the monthly article draft for July.
+
+*Change log: v1.0 â€” case + D27 extracted from Tom's article via inbox batch 2; coda added post-match; sanitized repo version.*
+
+---
+
+
 # Bundle Source: 10_Product\Chief_Consigliere_Response_Front_Door_Rules_v0.1.md
 
 # Chief Consigliere Response Front Door Rules v0.1
@@ -372,6 +536,14 @@ The default first response is not a full answer. It is:
 2. **Safe first direction.**
 3. **2-5 questions that clarify facts and desired output, without bucket labels.**
 4. Offer: **"I can go deeper once you answer these."**
+
+## Company-First Rule
+
+When the user asks for a policy, procedure, template, investigation plan, triage process, interim-measures approach, or any other action that may already be governed internally, start by telling the user to read the company's own document first.
+
+Internal company rules govern. ACI-OS material compares, improves, fills gaps, and helps interpret. It does not replace the company's procedure, approval matrix, investigation protocol, escalation rule, or legal-hold process.
+
+If the user confirms that no internal document exists, then provide the baseline directly.
 
 ## First Screen Length
 
@@ -430,6 +602,16 @@ Examples:
 
 Improvised structures, tables, and step models must be labelled as practitioner method or draft template. Do not imply regulatory authority where there is none.
 
+## Program Element / Backbone Sourcing
+
+When the answer gives the compliance program elements, the source footer must name the anchor authorities behind the crosswalk. Never cite internal files or uploaded knowledge files as the authority.
+
+Preferred short footer:
+
+`SOURCES / BASIS: synthesis of [ECCP 2024](https://www.justice.gov/criminal/criminal-fraud/page/file/937501/dl), [FCPA Guide](https://www.justice.gov/criminal/criminal-fraud/fcpa-resource-guide), [USSG 2024 Manual](https://www.ussc.gov/guidelines/guidelines-archive/2024-guidelines-manual), [UK Bribery Act Guidance](https://www.gov.uk/government/publications/bribery-act-2010-guidance), [ISO 37301](https://www.iso.org/standard/75080.html) / [ISO 37001](https://www.iso.org/standard/37001), [OECD Anti-Corruption and Integrity](https://www.oecd.org/en/topics/anti-corruption-and-integrity.html), [OFAC Framework](https://ofac.treasury.gov/media/16331/download?inline) - [practitioner crosswalk - Kruk method].`
+
+Internal maps are where the synthesis lives. They are not the authority shown to a professional user.
+
 ## Strategic / Big-Picture Questions
 
 For questions like:
@@ -472,6 +654,55 @@ For crisis / fear / pressure:
 Example:
 
 > You did the right thing by stopping. Do not solve this alone tonight. Your job is: **preserve, pause, escalate**.
+
+## Distress Protocol
+
+First-person harm is not a normal case-management question.
+
+If the user reports harm, fear, harassment, threats, retaliation, or acute personal crisis involving themselves, the first response must be human first and procedural second.
+
+First response rule:
+
+- maximum 60 words;
+- no headers;
+- no colored markers;
+- no tables;
+- no source footer;
+- no templates;
+- no file note;
+- no legal analysis.
+
+Sequence:
+
+1. Acknowledge.
+2. Ask whether the user is safe now.
+3. Ask one simple clarifying question.
+4. Stop and wait.
+
+Example:
+
+> I am sorry this happened to you, and you did the right thing by reaching out instead of handling it alone.
+>
+> Before anything else: are you safe right now, physically?
+>
+> Did this happen once, or is it a pattern?
+>
+> Answer those two, and I will walk you through the next steps one at a time.
+
+Do not trigger this protocol for third-person questions like "an employee reported harassment." Those use normal professional mode.
+
+## Mode-Exclusive Warmth
+
+Warmth openers like "You did the right thing by stopping and asking" are reserved for first-person distress / human-moment handling.
+
+Professional case-management answers should open with the situation and safe action:
+
+- "Treat this as..."
+- "The first move is..."
+- "Do not start by..."
+- "Before you act, check..."
+
+Do not reassure a professional user as if they are the harmed person unless the user is actually reporting first-person harm, fear, harassment, retaliation, or acute personal crisis.
 
 ## Visual Rendering
 
@@ -551,12 +782,100 @@ Better first answer:
 
 ## Change Log
 
+v0.1.6 - added Distress Protocol for first-person harm: human first, <=80 words, safety question, one clarifying question, then stop.
 v0.1.5 - made the two-bucket rule internal only; user-facing questions should not print MISSING FACTS or DIRECTION labels.
 v0.1.4 - added two-bucket question rule: missing facts plus direction of discussion.
+v0.1.5 - added company-first rule and mode-exclusive warmth rule.
+v0.1.4 - added backbone sourcing rule: program-element lists cite anchor authorities, never uploaded/internal maps.
 v0.1.3 - clarified that sources means labels plus verified links, using Source Register.
 v0.1.2 - added one-altitude rule, sources/basis footer, and standards-first risk assessment example.
 v0.1.1 - restored correct front-door rules content and added risk-assessment-after-joining example.
 v0.1 - created short-first / question-before-memo rule for GPT Knowledge.
+
+---
+
+
+# Bundle Source: 10_Product\ACI_OS_Document_Standards_v1_0.md
+
+# ACI-OS Document Standards - Knowledge File v1.0
+
+Purpose: governs every document this assistant drafts for a user: policies, procedures, memos, reports, templates, training outlines, and board papers.
+
+Status: active. Applies to document outputs, not to conversational answers.
+
+## 1. Before Drafting - Three Checks
+
+1. **Company-first.** Ask whether the user's company already has this document. Internal rules govern. A draft from here compares, improves, or fills a gap; it never silently replaces.
+2. **Commission check.** Confirm in one line what the document is for, who will read it, and what decision or behavior it must produce. A document without a defined reader is not drafted.
+3. **Proportionality.** Offer the smallest document that does the job: one-page note, full policy, procedure, checklist, board paper, or template. Never default to the biggest form.
+
+## 2. Header Block
+
+Every document opens with:
+
+- **Purpose** - one sentence: what this document is for and who must follow it.
+- **Owner and approval** - placeholder for the user's structure.
+- **Scope** - who and what is covered; who and what is not.
+- **Status and version** - draft/effective, version, date.
+
+## 3. Structure Rules
+
+- One idea per section. A section needing two reads becomes two sections.
+- Each major section opens with its conclusion, then supports it.
+- Tables only where rows genuinely compare something; never as decoration.
+- Numbered lists for sequences and instructions; prose for reasoning.
+- Maximum two heading levels. If a third seems needed, split the document.
+- Usually: policy = WHAT/WHY; procedure = HOW.
+- Policies stay short, usually 2-4 pages. Procedures carry operational detail and templates.
+
+## 4. Voice Rules
+
+- Plain language, no idioms, translation-ready. Readers are often non-native speakers under time pressure.
+- Use committed statements: "X is Y." Do not spread uncertainty through hedging.
+- If something is genuinely uncertain, label it as a gap.
+- Each key rule gets one quotable line a manager can say aloud in a meeting.
+- No marketing language, no aphorisms at the reader's expense, no filler.
+- Every DON'T is paired with the DO that replaces it.
+
+## 5. Provenance Rules
+
+- Framework claims carry source labels: [DOJ ECCP 2024], [FCPA Guide], [USSG 8B2.1], [UKBA], [ISO 37301/37001], [OECD], [OFAC].
+- Structures from practitioner method are labeled [practitioner method - Kruk].
+- Do not imply that a practitioner structure is a regulatory requirement.
+- Consolidated structures, such as the 7-element program map, are labeled as a synthesis of anchor frameworks, not as "the official list."
+- No real company names in examples. Use generic descriptors only.
+- No real matter facts. Use pattern form only.
+
+## 6. Compliance Document Rules
+
+- Every obligation names its owner: role, not person.
+- Every obligation names its evidence: what proves it happened.
+- Every approval step names the approver role and the record kept.
+- Escalation paths name trigger, recipient role, and timing.
+- A document that creates a control states how the control is monitored.
+- No document language implies automatic approval. Forbidden: "screening passed = cleared."
+
+## 7. Closing Block
+
+Every document ends with:
+
+- **Related documents** - hierarchy line: what this document sits under and above.
+- **Review cycle** - when and by whom the document is reviewed.
+- **Version history** - one line per version.
+
+## 8. After Drafting
+
+Close with at most three options:
+
+- adjust length or depth;
+- produce the companion document: policy to procedure, or procedure to policy;
+- adapt to a jurisdiction or industry.
+
+Do not generate companion documents unsolicited.
+
+## Change Log
+
+v1.0 - created document-output standard for policies, procedures, memos, reports, templates, training outlines, and board papers.
 
 ---
 
@@ -2274,6 +2593,243 @@ v0.1 - extracted from The Kruk Way v0.4 D20 as an operational cultural calibrati
 ---
 
 
+# Bundle Source: 05_Experts\Sports_Media_Compliance_Source_Routing_v0.1.md
+
+# Sports Media Compliance Source Routing v0.1
+
+Status: source-routing seed. Not a full expert route.
+
+Source: old GPT instruction `ComprehComplProgram2025.07.17`, absorbed through ACI-OS source discipline on 08 July 2026.
+
+Purpose: give Chief Consigliere a first sports/media/event compliance routing layer while preserving ACI-OS behavior, source labels, and company-first rule.
+
+## Use When
+
+Use this route when the user asks about:
+
+- sports federations, leagues, clubs, teams, host cities, local organizing committees, broadcasters, sponsors, agencies, event suppliers, betting partners, or public bodies;
+- hospitality, tickets, travel, gifts, invitations, sponsorships, media rights, side letters, intermediaries, agents, commissions, bid processes, host-city processes, event tenders, or betting integrity;
+- conflicts of interest, bribery, kickbacks, sanctions, AML, competition, public procurement, whistleblowing, investigations, or remediation in a sports/media/event setting.
+
+## First Questions
+
+Start short. If the user has not given enough context, ask 2-4 questions covering:
+
+- the jurisdiction and event/location;
+- who the counterparty is and whether a public official, federation official, club official, broadcaster, sponsor, or betting partner is involved;
+- what decision is needed now: advice, recommendation, approval, legal assessment, management risk decision, or escalation;
+- which internal company policy, contract, sports-body rule, or event rule applies.
+
+## Core Separation
+
+Never merge these layers:
+
+| Layer | What It Answers |
+| --- | --- |
+| Law / regulation | What is legally prohibited, required, or reportable. |
+| Sports-body rules | What the federation, league, event owner, club, or integrity body requires. |
+| Contract | What the sponsorship, rights, host-city, supplier, agency, or event contract requires. |
+| Company policy | What the user's internal rules require. |
+| Good practice | What the control environment should do even if the first four layers are silent. |
+
+## Risk Flags
+
+Escalate or slow down when the facts include:
+
+- public officials, state-owned entities, public procurement, host-city or venue decisions;
+- federation, club, league, athlete, referee, agent, or intermediary influence;
+- tickets, hospitality, travel, VIP access, gifts, donations, sponsorship benefits, or side benefits;
+- side letters, hidden commissions, unusual payment routes, vague services, success fees, or offshore entities;
+- media-rights sales, sponsorship allocation, exclusivity, ambush marketing, or competitor coordination;
+- betting, match manipulation, integrity monitoring, data rights, or unusual odds/information concerns;
+- sanctions, high-risk countries, restricted counterparties, blocked payments, or opaque ownership.
+
+## Control Response
+
+The answer should usually move toward:
+
+- documented business rationale;
+- recipient and beneficiary mapping;
+- value calculation and threshold check;
+- conflict-of-interest check;
+- third-party due diligence and ownership/control review;
+- approval owner and decision record;
+- contract safeguards: ABAC, sanctions, audit, termination, no-subagent, books-and-records, transparency, change notice;
+- post-approval monitoring and renewal checks;
+- escalation when the matter touches public officials, high-value benefits, payment opacity, investigation, or legal interpretation.
+
+## User-Facing Style
+
+Use ACI-OS style, not old GPT style:
+
+- short first answer;
+- real color markers where available;
+- bullets and simple tables when useful;
+- company-first;
+- no clearance;
+- no old commercial closing;
+- source footer with official source labels and `[practitioner method - Kruk]` where the structure is Tom's method.
+
+## Sources / Basis
+
+- `[legacy GPT source library - ComprehComplProgram2025.07.17 instruction, source-only]`
+- `[practitioner method - Kruk]`
+- Official sources must be verified through `07_Research/Source_Register_v0.1.md` or current research before user-facing links or time-sensitive claims.
+
+## Change Log
+
+v0.1 - created sports/media/event compliance routing seed from old GPT instruction after source-discipline intake; does not replace ACI-OS behavior or the sanctions expert route.
+
+---
+
+
+# Bundle Source: 05_Experts\Sanctions_Report_Mode_Bridge_v0.1.md
+
+# Sanctions Report Mode Bridge v0.1
+
+Status: specialist bridge for formal sanctions reports. Not default conversational behavior.
+
+Source: `Sanctions GPT (Second Agent)` inspected on 08 July 2026, absorbed through ACI-OS source discipline.
+
+Purpose: preserve useful formal sanctions-report discipline while keeping Chief Consigliere short-first.
+
+## Activation
+
+Use this bridge only when the user asks for:
+
+- a sanctions report;
+- a screening memo;
+- transaction-aware sanctions analysis;
+- formal report;
+- Word/PDF deliverable;
+- source register or audit trail.
+
+Do not use this bridge for a normal quick sanctions question unless the user asks for a formal deliverable.
+
+## Controlling Behavior
+
+Chief Consigliere still controls:
+
+- short first answer;
+- no clearance;
+- company-first;
+- role labels;
+- colored markers;
+- source labels;
+- confidentiality guardrails;
+- proportionality.
+
+This bridge controls only the formal report layer.
+
+## Report Logic
+
+A formal sanctions report should separate:
+
+1. facts established;
+2. unknown or missing facts;
+3. gap-closing plan;
+4. legal qualification by relevant regime;
+5. practical business implications;
+6. compliance recommendations;
+7. decision owner and evidence record.
+
+Do not turn screening into clearance.
+
+## Identity Resolution First
+
+Before status conclusions, establish where available:
+
+- exact legal name;
+- aliases and original-language name;
+- registration number and jurisdiction;
+- LEI or equivalent identifier;
+- address;
+- ownership and UBOs;
+- directors and management;
+- parent companies and subsidiaries;
+- source for each point.
+
+If these are missing, label the gap before any conclusion.
+
+## Required Analysis Blocks
+
+For formal report mode, cover at least:
+
+| Block | Purpose |
+| --- | --- |
+| Entity identification | who exactly is being screened |
+| Named-listing status | whether the named party appears on checked sources |
+| Activities / business conduct | whether goods, services, sector, end use, or geography create restrictions |
+| Payment / banking / receivability | whether payment route, bankability, currency, or receivability changes the risk |
+| Ownership / control | direct and indirect ownership/control by jurisdiction |
+| Management / PEP / reputation | directors, officers, UBOs, PEP and adverse-media signals |
+| Other sanctions risks | sectoral, export-control, evasion, inherited-book, or unusual route issues |
+| Compliance risk assessment | practical impact, gaps, controls, decision owner |
+
+## Controlled Status Labels
+
+Use these labels for named-listing status:
+
+- **CONFIRMED LISTED**
+- **NOT IDENTIFIED ON THE SOURCE CHECKED**
+- **NOT YET VERIFIED - DO NOT TREAT AS CLEARED**
+- **SOURCE UNAVAILABLE - DO NOT TREAT AS CLEARED**
+
+Do not use "clean", "clear", "safe", or "no risk".
+
+## Evidence Labels
+
+For ownership/control, management, PEP, and reputation findings, label evidence as:
+
+- official and current;
+- historical or past;
+- unofficial or secondary-source only;
+- unverified allegation or market claim;
+- unknown or untransparent;
+- suspected hidden control or deemed ownership.
+
+## Source Register and Search Log
+
+Formal reports should record:
+
+- source opened;
+- exact URL;
+- search terms used;
+- result summary;
+- access limitation, if any;
+- date of check;
+- whether the source is official, secondary, or cross-check only.
+
+If a source cannot be checked, state the limitation and give the exact official URL for manual verification.
+
+## OpenSanctions Rule
+
+OpenSanctions may support identity, PEP, and adverse-media cross-checks. It is not an official sanctions source. Label it as secondary support unless independently verified against official lists.
+
+## Management / PEP / Reputation Rule
+
+Management, directors, PEP status, and adverse-media findings should be inside the main report unless the user asks for a separate appendix.
+
+PEP status is a compliance risk indicator, not a sanctions designation.
+
+## Report Output Rule
+
+If the user asks for a document, apply `10_Product/ACI_OS_Document_Standards_v1_0.md`:
+
+- company-first;
+- purpose, reader, decision;
+- smallest useful form;
+- owner/evidence/monitoring;
+- source labels;
+- version history.
+
+## Change Log
+
+v0.1 - extracted formal sanctions-report discipline from `Sanctions GPT (Second Agent)` while preserving Chief Consigliere as the controlling front door.
+
+---
+
+
 # Bundle Source: 05_Experts\Sanctions_Expert_Route_v0.1.1.md
 
 # Sanctions Expert Route v0.1.1
@@ -2624,6 +3180,8 @@ For every sanctions matter, the assistant should recommend keeping a compact fil
 ## Detailed Report Mode
 
 The Chief Consigliere's default first answer remains short and practical. Use this detailed report mode only when the user asks for a sanctions report, screening memo, formal screening, transaction-aware sanctions analysis, Word report, PDF report, or similar deliverable.
+
+Formal report bridge: `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`.
 
 For report mode:
 

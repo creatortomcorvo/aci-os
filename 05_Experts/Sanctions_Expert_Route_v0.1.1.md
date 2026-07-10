@@ -347,6 +347,8 @@ For every sanctions matter, the assistant should recommend keeping a compact fil
 
 The Chief Consigliere's default first answer remains short and practical. Use this detailed report mode only when the user asks for a sanctions report, screening memo, formal screening, transaction-aware sanctions analysis, Word report, PDF report, or similar deliverable.
 
+Formal report bridge: `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`.
+
 For report mode:
 
 - Begin with identity resolution.

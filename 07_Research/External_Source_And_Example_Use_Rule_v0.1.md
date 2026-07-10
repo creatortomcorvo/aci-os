@@ -1,4 +1,4 @@
-# External Source And Example Use Rule v0.1
+# External Source And Example Use Rule v0.2
 
 Status: active source-discipline rule.
 
@@ -49,10 +49,31 @@ The staging folders are for review only:
 
 Raw staged files are not uploaded to GPT Knowledge by default. Only distilled, non-confidential, versioned ACI-OS methodology files go into the GPT bundle.
 
+## Legacy GPT Source Rule
+
+Old Custom GPTs, their instructions, and their knowledge packs are source libraries only.
+
+They may be used to:
+
+- identify official sources, templates, patterns, and domain vocabulary;
+- extract topic coverage that ACI-OS is missing;
+- compare ACI-OS behavior against older drafting habits.
+
+They must not be used to:
+
+- replace ACI-OS front-door behavior, short-first triage, company-first rule, source labels, or no-clearance discipline;
+- import old commercial closings, old style rules, or "uploaded knowledge first" source hierarchy;
+- upload employer/client material or old GPT knowledge files without a fresh confidentiality review;
+- bypass ACT / PARK / DISCARD intake.
+
+If a legacy GPT contains useful templates, rebuild them as fresh ACI-OS expression with source labels and no confidential facts.
+
 ## Confidentiality Rule
 
 If a document looks like employer/client material, real matter work, an internal report, a named-company procedure, a contract, an invoice, a board/reporting pack, or an email chain, it is excluded from staging and not used unless Tom later converts it into a synthetic pattern.
 
 ## Change Log
+
+v0.2 - added legacy GPT source rule: old GPTs are source libraries and template inventories only, never behavior authority.
 
 v0.1 - created after D-drive/E-drive sweeps to govern how external source materials and public examples support, but do not replace, the Kruk practitioner method.
