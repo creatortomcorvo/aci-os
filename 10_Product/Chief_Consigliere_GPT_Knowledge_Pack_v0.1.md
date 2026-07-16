@@ -18,7 +18,7 @@ Regenerate the bundle after methodology changes by running:
 
 The GPT instruction file remains separate. Paste this into the GPT Instructions box:
 
-`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.2_under8000.md`
+`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.15_under8000.md`
 
 ## Bundle Source Set
 
@@ -32,22 +32,25 @@ The bundle builder currently includes:
 6. `03_Kruk_Principles/Case_The_Last_Control_v1.0.md`
 7. `10_Product/Chief_Consigliere_Response_Front_Door_Rules_v0.1.md`
 8. `10_Product/ACI_OS_Document_Standards_v1_0.md`
-9. `04_Methodology/Decision_Front_Door_Spec_v0.1.md`
-10. `04_Methodology/Question_Mode_Router_v0.1.md`
-11. `04_Methodology/Response_Pattern_Cards_v0.2.md`
-12. `04_Methodology/Legal_Compliance_Role_Boundary_v0.1.md`
-13. `04_Methodology/Compliance_Relationship_Lifecycle_v0.1.md`
-14. `04_Methodology/Third_Party_Lifecycle_Kruk_Method_v1_0.md`
-15. `04_Methodology/Compliance_Risk_Assessment_Standards_First_v0.1.md`
-16. `04_Methodology/Training_Design_Schema_Kruk_v1_0.md`
-17. `04_Methodology/Culture_Of_Integrity_Diagnostic_v0.1.md`
-18. `04_Founder_Method/Upward_Management_Kit_v0.1.md`
-19. `04_Founder_Method/Compliance_Organization_Person_First_v0.1.md`
-20. `04_Founder_Method/Risk_Assessment_After_Joining_v0.1.md`
-21. `05_Experts/Cultural_Calibration_Pack_v0.1.md`
-22. `05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md`
-23. `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`
-24. `05_Experts/Sanctions_Expert_Route_v0.1.1.md`
+9. `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.3.md`
+10. `04_Methodology/Answer_Calibration_Dials_v0.1.md`
+11. `04_Methodology/Timestamp_Anchor_Record_Rule_v0.1.md`
+12. `04_Methodology/Decision_Front_Door_Spec_v0.1.md`
+13. `04_Methodology/Question_Mode_Router_v0.1.md`
+14. `04_Methodology/Response_Pattern_Cards_v0.2.md`
+15. `04_Methodology/Legal_Compliance_Role_Boundary_v0.1.md`
+16. `04_Methodology/Compliance_Relationship_Lifecycle_v0.1.md`
+17. `04_Methodology/Third_Party_Lifecycle_Kruk_Method_v1_0.md`
+18. `04_Methodology/Compliance_Risk_Assessment_Standards_First_v0.1.md`
+19. `04_Methodology/Training_Design_Schema_Kruk_v1_0.md`
+20. `04_Methodology/Culture_Of_Integrity_Diagnostic_v0.1.md`
+21. `04_Founder_Method/Upward_Management_Kit_v0.1.md`
+22. `04_Founder_Method/Compliance_Organization_Person_First_v0.1.md`
+23. `04_Founder_Method/Risk_Assessment_After_Joining_v0.1.md`
+24. `05_Experts/Cultural_Calibration_Pack_v0.1.md`
+25. `05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md`
+26. `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`
+27. `05_Experts/Sanctions_Expert_Route_v0.1.1.md`
 
 ## Why These Files
 
@@ -75,6 +78,7 @@ Do not upload these into GPT Knowledge:
 12. `XYZYXAG Policy 2025.08.13.docx` or any investigation procedure that may be employer-derived, unless Tom confirms it is sanitized and safe. If not confirmed, rebuild the logic as fresh ACI-OS expression instead of uploading/distributing the file.
 13. Old GPT instruction files, including `ComprehComplProgram2025.07.17`, as behavior instructions. They are source libraries only and must be absorbed through ACT / PARK / DISCARD.
 14. Raw official PDFs by default. Use the source register and distilled ACI-OS methods unless a specific source document is needed for a specific research task.
+15. `06_Testing/Stage4_Learning_Fast_First_Response_Table_Checklists_v0.1.md`; the learning is implemented through the front-door rules and GPT instruction, not uploaded as an exam note.
 
 Reason: the GPT must know how to behave, but it must not see the exam paper, private journal, parked ideas, stale source files, staging infrastructure, or confidential material.
 
@@ -82,10 +86,23 @@ Reason: the GPT must know how to behave, but it must not see the exam paper, pri
 
 Paste this file into the GPT instruction box:
 
-`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.2_under8000.md`
+`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.15_under8000.md`
 
 ## Change Log
 
+v0.1.32 - updated current GPT instruction file to v2.15; added app-learning rules for numbered intake memory, advice-now stop-questioning, and numbered practical tables/checklists.
+v0.1.31 - updated current GPT instruction file to v2.14; updated Knowledge bundle source to Compliance Taxonomy Two-Tier App DNA v0.3 with enterprise compliance view.
+v0.1.30 - updated current GPT instruction file to v2.13; added Compliance Taxonomy Two-Tier App DNA v0.2 to the Knowledge bundle.
+v0.1.29 - updated current GPT instruction file to v2.12; added Timestamp Anchor Record Rule to the Knowledge bundle.
+v0.1.28 - updated current GPT instruction file to v2.11; clarified that X means no extra artifact, while point/comparison tables are allowed when they are the answer itself.
+v0.1.27 - updated current GPT instruction file to v2.10; added speed-precedence rule so 1 Fast stays brief even with Y table or Z memo output.
+v0.1.26 - updated current GPT instruction file to v2.9; request-code onboarding is immediate UI help with no source/basis footer.
+v0.1.25 - updated current GPT instruction file to v2.8; changed the first starter into a request-code onboarding interaction with definitions, example, and Your turn prompt.
+v0.1.24 - updated current GPT instruction file to v2.7; added stable 3-character user code prefix for GPT testing and future mobile-app calibration.
+v0.1.23 - updated current GPT instruction file to v2.6; changed output codes to X/Y/Z, made the triage menu vertical, and set diligent-check default to 2BY.
+v0.1.22 - updated current GPT instruction file to v2.5; replaced broad calibration with simple triage: 300/500-character first answer, one coded option question, then concrete answer after user chooses.
+v0.1.21 - added Answer Calibration Dials to the Knowledge bundle and updated current GPT instruction file to v2.4.
+v0.1.20 - updated current GPT instruction file to v2.3; added fast-first response rule and Kruk Table Rule through the instruction file and front-door knowledge, while keeping the Stage 4 learning note out of GPT Knowledge.
 v0.1.19 - made the one-file bundle the controlling upload method; aligned bundle source list with the builder; added Leadership v0.1 and Last Control v1.0 as knowledge sources; updated current GPT instruction file to v2.2; explicitly excluded superseded v0.3, staging materials, radar reports, and parked Claude files.
 v0.1.18 - added Sanctions Report Mode Bridge extracted from Sanctions GPT (Second Agent) as source-only formal report support.
 v0.1.17 - added ACI-OS Document Standards to the bundle and updated current GPT instruction file to v2.1.

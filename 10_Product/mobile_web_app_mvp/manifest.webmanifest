@@ -1,0 +1,17 @@
+{
+  "name": "ACI-OS",
+  "short_name": "ACI-OS",
+  "start_url": "./index.html?v=22",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "description": "Private pattern-facts-only front door prototype for ACI-OS.",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

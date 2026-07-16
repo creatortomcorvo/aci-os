@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111111" />
+    <title>ACI-OS Web App</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css?v=23" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Private prototype</p>
+          <h1>ACI-OS</h1>
+        </div>
+        <span class="status-pill">Pattern facts only</span>
+      </header>
+
+      <main>
+        <section class="notice" aria-label="privacy notice">
+          <strong>Do not enter names, client facts, whistleblower identity, privileged content, or live matter details.</strong>
+          Use pattern facts only. This prototype can send learning notes into the local ACI-OS repo.
+        </section>
+
+        <section class="panel active" id="ask-panel" aria-labelledby="ask-title">
+          <div class="section-title">
+            <h2 id="ask-title">Calibrate App</h2>
+            <span id="local-time" class="time-chip">--</span>
+          </div>
+
+          <div class="ask-layout">
+            <div class="intake-card">
+              <div class="grid two">
+                <label>
+                  <span class="field-label">Speed</span>
+                  <select id="speed">
+                    <option value="1">1 Fast</option>
+                    <option value="2" selected>2 Structured</option>
+                    <option value="3">3 Deep</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="field-label">Shape</span>
+                  <select id="shape">
+                    <option value="A">A Yes-No-If</option>
+                    <option value="B" selected>B Options</option>
+                    <option value="C">C Analysis</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                <span class="field-label">Output</span>
+                <select id="output">
+                  <option value="X">X Nothing additional</option>
+                  <option value="Y" selected>Y Table checklist</option>
+                  <option value="Z">Z Memo skeleton</option>
+                </select>
+              </label>
+
+              <div class="grid two">
+                <label>
+                  <span class="field-label">Deadline</span>
+                  <select id="deadline">
+                    <option>Hours</option>
+                    <option selected>Days</option>
+                    <option>No deadline</option>
+                    <option>Unknown</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="field-label">Audience</span>
+                  <select id="audience">
+                    <option selected>Compliance officer</option>
+                    <option>CEO / board</option>
+                    <option>Legal / GC</option>
+                    <option>Employee</option>
+                  </select>
+                </label>
+              </div>
+
+              <p class="helper calibration-note">Set the shape here. Type and continue the discussion on the right.</p>
+
+              <div class="feedback-box learning-box">
+                <strong>Send learning to ACI-OS</strong>
+                <p class="helper">Use this when the answer should improve the system. It writes a learning signal into the local ACI-OS repo.</p>
+                <div>
+                  <span class="field-label">Verdict</span>
+                  <input type="hidden" id="feedback-verdict" value="Good" />
+                  <div class="verdict-chips" role="group" aria-label="learning verdict">
+                    <button type="button" class="verdict-chip selected" data-verdict="Good">Good</button>
+                    <button type="button" class="verdict-chip" data-verdict="Bad">Bad</button>
+                    <button type="button" class="verdict-chip" data-verdict="Missing">Missing</button>
+                    <button type="button" class="verdict-chip" data-verdict="Too long">Too long</button>
+                    <button type="button" class="verdict-chip" data-verdict="Wrong structure">Wrong structure</button>
+                  </div>
+                </div>
+                <label>
+                  <span class="field-label">What worked</span>
+                  <textarea id="feedback-worked" rows="2" placeholder="Example: first line was clear; table helped."></textarea>
+                </label>
+                <label>
+                  <span class="field-label">What failed</span>
+                  <textarea id="feedback-failed" rows="2" placeholder="Example: no questions; too long; wrong role label."></textarea>
+                </label>
+                <label>
+                  <span class="field-label">Suggested fix</span>
+                  <textarea id="feedback-fix" rows="2" placeholder="Example: ask 3 questions first; use bullet table; shorten opening."></textarea>
+                </label>
+                <div class="actions learning-actions">
+                  <button class="secondary" id="copy-latest-answer" data-copy="" disabled>Copy latest answer</button>
+                  <button class="secondary" id="copy-full-discussion" data-copy="" disabled>Copy full discussion</button>
+                  <button class="primary" id="save-answer-journal" disabled>Send learning</button>
+                </div>
+                <p class="helper" id="answer-save-status">Ask first, then send learning into the local ACI-OS inbox. Pattern facts only.</p>
+              </div>
+            </div>
+
+            <section class="result" id="result" aria-live="polite">
+              <div class="initial-composer">
+                <p class="helper">Type here. Enter sends. Shift+Enter adds a new line.</p>
+                <label class="sr-only" for="question">Question</label>
+                <textarea id="question" rows="7" placeholder="Example: CEO wants a yes/no answer today on a distributor payment with a new payer."></textarea>
+                <div class="button-row">
+                  <button id="prepare-btn" class="primary">Ask</button>
+                  <button id="preview-btn" class="secondary">Router preview</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="panel" id="journal-panel" aria-labelledby="journal-title">
+          <div class="section-title">
+            <h2 id="journal-title">Journal</h2>
+            <button id="export-btn" class="link-button">Export</button>
+          </div>
+          <p class="helper">Pattern notes only. Saving here sends a learning signal into ACI-OS for later Codex processing.</p>
+
+          <label class="field-label" for="journal-note">Short pattern note</label>
+          <textarea id="journal-note" rows="4" placeholder="Example: payment reroute pressure; user needed fast hold line and bank inquiry."></textarea>
+          <button id="save-journal-btn" class="primary full">Send learning note</button>
+          <p class="helper" id="journal-save-status">Keep it short. No real facts.</p>
+
+          <div id="journal-list" class="journal-list"></div>
+        </section>
+
+        <section class="panel" id="sources-panel" aria-labelledby="sources-title">
+          <h2 id="sources-title">Basis</h2>
+          <ul class="source-list">
+            <li>Decision support only. No legal advice. No clearance.</li>
+            <li>Company documents govern. ACI-OS compares, improves, or fills gaps.</li>
+            <li>Direct Ask uses a selected local knowledge whitelist, not the whole repo.</li>
+            <li>OpenAI API key stays in the local server `.env`, never in the browser.</li>
+          </ul>
+          <div id="basis-list" class="basis-list">
+            <p class="empty">Loading selected knowledge files...</p>
+          </div>
+        </section>
+
+        <section class="panel" id="settings-panel" aria-labelledby="settings-title">
+          <h2 id="settings-title">Settings</h2>
+          <label class="field-label" for="gpt-link">Chief Consigliere GPT link</label>
+          <input id="gpt-link" type="url" placeholder="https://chatgpt.com/g/..." />
+          <button id="save-settings-btn" class="primary full">Save settings</button>
+          <p class="helper">Paste the link to your Chief Consigliere GPT here. Saved locally on this device only.</p>
+        </section>
+      </main>
+
+      <nav class="tabbar" aria-label="main navigation">
+        <button class="tab active" data-panel="ask-panel">Ask</button>
+        <button class="tab" data-panel="journal-panel">Journal</button>
+        <button class="tab" data-panel="sources-panel">Basis</button>
+        <button class="tab" data-panel="settings-panel">Settings</button>
+      </nav>
+    </div>
+
+    <script src="./app.js?v=23"></script>
+  </body>
+</html>

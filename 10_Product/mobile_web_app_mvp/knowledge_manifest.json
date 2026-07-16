@@ -1,0 +1,58 @@
+{
+  "status": "active",
+  "purpose": "Approved local knowledge whitelist for the private ACI-OS mobile/web prototype. Do not load the whole repo.",
+  "files": [
+    {
+      "path": "10_Product/Chief_Consigliere_GPT_Knowledge_Pack_v0.1.md",
+      "label": "Chief Consigliere knowledge pack"
+    },
+    {
+      "path": "10_Product/Chief_Consigliere_Response_Front_Door_Rules_v0.1.md",
+      "label": "Response front-door rules"
+    },
+    {
+      "path": "10_Product/ACI_OS_Document_Standards_v1_0.md",
+      "label": "Document standards"
+    },
+    {
+      "path": "07_Research/Source_Register_v0.1.md",
+      "label": "Source register"
+    },
+    {
+      "path": "03_Kruk_Principles/The_Kruk_Way_v0.4.md",
+      "label": "The Kruk Way"
+    },
+    {
+      "path": "03_Kruk_Principles/Kruk_Way_Operating_Doctrines_v0.1.md",
+      "label": "Kruk operating doctrines"
+    },
+    {
+      "path": "04_Methodology/Decision_Front_Door_Spec_v0.1.md",
+      "label": "Decision Front Door"
+    },
+    {
+      "path": "04_Methodology/Legal_Compliance_Role_Boundary_v0.1.md",
+      "label": "Legal / Compliance role boundary"
+    },
+    {
+      "path": "04_Methodology/Compliance_Risk_Assessment_Standards_First_v0.1.md",
+      "label": "Risk assessment standards-first method"
+    },
+    {
+      "path": "04_Methodology/Third_Party_Lifecycle_Kruk_Method_v1_0.md",
+      "label": "Third-party lifecycle method"
+    },
+    {
+      "path": "04_Methodology/Training_Design_Schema_Kruk_v1_0.md",
+      "label": "Training design schema"
+    },
+    {
+      "path": "04_Founder_Method/Upward_Management_Kit_v0.1.md",
+      "label": "Upward management kit"
+    },
+    {
+      "path": "04_Founder_Method/Compliance_Organization_Person_First_v0.1.md",
+      "label": "Compliance organization person-first doctrine"
+    }
+  ]
+}
