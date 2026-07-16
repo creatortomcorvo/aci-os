@@ -1,4 +1,4 @@
-# Instrumentation Minimum v0.2
+# Instrumentation Minimum v0.3
 
 Status: active QA / Stage 4 shadow-mode operating artifact.
 
@@ -22,15 +22,17 @@ Until Gate 2 passes, tool outputs are shadow mode. They are drafts to test, not 
 
 Use pattern form only unless a secure company-material mode is approved.
 
-| Date | Pattern | Mode | Depth | Program element(s) | Device / channel | Helped? | User override / delta | Escalated? | Follow-up |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| YYYY-MM-DD | Abstracted pattern, no names | M? | L0-L4 | 7-element backbone; Annex A if useful | Desktop / mobile / voice | Helped / partial / failed + clause | What changed from ACI-OS suggestion | Correct / missed / unnecessary | Article / test case / methodology fix / none |
+| Date | Pattern | Taxonomy tag(s) | Enterprise family | Mode | Depth | Program element(s) | Device / channel | Helped? | User override / delta | Escalated? | Follow-up |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| YYYY-MM-DD | Abstracted pattern, no names | Tier 1 tag + Tier 2 if useful | Compliance family if useful | M? | L0-L4 | 7-element backbone; Annex A if useful | Desktop / mobile / voice | Helped / partial / failed + clause | What changed from ACI-OS suggestion | Correct / missed / unnecessary | Article / test case / methodology fix / route candidate / none |
 
 ## Monthly Stats
 
 Track at least:
 
 - Program element frequency.
+- Taxonomy frequency: Tier 1 family, Tier 2 sector pack where useful.
+- Enterprise compliance family frequency for coverage and policy-library analysis.
 - Mode distribution, including Mirror mode.
 - Depth distribution.
 - Time-of-day distribution for the 22:30 thesis.
@@ -63,6 +65,9 @@ For non-trivial outputs, check:
 - Epistemic content proportional to stakes.
 - As-of date where time-sensitive.
 - Program element tag where useful.
+- Taxonomy route considered where useful.
+- Enterprise compliance family used for user-facing coverage where useful.
+- Public-code benchmark not treated as company authority where sources are not verified.
 - No clearance language.
 - Escalation evaluated.
 - Speed-1 closes doors only in crisis mode.
@@ -75,5 +80,7 @@ Do not use instrumentation for streaks, engagement hooks, gamification, behavior
 
 ## Change Log
 
+- v0.3.1 - Added enterprise compliance family field for v0.3 taxonomy coverage and policy-library analysis.
+- v0.3 - Added two-tier compliance taxonomy tags to the decision journal template, monthly stats, and per-output QA.
 - v0.2 - Started Stage 4 internal journal rule in shadow mode; updated element mapping to 7-element backbone with 12-element Annex A calibration.
 - v0.1 - Created minimum instrumentation template for decision journal, monthly stats, question-bank analytics, and per-output QA.

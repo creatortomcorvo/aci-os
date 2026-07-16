@@ -4,7 +4,9 @@ Routing rule: sanctions is one expert route, not the default lens for ACI-OS.
 
 Start from the user's facts and pressure pattern. Route to sanctions only when there is a real sanctions, trade, bank-hold, payment-route, restricted-party, restricted-country, ownership/control, restricted-goods, end-use, or evasion indicator. Otherwise use the relevant compliance route: ABAC, gifts/hospitality, fraud/books and records, conflicts, third-party due diligence, speak-up, investigations, competition, governance, training, monitoring, compliance program, document architecture, or regulator contact.
 
-Cross-cutting lenses: Legal / Compliance role boundary, response mode, Decision Front Door, relationship lifecycle, document architecture, role-boundary, no-clearance, cultural calibration, and pattern-first input. These are not separate expert routes, but they should shape the answer whenever the facts trigger them.
+Cross-cutting lenses: two-tier compliance taxonomy, Legal / Compliance role boundary, response mode, Decision Front Door, relationship lifecycle, document architecture, no-clearance, cultural calibration, and pattern-first input. These are not separate expert routes, but they should shape the answer whenever the facts trigger them.
+
+Taxonomy rule: use `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.3.md` to identify the Tier 1 compliance family and any Tier 2 sector calibration pack. For user-facing coverage, policy-library, document-architecture, or "what does compliance include?" questions, use the enterprise compliance view first. A sector pack may shape the answer, but it does not itself authorize a new specialist agent or route.
 
 ## Investigations
 
@@ -51,11 +53,36 @@ Escalation triggers:
 - Third-party intermediary or offshore payment.
 - Inaccurate books and records.
 
+## Sports / Media / Events
+
+Scope: Sports federations, leagues, clubs, event owners, host cities, broadcasters, sponsors, agencies, event suppliers, ticketing, hospitality, media rights, side letters, betting integrity, and event-related third parties.
+
+Detailed route file: 05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md
+
+When to route: Any question involving sports/media/event counterparties, sponsorships, invitations, tickets, travel, rights deals, host-city processes, public officials, federation officials, betting partners, ambush marketing, side payments, or event-related intermediaries.
+
+First questions:
+
+- What event, jurisdiction, and counterparty are involved?
+- Is the decision about hospitality, sponsorship, media rights, procurement, third-party onboarding, investigation, or payment?
+- Are public officials, federation officials, club officials, broadcasters, sponsors, betting partners, or intermediaries involved?
+- Which company policy, contract, sports-body rule, or event rule applies?
+
+Escalation triggers:
+
+- Public official or federation official benefit.
+- High-value hospitality, tickets, travel, sponsorship, or donation.
+- Side letter, hidden commission, vague service, success fee, or unusual payment route.
+- Host-city, venue, tender, or public procurement touchpoint.
+- Betting integrity, match manipulation, sanctions, AML, competition, or investigation concern.
+
 ## Sanctions
 
 Scope: Sanctions, embargoes, restricted parties, ownership/control, country restrictions, sectoral restrictions, export-control overlap, restricted goods/services, payment blocking, banks, vessels, end users, and transaction holds.
 
 Detailed route file: 05_Experts/Sanctions_Expert_Route_v0.1.1.md
+
+Formal report bridge: 05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md
 
 When to route: Any question involving sanctioned countries, restricted parties, bank holds, possible list matches, ownership/control issues, exports, re-exports, end use, logistics routes, payment-chain mismatch, regime divergence, bankability/account-continuity pressure, acquired or legacy relationship exposure, or sanctions-related customer pressure.
 
@@ -84,6 +111,7 @@ Escalation triggers:
 Sanctions route change note:
 
 - v0.1.1 - Added behavior-level routing for transaction-chain mismatch, regime divergence, bankability/account-continuity, and acquired/legacy relationship exposure.
+- v0.1.2 - Added formal report bridge extracted from `Sanctions GPT (Second Agent)`; bridge activates only for sanctions reports, screening memos, or formal deliverables.
 
 ## Third Party Due Diligence
 

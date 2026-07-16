@@ -12,7 +12,7 @@ Phase: Post-Gate-2 internal consolidation (Stage 4 journal running in parallel)
 
 Stage 0a (CLOSED, 04.07.2026): private build permitted - hobby basis, own time/equipment, no employer resources or data. Memo on file.
 
-Stage 0b (OPEN): employer approval required before any commercial/external step. Checked at Stage 3/5 entry - no per-session reminders.
+Stage 0b (CLOSED, 10.07.2026): employer approval granted, confirmed directly by Tom in session. Written memo on file recommended for evidence-trail consistency with Stage 0a - not yet created as of this batch.
 
 Gate 1 (CLOSED, 04.07.2026): five resolutions per Gate 1 Resolution Record v1.0, integrated into Foundation Map v1.0.
 
@@ -20,7 +20,7 @@ Gate 2 (CLOSED / PASSED, 04.07.2026): 10/10 sanctions test cases specified; firs
 
 Stage 4 (STARTED, internal only): decision journal live from today, pattern form, no real facts; Gate 2 no longer blocks internal methodology use, but outputs remain decision support, not legal advice or clearance.
 
-Stages 3 & 5 (BLOCKED): by 0b. Pilot spec parked with activation lock.
+Stages 3 & 5 (NOT ENTERED): peer validation and pilot require a separate stage-entry decision. Pilot spec parked with activation lock.
 
 ## Sprint Purpose
 
@@ -313,10 +313,10 @@ Every first answer should show:
 
 2. Keep Stage 4 journal running in pattern form, with no real facts and no company secrets.
 
-3. Keep Stage 0b as the blocker for peer validation, pilot, publication, testers, or revenue.
+3. Keep peer validation, pilot, publication, testers, and revenue separately gated until a formal stage-entry decision is made.
 
 4. Use Gate 2 data plus journal frequency data before choosing Agent #2.
 
 5. Continue internal product hardening without treating Gate 2 as legal clearance, live screening certification, or external readiness.
 
-6. Stage 0b is checked only at Stage 3/5 or before any external/commercial step; no per-session contract reminders.
+6. Stage 0b is closed, but external/commercial steps still require the applicable separate stage-entry or formal review decision.

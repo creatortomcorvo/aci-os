@@ -2,3 +2,8 @@
 !99_Parked/E_staging/.gitignore
 99_Parked/D_drive_staging/**
 !99_Parked/D_drive_staging/.gitignore
+.env
+*.env
+10_Product/mobile_web_app_mvp/.env
+10_Product/mobile_web_app_mvp/*.env
+10_Product/mobile_web_app_mvp/*.log

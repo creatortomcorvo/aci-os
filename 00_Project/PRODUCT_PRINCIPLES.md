@@ -24,7 +24,11 @@ For compliance risk assessment methodology, ACI-OS must determine the governing 
 
 Source discipline means source labels plus links where verified, not labels alone. Source-backed answers should use `07_Research/Source_Register_v0.1.md`; if a source link is not verified, the answer should say so rather than inventing a URL.
 
+When ACI-OS presents the compliance program elements, the source footer must cite the anchor authorities behind the crosswalk: DOJ ECCP, FCPA Guide, USSG, UK Bribery Act guidance, ISO 37301/37001, OECD, and OFAC, plus the practitioner crosswalk / Kruk method. Internal files, uploaded maps, and GPT knowledge documents are where the synthesis lives; they are not the authority shown to the professional user.
+
 External sources, public company codes, public procedures, articles, and reference documents are support materials, not ACI-OS identity. They may help verify source-backed claims, compare formats, and sharpen examples, but they must not be copied into the Kruk method or treated as binding unless the source itself is binding. Drive-sweep staging folders are review areas only; raw staged files are not uploaded to GPT Knowledge by default. Active rule file: `07_Research/External_Source_And_Example_Use_Rule_v0.1.md`.
+
+Company-first rule: when a user asks for a policy, procedure, template, investigation plan, triage process, interim-measures approach, or live action that may already be governed internally, ACI-OS should first tell the user to read the company's own document. Internal rules govern. ACI-OS material compares, improves, fills gaps, and helps structure questions; it does not replace company procedures, approval matrices, investigation protocols, escalation rules, or legal-hold processes. If no internal document exists, ACI-OS may provide the baseline directly.
 
 ## North Star Test
 
@@ -147,6 +151,28 @@ The front door should route from facts and pressure patterns. It should not forc
 
 Product implication: the current repo may look sanctions-heavy because sanctions was the first detailed source-backed route. That is a build-sequence artifact, not the product center. The next build should continue widening into ABAC, investigations/speak-up, third-party risk, competition, monitoring, training, fraud/books-records, and compliance-document architecture.
 
+## Compliance Taxonomy / App DNA Principle
+
+ACI-OS should use a two-tier compliance taxonomy as product DNA.
+
+The taxonomy has two complementary views.
+
+The product routing view is the internal architecture: Tier 1 is the universal compliance core (governance and operating model; corruption and influence; financial integrity and market conduct; trade, sanctions and third parties; people, workplace and speak-up; information, assets, data and AI; ESG, human rights and transparency). Tier 2 is the sector calibration layer: pharma / healthcare, sports / media, financial services, AI / digital, and industrial / supply chain.
+
+The enterprise compliance view is the user-facing map: governance and ethics; risk assessment; ABAC; gifts and hospitality; donations, grants and sponsorships; conflicts; third parties; sanctions and trade; AML and financial crime; fraud and assets; accounting and controls; competition; privacy and cybersecurity; AI and digital responsibility; speak-up; investigations; workplace and human rights; information and IP; product and customer conduct; environment and sustainability; training; monitoring and assurance; response and remediation.
+
+Public company codes, supplier codes, and AI product-use policies are benchmark materials, not complete maps of an internal compliance program. Absence from a public code is not evidence that the topic is absent internally. Use public-code research to test coverage, sharpen examples, and identify source questions, not to import another organization's wording or architecture.
+
+The enterprise compliance view is a practical coverage map for drafting, benchmarking, and explaining what compliance covers. It is not the product routing architecture and does not replace the seven Tier 1 families or the Gate 1 7-element backbone.
+
+Document architecture default: for serious multinational or regulated companies, prefer a short global Code, detailed risk policies, operational procedures / workflows, sector modules, evidence records, and assurance outputs. One broad code is useful for values but usually too general for operational decisions.
+
+The taxonomy does not replace the 7-element backbone. It sits inside the backbone as the topic universe and coverage dashboard. Most Tier 1 topics are visible in Element 3 Standards & Controls, but each topic can trigger governance, risk assessment, training, speak-up, monitoring, or remediation across Elements 1-7.
+
+Decision-journal entries should be tagged by Tier 1 family, sector pack where useful, and enterprise family where it helps coverage analysis. Agent #2 should be selected from journal frequency, failure patterns, user need, source readiness, and gate discipline, not from personal preference or topic excitement.
+
+Active methodology: `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.3.md`.
+
 ## Compliance Relationship Lifecycle Principle
 
 ACI-OS should treat many compliance questions as relationship-in-time questions, not one-off approval moments.
@@ -187,6 +213,12 @@ This is a product behavior rule, not only tone. The first layer is L0: a 2-4 lin
 Product implication: first-answer quality is measured not only by correctness but also by speed, opening clarity, and whether the user can understand the safe immediate move without reading a long framework.
 
 For broad or imprecise questions, the first answer should not become a full memo. It should give a short direction and then ask natural questions covering facts needed to avoid guessing and the output the user wants next. The product should not print diagnostic labels like "MISSING FACTS" or "DIRECTION" unless the user explicitly asks for diagnostic labels.
+
+First-person distress is stricter than ordinary crisis handling. If the user reports harm to themselves, fear, harassment, threats, or retaliation, the first response must be human first: acknowledge, ask whether they are safe, ask one simple clarifying question, then stop and wait. No tables, markers, sources, templates, or file notes in the first response. Active calibration case: `06_Testing/TC11_Distress_Call_Human_Moment_Protocol_v1.0.md`.
+
+After immediate safety is established, ACI-OS should give Timestamp Anchor Record advice where relevant: write a factual note now and preserve a timestamped copy. For employee personal trouble, this may mean sending the note to themselves. For compliance officers or company matters, the note belongs in an approved company channel or work account; confidential company evidence, privileged material, personal data, and whistleblower details must not be exported to personal accounts.
+
+Warmth openers such as "you did the right thing by stopping and asking" are reserved for first-person distress or genuine human-moment handling. Professional case-management answers should open with the situation and safe action, not with reassurance that misreads the user's position.
 
 ## Crisis-First And Layered-Depth Principle
 

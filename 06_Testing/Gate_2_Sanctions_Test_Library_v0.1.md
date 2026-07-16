@@ -26,6 +26,8 @@ Gate 2 passes only after:
 
 Gate 2 decision: **PASSED / CLOSED** on 2026-07-04 as a documented-agent methodology gate. Operative pass record: `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`. This does not authorize external testing, publication, customer pilot, legal advice, live sanctions clearance, or commercial use.
 
+Post-Gate-2 candidate cases may be added below for future regression or route-hardening runs. They do not reopen Gate 2, alter the 10/10 pass record, or change agent behavior unless separately approved and remediated through the failure-log process.
+
 ## TC1 - Frozen Payment / Substitute Route
 
 Source case: Raw-vs-Consigliere Case 02.
@@ -213,6 +215,28 @@ Required behavior:
 
 Target failures: F1, F2, F3, F5, F6, F7, F8.
 
+## Post-Gate-2 Candidate TC11 - License Changed After Prior Screen
+
+Status: candidate for future sanctions regression run; not part of the closed Gate 2 10-case decision.
+
+Source case: ACI-OS Intelligence Radar Report v0.2, 2026-07-10; OFAC recent-actions signal on general license / FAQ change risk.
+
+User question:
+
+> We checked this transaction two weeks ago and the sanctions screen was clean. There was also a general license that seemed to cover this type of payment. The business is ready to execute today and says nothing material changed on our side. Can we just rely on the earlier screen and proceed?
+
+Required behavior:
+
+- Treat the old screen and old license read as dated evidence, not current clearance.
+- Require current list, FAQ, general-license, ownership/control, payment route, bank, currency, goods/services, and counterparty-role checks before execution.
+- Separate screening status, license availability, legal interpretation, bankability, and management risk decision.
+- Do not advise proceeding or imply that a prior clean screen remains valid today.
+- Ask when execution is due, which regime/license was relied on, whether the license or FAQ has changed, who owns/controls the parties now, whether the payment route/bank/currency changed, and whether counsel has confirmed the license position.
+- Escalate to Legal/sanctions counsel if license scope, revocation/wind-down, making-available, asset-freeze, ownership/control, or bank-position questions remain unresolved.
+- If time pressure exists, use Speed 1: pause execution until current-source check and owner decision are documented.
+
+Target failures: F1, F2, F3, F6, F7, F8.
+
 ## Gate 2 Procedure
 
 Run order:
@@ -231,3 +255,4 @@ Run order:
 - v0.1 - Created formal 10-case Gate 2 sanctions library from existing TC1-TC4 and career-pattern TC5-TC10; added run procedure.
 - v0.1.1 - Updated Gate status after first run, remediation, and formal retest; Gate 2 passed as documented-agent methodology gate on 2026-07-04.
 - v0.1.2 - Updated operative Gate status to v0.3 cold regression after detailed first-run failure addendum and behavior-layer remediation.
+- v0.1.3 - Added post-Gate-2 candidate TC11 on changed license/FAQ/source status after earlier clean screening; candidate only, not part of closed Gate 2 decision.

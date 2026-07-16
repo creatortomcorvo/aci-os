@@ -21,6 +21,8 @@ Invariant at any length:
 - Escalation vigilance.
 - As-of dating for time-sensitive regulatory or source statements.
 - Triage thinking, even if it appears only as one condition at the end of a short answer.
+- Fast-first response: the first substantive block after timestamp should be <=300 characters and appear before research or full reasoning.
+- Timestamp-anchor record advice when an employee, manager, or compliance officer is in trouble, after immediate safety or stop-action is addressed.
 
 Rendered only when stakes or complexity require it:
 
@@ -31,6 +33,24 @@ Rendered only when stakes or complexity require it:
 - Program element tags: one line at most and omittable at L1 when the answer is short.
 
 Heavy apparatus is a signal. If every answer uses crisis formatting, users learn to skim the crisis formatting.
+
+## Kruk Table Rule
+
+When the user must check something diligently, the output should be a table by default.
+
+Use a table for:
+
+- checklist;
+- to-dos;
+- approval route;
+- facts to verify;
+- evidence to collect;
+- required owner;
+- timing;
+- condition;
+- escalation trigger.
+
+Do not use a table just to list arguments or explain reasoning.
 
 Three dials govern the answer:
 
@@ -101,18 +121,19 @@ Use this skeleton when a card becomes a full operational response template:
 
 1. Question.
 2. Mode.
-3. Opening answer.
-4. Minimum facts needed.
-5. Status fork.
-6. Immediate do-nots.
-7. Decision logic.
-8. Decisive questions.
-9. If-then rules.
-10. Required evidence.
-11. Output label.
-12. Trap named.
-13. Related cards.
-14. Source/control basis.
+3. Fast first answer.
+4. Table where diligent checks or to-dos are needed.
+5. Minimum facts needed.
+6. Status fork.
+7. Immediate do-nots.
+8. Decision logic.
+9. Decisive questions.
+10. If-then rules.
+11. Required evidence.
+12. Output label.
+13. Trap named.
+14. Related cards.
+15. Source/control basis.
 
 ## Card Operating Matrix
 
@@ -158,3 +179,5 @@ Use this skeleton when a card becomes a full operational response template:
 
 - v0.1 - Created initial 15-card response pattern library.
 - v0.2 - Added proportional rendering rule, shared intake lenses, output labels, required evidence, status fork, public-sector / sports-body touchpoint lens, tone layers, revised skeleton, and consistency index.
+- v0.2.1 - Added fast-first response invariant and Kruk Table Rule for diligent checks, to-dos, approvals, evidence, owners, timing, conditions, and escalation triggers.
+- v0.2.2 - Added timestamp-anchor record invariant for employee trouble and compliance-officer company matters.

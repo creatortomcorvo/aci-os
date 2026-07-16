@@ -440,3 +440,142 @@ Source: attached standalone "Compliance Consigliere - Core Specification v0.5.1.
 - Full crisis-header library. Reason: useful, but needs separate header files and QA.
 - Source-backed embedded-controls knowledge pack. Reason: needs source verification and dedicated build.
 - `02_agents/sanctions` reorganization. Reason: structural migration, not needed for behavior alignment now.
+
+## 2026-07-07 - TC11 Distress Protocol
+
+Source: pasted calibration case "TC11 - The Distress Call / Human-Moment Protocol v1.0".
+
+### Acted-On Items
+
+- Created `06_Testing/TC11_Distress_Call_Human_Moment_Protocol_v1.0.md`.
+- Added TC11 / TC-S5 to `06_Testing/Stage4_Adversarial_Test_Cases_v0.1.md`.
+- Added Distress Protocol to `10_Product/Chief_Consigliere_Response_Front_Door_Rules_v0.1.md`.
+- Created GPT instruction file `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v1.8_under8000.md`.
+- Updated GPT Knowledge Pack and regenerated the one-file GPT Knowledge Bundle.
+- Added first-person distress rule to `00_Project/PRODUCT_PRINCIPLES.md`.
+
+### Corrections Before Absorption
+
+- Corrected proposed path `05_test_cases` to canonical repo path `06_Testing`.
+- Treated the case as Stage 4 front-door calibration, not Gate 2 sanctions testing.
+- Preserved the distinction between first-person distress and third-person professional case-management questions.
+
+### Article Candidate
+
+- "Your compliance hotline answers in three seconds. Your AI should not take four minutes." Thesis: in human moments, latency and length are not UX details; they are the difference between a colleague and a manual.
+
+## 2026-07-07 - Backbone Sourcing Failure and Annex A Expansion Note
+
+Source: Tom's pasted review of GPT answer to "give me elements of the compliance program - just topics in bullet points" and Claude feedback.
+
+### Acted-On Items
+
+- Added backbone sourcing rule to GPT instructions v1.9: 7 program elements must cite anchor authorities and practitioner crosswalk, never uploaded/internal maps.
+- Added program-element source-footer pattern to `10_Product/Chief_Consigliere_Response_Front_Door_Rules_v0.1.md`.
+- Added backbone source footer pattern to `07_Research/Source_Register_v0.1.md`.
+- Updated GPT Knowledge Pack and regenerated the one-file GPT Knowledge Bundle.
+
+### Parked Items
+
+- `00_foundation/Annex_A_Program_Template_v1.0.md`. Reason: recommended by external feedback, but the actual 12-element source text was not present in this Codex turn. Do not create from memory or inference.
+- `05_Experts/sports_media_vertical_pack_v0.1.md`. Reason: recommended extraction depends on the missing 12-element text / sports paragraph. Park until Tom supplies the source text.
+
+### Correction Before Absorption
+
+- Internal maps and GPT knowledge files store the synthesis. They are not professional authority. User-facing source footers must cite anchor sources with links where available.
+
+## 2026-07-08 - Live-Test Feedback Batch 2
+
+Source: Tom via Claude, "LIVE-TEST FEEDBACK BATCH #2, SECURE INTO REPO AND GPT PATCH."
+
+### Acted-On Items
+
+- Confirmed TC11 distress protocol is already installed under canonical repo path `06_Testing/TC11_Distress_Call_Human_Moment_Protocol_v1.0.md`; rejected proposed `05_test_cases` path because actual repo layout wins.
+- Added **Company-First** rule: for policies, procedures, templates, investigation plans, triage processes, interim measures, and live action, the user's company document governs first; ACI-OS compares, improves, fills gaps, and helps structure questions.
+- Added **Mode-Exclusive Warmth** rule: "you did the right thing..." openers are reserved for first-person distress / human-moment handling; professional case-management opens with situation and safe action.
+- Confirmed backbone sourcing rule already installed and carried it into GPT v2.0 instructions.
+- Created `06_Testing/Stage4_QA_Live_Test_Log_v0.1.md` and logged the two live-test confirmations.
+- Updated GPT Knowledge Pack and regenerated the one-file GPT Knowledge Bundle.
+
+### Blocking / Needs Tom Confirmation
+
+- `XYZYXAG Policy 2025.08.13.docx`: confirm whether XYZYX-AG is a sanitization placeholder and the in-GPT copy is sanitized. If employer-derived or uncertain, remove from GPT Knowledge and rebuild the logic as fresh ACI-OS expression before any distribution.
+
+### Parked Items
+
+- `00_foundation/Annex_A_Program_Template_v1.0.md`: still parked. The actual clean 12-element source text was not available in the repo or this message.
+- `05_Experts/sports_media_vertical_pack_v0.1.md`: still parked. Extraction depends on the missing clean 12-element source text / sports paragraph.
+
+### Correction Before Absorption
+
+- No new Gate 2 verdict was recorded. "Full cold regression" remains an instruction for the next GPT testing cycle after Tom updates the GPT with v2.0.
+
+## 2026-07-08 - ComprehComplProgram2025 Source Intake
+
+Source: old GPT instruction `ComprehComplProgram2025.07.17`, related official source PDFs in Downloads, and Tom's instruction that old GPTs are knowledge/template sources only, not ACI-OS style or interaction logic.
+
+### Acted-On Items
+
+- Created `07_Research/ComprehComplProgram2025_Source_Intake_v0.1.md`.
+- Created `05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md` from the old GPT's sports/media/event domain coverage.
+- Added legacy GPT source rule to `07_Research/External_Source_And_Example_Use_Rule_v0.1.md`: old GPTs are source libraries only and never behavior authority.
+- Added sports/media routing seed to the GPT Knowledge Bundle build script and updated the GPT Knowledge Pack.
+
+### Parked Items
+
+- Raw official PDFs as GPT Knowledge uploads. Use the source register and distilled ACI-OS methods unless a specific source document is needed for research.
+- Candidate external links from the old GPT instruction that are not yet verified in `07_Research/Source_Register_v0.1.md`.
+- Old GPT templates, flowchart/PDF output behavior, and news-checking mode. Useful later, but they need separate ACT / PARK / DISCARD review before absorption.
+
+### Blocking / Needs Tom Confirmation
+
+- `XYZYX SOP Harrasment.docx`: confirm that XYZYX is a sanitization placeholder and the file is safe to use. If employer-derived or uncertain, do not upload it and rebuild the generic logic as fresh ACI-OS expression.
+
+### Discarded Items
+
+- Old GPT required closing line with `tomasz@kruk.ch`.
+- Old GPT "uploaded knowledge first" source hierarchy.
+- Old GPT "never use emojis" rule.
+- Any old GPT user-interaction style that conflicts with ACI-OS short-first, company-first, color-marker, source-label, and no-clearance behavior.
+
+## 2026-07-08 - ACI-OS Document Standards v1.0
+
+Source: Tom's proposed "ACI-OS Document Standards - Knowledge File v1.0" for policies, procedures, memos, reports, templates, training outlines, and board papers.
+
+### Acted-On Items
+
+- Kept and cleaned the document as `10_Product/ACI_OS_Document_Standards_v1_0.md`.
+- Added the document standards to the GPT Knowledge Bundle.
+- Created GPT instruction file `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.1_under8000.md` with a short document-output hook.
+- Updated GPT Knowledge Pack and bundle script to point to v2.1.
+
+### Correction Before Absorption
+
+- Treated the standard as document-output behavior, not general chat behavior. Conversational answers still follow the front-door rules.
+- Kept the full standard in Knowledge because the GPT instruction box is near the 8,000-character limit.
+
+### Parked Items
+
+- Document-type-specific sub-templates for board papers, investigation plans, policies, procedures, training outlines, and one-page memos. Useful later, not needed for this absorption.
+
+## 2026-07-08 - Sanctions GPT Second Agent Integration
+
+Source: Tom asked whether `Sanctions GPT (Second Agent)` can be utilized or built into Chief Consigliere.
+
+### Acted-On Items
+
+- Inspected accessible published workspace agent `Sanctions GPT (Second Agent)` (`agt_6a3d9a0bf2e08191891c5bdaed2af7af`).
+- Created `07_Research/Sanctions_GPT_Second_Agent_Source_Intake_v0.1.md`.
+- Created `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`.
+- Updated `05_Experts/Expert_Map.md`, `05_Experts/Sanctions_Expert_Route_v0.1.1.md`, GPT Knowledge Pack, and bundle script to include the formal-report bridge.
+
+### Parked Items
+
+- Default Word `.docx` sanctions report generator, dashboard template, and agent-specific report skill/template references. Useful later, but not merged into Chief now.
+- API/link automation between Chief Consigliere and `Sanctions GPT (Second Agent)`. Possible later, but unnecessary for current internal methodology.
+
+### Discarded Items
+
+- Blind merge into Chief Consigliere.
+- Old agent source hierarchy that prioritizes uploaded/internal knowledge over ACI-OS source discipline.
+- Long sanctions report as default conversational answer.

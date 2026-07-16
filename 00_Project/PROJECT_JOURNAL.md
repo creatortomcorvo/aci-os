@@ -161,3 +161,22 @@
 - Created `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md`.
 - Created `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`.
 - Cold regression result: TC1-TC10 pass, 0 partial, 0 fail; F5 remaining: no; F6 remaining: no. Gate 2 remains closed, with v0.3 as the operative pass record.
+
+## Compliance Taxonomy App DNA - 2026-07-11
+
+- Captured the two-tier compliance taxonomy as active ACI-OS product DNA. Created `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.1.md`, updated product principles, expert-map cross-cutting lenses, instrumentation, and decision-journal format. Active rule: Tier 1 is the universal compliance core; Tier 2 is sector calibration. Journal tags become a coverage dashboard and future Agent #2 evidence source, without changing current build scope.
+
+## Compliance Taxonomy v0.2 Refinement - 2026-07-11
+
+- Reviewed the GPT long-form public-code benchmark under Hard Constraint 6. Acted on the public-code caution, granular coverage index, and risk-topic / program-mechanics distinction; parked unverified claims about named organizations and fixed topic counts; discarded any move to replace the Gate 1 backbone or create new routes from benchmark interest alone.
+- Created `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.2.md` as the active taxonomy file. v0.2 keeps the 7-family Tier 1 architecture and Tier 2 sector packs, adds the 18-policy-family view as a checklist overlay, and makes public-code benchmarking part of the app DNA without letting it become authority.
+
+## GPT Package v2.13 Taxonomy Alignment - 2026-07-11
+
+- Extrapolated the taxonomy into the GPT package. Created v2.13 instructions with a compact taxonomy hook, added taxonomy v0.2 to the Knowledge bundle source set, regenerated the one-file upload bundle, updated the Knowledge Pack and GPT Editor Config, and logged the change in `10_Product/GPT_Package_Review_2026-07-11_v1.2.md`.
+- Active GPT Builder action: paste v2.13 instructions and upload the regenerated bundle; then re-test request-code speed and a broad compliance taxonomy prompt.
+
+## Compliance Taxonomy v0.3 / GPT v2.14 Alignment - 2026-07-11
+
+- Accepted the later enterprise-taxonomy approach under Hard Constraint 6. v0.3 keeps product routing as the internal architecture and adds the enterprise compliance view as the user-facing map for coverage, policy-library, document-architecture, and program-design questions.
+- Updated the GPT package to v2.14. Active GPT Builder action: paste v2.14 instructions and upload the regenerated Knowledge bundle; then test that a broad compliance taxonomy question starts from the enterprise compliance view rather than sanctions or abstract T1 tags.

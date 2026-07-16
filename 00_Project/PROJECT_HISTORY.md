@@ -196,3 +196,19 @@ Closed Gate 2 after remediation and full retest. Updated `05_Experts/Sanctions_E
 ## Version 0.1.47
 
 Corrected the Gate 2 process after Tom required detailed failure logging and rejected teaching-to-the-test fixes. Created `06_Testing/Gate_2_Detailed_First_Run_Failure_Log_v0.1_2026-07-04.md`, explicitly noting that the first run had no generated output passages because it was a specification run. Superseded the template-style v0.2 pass for Gate 2 decision purposes and replaced it with behavior-layer remediation: transaction-chain integrity, regime separation and binding nexus, role-label separation for Legal / Compliance / bankability / management risk, and lifecycle/acquisition continuity. Created `06_Testing/Gate_2_Behavior_Remediation_Record_v0.2_2026-07-04.md` and `06_Testing/Gate_2_Sanctions_Evaluation_Run_v0.3_Cold_2026-07-04.md`; cold regression result was 10 pass, 0 partial, 0 fail, with no F5 or F6 remaining.
+
+## Version 0.1.48
+
+Made the two-tier compliance taxonomy part of ACI-OS app DNA. Created `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.1.md` with Tier 1 universal compliance core, Tier 2 sector calibration packs, decision-journal tagging, and the Agent #2 guardrail. Updated product principles, Expert Map, instrumentation, and decision journal so taxonomy tags become the coverage dashboard while preserving the 7-element backbone and current build discipline.
+
+## Version 0.1.49
+
+Refined the compliance taxonomy after reviewing the GPT long-form code-of-conduct benchmark. Created `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.2.md` and marked v0.1 as superseded. Acted on the useful public-code caution, source-intake rule, risk-topic versus program-mechanics split, granular coverage index, and program infrastructure overlay. Parked unverified named-code claims and numerical universality claims. Discarded any implication that public codes replace company rules, the Gate 1 7-element backbone, or evidence-based Agent #2 selection. Updated product principles, Expert Map, instrumentation, and decision journal to point to v0.2.
+
+## Version 0.1.50
+
+Extrapolated Compliance Taxonomy Two-Tier App DNA v0.2 into the Chief Consigliere GPT package. Created `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.13_under8000.md` with a compact taxonomy hook under the 8,000-character limit, added the taxonomy file to `10_Product/Build_GPT_Knowledge_Bundle.ps1`, regenerated `10_Product/Chief_Consigliere_GPT_Knowledge_Bundle_v0.1.md`, updated the Knowledge Pack and GPT Editor Config to v2.13, and created `10_Product/GPT_Package_Review_2026-07-11_v1.2.md`.
+
+## Version 0.1.51
+
+Accepted the later enterprise-taxonomy approach and created `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.3.md`. v0.3 keeps the internal product routing view and adds a user-facing enterprise compliance view with compliance families, core topics, sector additions, and document architecture. Updated product principles, Expert Map, instrumentation, and decision journal to v0.3. Created `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.14_under8000.md`, switched the GPT Knowledge bundle source from taxonomy v0.2 to v0.3, updated the Knowledge Pack and GPT Editor Config to v2.14, and logged the package change in `10_Product/GPT_Package_Review_2026-07-11_v1.3.md`.

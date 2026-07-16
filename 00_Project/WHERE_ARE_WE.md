@@ -16,7 +16,7 @@ Phase: Post-Gate-2 internal consolidation (Stage 4 journal running in parallel)
 
 Stage 0a (CLOSED, 04.07.2026): private build permitted - hobby basis, own time/equipment, no employer resources or data. Memo on file.
 
-Stage 0b (OPEN): employer approval required before any commercial/external step. Checked at Stage 3/5 entry - no per-session reminders.
+Stage 0b (CLOSED, 10.07.2026): employer approval granted, confirmed directly by Tom in session. Written memo on file recommended for evidence-trail consistency with Stage 0a - not yet created as of this batch.
 
 Gate 1 (CLOSED, 04.07.2026): five resolutions per Gate 1 Resolution Record v1.0, integrated into Foundation Map v1.0.
 
@@ -24,7 +24,7 @@ Gate 2 (CLOSED / PASSED, 04.07.2026): 10/10 sanctions test cases specified; firs
 
 Stage 4 (STARTED, internal only): decision journal live from today, pattern form, no real facts; Gate 2 no longer blocks internal methodology use, but outputs remain decision support, not legal advice or clearance.
 
-Stages 3 & 5 (BLOCKED): by 0b. Pilot spec parked with activation lock.
+Stages 3 & 5 (NOT ENTERED): peer validation and pilot require a separate stage-entry decision. Pilot spec parked with activation lock.
 
 ## Completed So Far
 
@@ -125,4 +125,4 @@ Stages 3 & 5 (BLOCKED): by 0b. Pilot spec parked with activation lock.
 
 ## Next Step
 
-Commit and push the Gate 2 remediation and retest records to GitHub. Then continue Stage 4 journal in pattern form and use journal frequency data before choosing Agent #2. Stage 0b remains the blocker for Stage 3/5, external testing, publication, pilot links, or commercial use.
+Commit and push the Gate 2 remediation and retest records to GitHub. Then continue Stage 4 journal in pattern form and use journal frequency data before choosing Agent #2. Stage 0b is closed, but Stage 3/5 entry, external testing, publication, pilot links, and commercial use still require separate formal decisions.

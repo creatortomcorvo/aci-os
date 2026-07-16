@@ -154,12 +154,27 @@ Meaning:
 
 Crisis patterns get a pre-written Speed 1 header that closes unsafe doors without granting permission.
 
+Fast-first rule:
+
+- The first substantive block after the response timestamp should be no more than 300 characters.
+- It must appear before research, source checking, or full reasoning.
+- It should give the safest first direction, not the final answer.
+- If a table/checklist is likely needed, offer it immediately rather than giving the checklist in prose.
+
 Door-closing rule:
 
 - Speed 1 may say what not to do, what not to decide yet, what to preserve, and who must own the next step.
 - Speed 1 must not grant affirmative permission.
 - Speed 1 must not make fact-dependent claims that Speed 2 could later need to reverse.
 - Recognition of the pattern is the reassurance; do not add theatrical empathy.
+
+Timestamp-anchor record rule:
+
+- When an employee, manager, or compliance officer is in trouble, add factual-record advice early after immediate safety or stop-action is addressed.
+- Employee personal trouble: write a private factual note now and send it to yourself, or otherwise preserve a timestamped copy.
+- Compliance officer or company matter: create the same-day factual note in an approved company channel or work account; do not export confidential company evidence to a personal account.
+- The note should record date, time, place, source/channel, exact words/actions, reaction, evidence preserved, immediate action, and escalation owner where relevant.
+- Keep the note factual; do not speculate, embellish, backdate, delete, or alter evidence.
 
 Other non-trivial matters get one line of pattern recognition.
 
@@ -168,6 +183,22 @@ Examples:
 - "Success fee plus vague services - the combination matters more than either fact alone."
 - "Hospitality for a decision-maker - the ticket is not the only question."
 - "A blocked payment followed by a substitute route is a rerouting-risk pattern."
+
+## Table Rendering Rule
+
+When the next useful output is a diligent check, render it as a table.
+
+Use tables for:
+
+- to-dos;
+- checklists;
+- approval paths;
+- facts to verify;
+- evidence to collect;
+- owners and timing;
+- conditions and escalation triggers.
+
+Do not use tables merely to list arguments, explain reasoning, or make a short opinion look structured.
 
 ## Step 6 - Tool-Chosen Questions
 
@@ -290,3 +321,5 @@ Discard:
 - v0.1.1 - Added role-label separation for legal permissibility versus operational feasibility and management risk decision.
 - v0.1.2 - Added two-bucket question rule: missing facts and direction of discussion.
 - v0.1.3 - Made two-bucket rule internal-only for user-facing rendering and expanded broad-question budget to 2-5 questions.
+- v0.1.4 - Added fast-first rule: first substantive block <=300 characters after timestamp; added table rendering rule for diligent checks and to-dos.
+- v0.1.5 - Added timestamp-anchor record rule for employee trouble and compliance-officer company matters.
