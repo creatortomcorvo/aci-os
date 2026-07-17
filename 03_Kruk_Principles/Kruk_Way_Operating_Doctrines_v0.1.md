@@ -26,7 +26,7 @@ The layers must be labeled separately. Do not present a practitioner method as l
 | 3 | Person before structure | The quality of the Compliance Officer matters more than the org chart. Courage with judgment is the engine; authority, autonomy, board access, resources, and experience are the armor. |
 | 4 | Negotiate protections before the conflict | Mandate, independence, reporting line, board access, budget, and escalation rights are best negotiated when joining or accepting the role, not after the first serious conflict. |
 | 5 | Manage upward | CEO/GC support is not merely requested; it is manufactured. The officer pre-writes the mandate, escalation line, decision menu, governance calendar, and wins report so leadership can act. |
-| 6 | Frequency determines control medium | Rare events can be handled case by case. Frequent events need procedure, thresholds, system controls, approvals, required information, and automated friction inside the business process. |
+| 6 | Risk x frequency determines control medium | Rare events can often be handled case by case, but high risk can still justify an escalation rule. Frequent events need procedure, thresholds, system controls, approvals, required information, and automated friction inside the business process. D28 governs whether to regulate and how heavily. |
 | 7 | The best program becomes invisible | Good compliance is embedded in business systems, templates, workflows, approval gates, and ordinary decisions. It should not require heroic manual intervention every time. |
 | 8 | Risk assessment is standards-first | First determine the mandate: ISO 37301/37001, DOJ ECCP/FCPA, sector regulator, board planning, M&A, post-incident remediation, or internal annual review. The mandate defines the method. |
 | 9 | Risk assessment is also company entry strategy | A new officer should learn enough before formal conclusions. The assessment creates a legitimate reason to ask hard questions, but premature results can expose the officer politically and professionally. |
@@ -45,6 +45,7 @@ The layers must be labeled separately. Do not present a practitioner method as l
 | 22 | External providers are inputs, not judgment | Due diligence vendors, sanctions tools, hotline systems, case platforms, training tools, and GRC systems provide data or workflow. ACI-OS should help the officer know what to do with them. |
 | 23 | No comfort wording without a mandate check | "Compliance is fine with it" is a dangerous sentence. The system must distinguish advice, recommendation, formal Compliance approval, Legal decision, management risk decision, and escalation mandatory. |
 | 24 | Serious matters need a first safe move | Under pressure, the first useful answer is short: hold, preserve, pause, escalate, or ask the fact that changes everything. Long analysis comes later. |
+| 25 | Rule-making must earn authority | A policy is not the default answer. Before recommending a rule, run D28: company-first, mandate check, risk x frequency, reality test, lowest sufficient instrument, enforcement price, and year-2 living test. |
 
 ## How ACI-OS Should Use This
 
@@ -78,6 +79,7 @@ When the user asks "what should I do?", ACI-OS should not default to a legal mem
 - Never clear a transaction, person, program, or decision.
 - Never treat a no-hit screen, old approval, old memory, or old decision as current clearance.
 - Do not mention internal file names in user-facing GPT answers unless the user asks about the project itself.
+- Run D28 before policy drafting. If the right answer is case-by-case owner, FAQ, one-line escalation, procedure, embedded control, or no rule, do not draft a full policy.
 
 ## Article Candidates
 
@@ -89,6 +91,8 @@ When the user asks "what should I do?", ACI-OS should not default to a legal mem
 - "Compliance decays at month three - and the shape of the decay is cultural."
 - "The first risk assessment is also your entry strategy."
 - "Compliance communication is the nervous system of the company."
+- "The currency of corporate authority: how dead rules tax living ones."
+- "Do not write rules you will not enforce."
 
 ## Open Items
 
@@ -98,3 +102,4 @@ When the user asks "what should I do?", ACI-OS should not default to a legal mem
 ## Change Log
 
 v0.1 - created operational founder-method doctrine file for ACI-OS behavior and GPT knowledge.
+v0.1.1 - added D28 regulatory design doctrine: risk x frequency, lowest sufficient instrument, authority currency, and living-test rule.

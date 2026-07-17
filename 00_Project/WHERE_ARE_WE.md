@@ -26,6 +26,8 @@ Stage 4 (STARTED, internal only): decision journal live from today, pattern form
 
 Stages 3 & 5 (NOT ENTERED): peer validation and pilot require a separate stage-entry decision. Pilot spec parked with activation lock.
 
+Current build note (17.07.2026): CAL-4 Profile Layer is implemented in the local web app and GPT knowledge bundle. Profile fields cover industries, operating jurisdictions, and exposure jurisdictions; the profile is injected into Ask/follow-up prompts and learning notes. Router Spec now carries the Profile Layer and FRAME -> ANALYZE -> STRUCTURE -> REFINE -> DEPLOY workflow doctrine.
+
 ## Completed So Far
 
 - Created first Chief Consigliere prototype files.

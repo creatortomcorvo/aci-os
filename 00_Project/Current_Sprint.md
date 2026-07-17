@@ -22,6 +22,8 @@ Stage 4 (STARTED, internal only): decision journal live from today, pattern form
 
 Stages 3 & 5 (NOT ENTERED): peer validation and pilot require a separate stage-entry decision. Pilot spec parked with activation lock.
 
+Current build note (17.07.2026): CAL-4 Profile Layer is implemented in the local web app and GPT knowledge bundle. The app now stores industries, operating jurisdictions, and exposure jurisdictions locally, injects them into Ask/follow-up prompts, and records them in learning notes. Router Spec now includes the Profile Layer plus FRAME -> ANALYZE -> STRUCTURE -> REFINE -> DEPLOY workflow doctrine.
+
 ## Sprint Purpose
 
 This sprint turns the project from a concept into an operating prototype. The first milestone is not a full compliance platform. It is a reliable front door that can receive messy compliance questions, calm the situation, ask the right first questions, route the issue to the right expert logic, and flag escalation triggers before the user goes too far down the wrong path.

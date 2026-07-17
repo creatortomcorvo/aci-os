@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#111111" />
     <title>ACI-OS Web App</title>
     <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="stylesheet" href="./styles.css?v=23" />
+    <link rel="stylesheet" href="./styles.css?v=32" />
   </head>
   <body>
     <div class="app-shell">
@@ -26,64 +26,50 @@
 
         <section class="panel active" id="ask-panel" aria-labelledby="ask-title">
           <div class="section-title">
-            <h2 id="ask-title">Calibrate App</h2>
-            <span id="local-time" class="time-chip">--</span>
+            <h2 id="ask-title">Calibrate</h2>
+            <div class="section-actions">
+              <button type="button" id="new-task-btn" class="secondary compact">New task</button>
+              <span id="local-time" class="time-chip">--</span>
+            </div>
           </div>
 
           <div class="ask-layout">
             <div class="intake-card">
-              <div class="grid two">
-                <label>
-                  <span class="field-label">Speed</span>
-                  <select id="speed">
-                    <option value="1">1 Fast</option>
-                    <option value="2" selected>2 Structured</option>
-                    <option value="3">3 Deep</option>
-                  </select>
-                </label>
-                <label>
-                  <span class="field-label">Shape</span>
-                  <select id="shape">
-                    <option value="A">A Yes-No-If</option>
-                    <option value="B" selected>B Options</option>
-                    <option value="C">C Analysis</option>
-                  </select>
-                </label>
+              <input type="hidden" id="speed" value="2" />
+              <input type="hidden" id="output" value="Y" />
+              <input type="hidden" id="deadline" value="Auto" />
+              <input type="hidden" id="audience" value="Auto" />
+              <input type="hidden" id="shape" value="Auto" />
+
+              <button type="button" class="auto-pill active" id="auto-pill">Auto - router decides</button>
+
+              <div class="chip-section">
+                <span class="field-label">Audience</span>
+                <div class="choice-chips" data-chip-group="audience">
+                  <button type="button" class="choice-chip selected" data-value="Auto">Auto</button>
+                  <button type="button" class="choice-chip" data-value="Business">Business</button>
+                  <button type="button" class="choice-chip" data-value="Top management / board">Top mgmt / board</button>
+                  <button type="button" class="choice-chip" data-value="Legal / GC">Legal / GC</button>
+                  <button type="button" class="choice-chip" data-value="Employee">Employee</button>
+                </div>
               </div>
 
-              <label>
-                <span class="field-label">Output</span>
-                <select id="output">
-                  <option value="X">X Nothing additional</option>
-                  <option value="Y" selected>Y Table checklist</option>
-                  <option value="Z">Z Memo skeleton</option>
-                </select>
-              </label>
-
-              <div class="grid two">
-                <label>
-                  <span class="field-label">Deadline</span>
-                  <select id="deadline">
-                    <option>Hours</option>
-                    <option selected>Days</option>
-                    <option>No deadline</option>
-                    <option>Unknown</option>
-                  </select>
-                </label>
-                <label>
-                  <span class="field-label">Audience</span>
-                  <select id="audience">
-                    <option selected>Compliance officer</option>
-                    <option>CEO / board</option>
-                    <option>Legal / GC</option>
-                    <option>Employee</option>
-                  </select>
-                </label>
+              <div class="chip-section">
+                <span class="field-label">Shape</span>
+                <div class="choice-chips" data-chip-group="shape">
+                  <button type="button" class="choice-chip selected" data-value="Auto">Auto</button>
+                  <button type="button" class="choice-chip" data-value="Verdict">Verdict</button>
+                  <button type="button" class="choice-chip" data-value="Advice">Advice</button>
+                  <button type="button" class="choice-chip" data-value="Plan">Plan</button>
+                  <button type="button" class="choice-chip" data-value="Wording">Wording</button>
+                </div>
               </div>
 
-              <p class="helper calibration-note">Set the shape here. Type and continue the discussion on the right.</p>
+              <p class="helper calibration-note">Auto is the normal path - type and ask. Pick a chip only when you know better than the router.</p>
 
-              <div class="feedback-box learning-box">
+              <div class="detected-chip" id="detected-deadline-chip" hidden>Deadline detected</div>
+
+              <div class="feedback-box learning-box" id="builder-learning-box">
                 <strong>Send learning to ACI-OS</strong>
                 <p class="helper">Use this when the answer should improve the system. It writes a learning signal into the local ACI-OS repo.</p>
                 <div>
@@ -162,10 +148,33 @@
 
         <section class="panel" id="settings-panel" aria-labelledby="settings-title">
           <h2 id="settings-title">Settings</h2>
+          <div class="profile-card">
+            <h3>Profile</h3>
+            <p class="helper">Saved locally on this device. Used to calibrate examples, vertical patterns, and jurisdiction depth. It never weakens safety rules.</p>
+
+            <label class="field-label">Industry</label>
+            <div class="profile-chip-row" id="profile-industry-chips">
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Pharma">Pharma</button>
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Finance & banking">Finance & banking</button>
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Advisory & consulting">Advisory & consulting</button>
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Legal services">Legal services</button>
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Sports & media">Sports & media</button>
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Manufacturing">Manufacturing</button>
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Technology">Technology</button>
+              <button class="profile-chip" type="button" data-profile-group="industries" data-value="Other">Other</button>
+            </div>
+
+            <label class="field-label" for="profile-operating">Operating jurisdictions</label>
+            <textarea id="profile-operating" class="profile-list" rows="2" placeholder="Example: Intl standards, CH, EU, UK, US, PL"></textarea>
+
+            <label class="field-label" for="profile-exposure">Exposure jurisdictions</label>
+            <textarea id="profile-exposure" class="profile-list" rows="2" placeholder="Example: RU, CN, sanctions regimes monitored but not operating there"></textarea>
+          </div>
+
           <label class="field-label" for="gpt-link">Chief Consigliere GPT link</label>
           <input id="gpt-link" type="url" placeholder="https://chatgpt.com/g/..." />
           <button id="save-settings-btn" class="primary full">Save settings</button>
-          <p class="helper">Paste the link to your Chief Consigliere GPT here. Saved locally on this device only.</p>
+          <p class="helper">Paste the link to your Chief Consigliere GPT here. Settings are saved locally on this device only.</p>
         </section>
       </main>
 
@@ -177,6 +186,6 @@
       </nav>
     </div>
 
-    <script src="./app.js?v=23"></script>
+    <script src="./app.js?v=32"></script>
   </body>
 </html>

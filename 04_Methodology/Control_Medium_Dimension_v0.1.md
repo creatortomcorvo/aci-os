@@ -14,6 +14,8 @@ This is advisory capability, not an integration feature. ACI-OS does not connect
 
 ## Core Rule
 
+Use together with `03_Kruk_Principles/Regulatory_Design_Rules_D28_v1.0.md`: D28 decides whether the rule should exist and how heavy it should be; this file decides where the selected control should live.
+
 For any recurring or material control, ask:
 
 1. Is this mainly a human-readable rule?
@@ -61,4 +63,5 @@ If the user asks whether a system block, monitoring rule, employee flag, automat
 
 ## Change Log
 
+- v0.1.1 - Cross-referenced D28 regulatory design rules as the upstream rule-making test.
 - v0.1 - Created control-medium methodology for choosing policy, procedure, workflow, system control, register, monitoring, or human judgment path.

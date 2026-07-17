@@ -18,7 +18,7 @@ Regenerate the bundle after methodology changes by running:
 
 The GPT instruction file remains separate. Paste this into the GPT Instructions box:
 
-`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.15_under8000.md`
+`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.16_under8000.md`
 
 ## Bundle Source Set
 
@@ -28,34 +28,37 @@ The bundle builder currently includes:
 2. `07_Research/Source_Register_v0.1.md`
 3. `07_Research/External_Source_And_Example_Use_Rule_v0.1.md`
 4. `03_Kruk_Principles/Kruk_Way_Operating_Doctrines_v0.1.md`
-5. `03_Kruk_Principles/Kruk_Way_Leadership_v0.1.md`
-6. `03_Kruk_Principles/Case_The_Last_Control_v1.0.md`
-7. `10_Product/Chief_Consigliere_Response_Front_Door_Rules_v0.1.md`
-8. `10_Product/ACI_OS_Document_Standards_v1_0.md`
-9. `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.3.md`
-10. `04_Methodology/Answer_Calibration_Dials_v0.1.md`
-11. `04_Methodology/Timestamp_Anchor_Record_Rule_v0.1.md`
-12. `04_Methodology/Decision_Front_Door_Spec_v0.1.md`
-13. `04_Methodology/Question_Mode_Router_v0.1.md`
-14. `04_Methodology/Response_Pattern_Cards_v0.2.md`
-15. `04_Methodology/Legal_Compliance_Role_Boundary_v0.1.md`
-16. `04_Methodology/Compliance_Relationship_Lifecycle_v0.1.md`
-17. `04_Methodology/Third_Party_Lifecycle_Kruk_Method_v1_0.md`
-18. `04_Methodology/Compliance_Risk_Assessment_Standards_First_v0.1.md`
-19. `04_Methodology/Training_Design_Schema_Kruk_v1_0.md`
-20. `04_Methodology/Culture_Of_Integrity_Diagnostic_v0.1.md`
-21. `04_Founder_Method/Upward_Management_Kit_v0.1.md`
-22. `04_Founder_Method/Compliance_Organization_Person_First_v0.1.md`
-23. `04_Founder_Method/Risk_Assessment_After_Joining_v0.1.md`
-24. `05_Experts/Cultural_Calibration_Pack_v0.1.md`
-25. `05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md`
-26. `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`
-27. `05_Experts/Sanctions_Expert_Route_v0.1.1.md`
+5. `03_Kruk_Principles/Regulatory_Design_Rules_D28_v1.0.md`
+6. `03_Kruk_Principles/Kruk_Way_Leadership_v0.1.md`
+7. `03_Kruk_Principles/Case_The_Last_Control_v1.0.md`
+8. `10_Product/Chief_Consigliere_Response_Front_Door_Rules_v0.1.md`
+9. `10_Product/Profile_Context_Layer_v0.1.md`
+10. `10_Product/ACI_OS_Document_Standards_v1_0.md`
+11. `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.3.md`
+12. `04_Methodology/Answer_Calibration_Dials_v0.1.md`
+13. `04_Methodology/Timestamp_Anchor_Record_Rule_v0.1.md`
+14. `04_Methodology/Decision_Front_Door_Spec_v0.1.md`
+15. `04_Methodology/Question_Mode_Router_v0.1.md`
+16. `04_Methodology/Response_Pattern_Cards_v0.2.md`
+17. `04_Methodology/Legal_Compliance_Role_Boundary_v0.1.md`
+18. `04_Methodology/Compliance_Relationship_Lifecycle_v0.1.md`
+19. `04_Methodology/Third_Party_Lifecycle_Kruk_Method_v1_0.md`
+20. `04_Methodology/Compliance_Risk_Assessment_Standards_First_v0.1.md`
+21. `04_Methodology/Training_Design_Schema_Kruk_v1_0.md`
+22. `04_Methodology/Culture_Of_Integrity_Diagnostic_v0.1.md`
+23. `04_Founder_Method/Upward_Management_Kit_v0.1.md`
+24. `04_Founder_Method/Compliance_Organization_Person_First_v0.1.md`
+25. `04_Founder_Method/Risk_Assessment_After_Joining_v0.1.md`
+26. `05_Experts/Cultural_Calibration_Pack_v0.1.md`
+27. `05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md`
+28. `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`
+29. `05_Experts/Sanctions_Expert_Route_v0.1.1.md`
 
 ## Why These Files
 
 - The instruction file controls behavior.
 - The bundle gives the GPT the approved methodology, source labels, document standards, founder method, front-door rules, and expert-route support.
+- The profile context layer tells the GPT how to use industries, operating jurisdictions, and exposure jurisdictions without treating profile context as clearance or legal certainty.
 - Leadership D22 is included because it changes answer form by audience: employees get guidance; top managers get compressed verdict-first decision support.
 - The Last Control case is included as a teaching, ethics, sports/media, and Mirror-mode pattern, not as a legal rule.
 - Superseded or raw files stay out unless they are distilled into an approved methodology file.
@@ -86,10 +89,12 @@ Reason: the GPT must know how to behave, but it must not see the exam paper, pri
 
 Paste this file into the GPT instruction box:
 
-`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.15_under8000.md`
+`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.16_under8000.md`
 
 ## Change Log
 
+v0.1.34 - added CAL-4 Profile Context Layer to the GPT Knowledge bundle source set.
+v0.1.33 - added D28 regulatory design rules to the bundle and updated current GPT instruction reference to v2.16.
 v0.1.32 - updated current GPT instruction file to v2.15; added app-learning rules for numbered intake memory, advice-now stop-questioning, and numbered practical tables/checklists.
 v0.1.31 - updated current GPT instruction file to v2.14; updated Knowledge bundle source to Compliance Taxonomy Two-Tier App DNA v0.3 with enterprise compliance view.
 v0.1.30 - updated current GPT instruction file to v2.13; added Compliance Taxonomy Two-Tier App DNA v0.2 to the Knowledge bundle.

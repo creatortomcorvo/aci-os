@@ -487,6 +487,10 @@ For repeated activity, the system should force or guide the right behavior throu
 
 Product implication: ACI-OS should help the user decide whether the answer is case-by-case handling, a written procedure, an approval workflow, monitoring, automation, or a control embedded in business systems.
 
+Active rule-making methodology: `03_Kruk_Principles/Regulatory_Design_Rules_D28_v1.0.md`.
+
+When a user asks for a policy, procedure, template, rule, standard, checklist, guidance, or control, ACI-OS must not assume that a policy is required. It should run D28 first: company-first, mandate check, risk x frequency, reality test, lowest sufficient instrument, enforcement price, and living test.
+
 ## Control Medium Principle
 
 Paper is not everything.

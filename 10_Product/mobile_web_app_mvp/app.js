@@ -26,11 +26,52 @@ function zurichTimestamp() {
 }
 
 function requestCode() {
-  return `${$("speed").value}${$("shape").value}${$("output").value}`;
+  return `${$("speed").value}${shapeCode()}${$("output").value}`;
+}
+
+function shapeCode() {
+  const shape = $("shape").value;
+  if (shape === "Verdict") return "A";
+  if (shape === "Plan") return "C";
+  return "B";
+}
+
+function displayShape() {
+  return $("shape").value || "Auto";
+}
+
+function displayAudience() {
+  return $("audience").value || "Auto";
+}
+
+function routeSummary(calibration = currentCalibration()) {
+  return `${calibration.audience || "Auto"} - ${calibration.shape || "Auto"}`;
 }
 
 function getQuestion() {
   return $("question").value.trim();
+}
+
+function detectDeadlineValue(text) {
+  const q = String(text || "").toLowerCase();
+  if (/(now|immediate|urgent|today|tonight|in \d+ minutes|in \d+ hours|before lunch|this afternoon|this morning)/.test(q)) return "Hours";
+  if (/(tomorrow|friday|monday|this week|next week|in \d+ days)/.test(q)) return "Days";
+  return "Auto";
+}
+
+function updateDetectedDeadline(text = getQuestion()) {
+  const detected = detectDeadlineValue(text);
+  const chip = $("detected-deadline-chip");
+  if (!chip) return detected;
+  if (detected === "Auto") {
+    chip.hidden = true;
+    $("deadline").value = "Auto";
+    return detected;
+  }
+  $("deadline").value = detected;
+  chip.hidden = false;
+  chip.textContent = `Deadline detected: ${detected}`;
+  return detected;
 }
 
 function detectPattern(text) {
@@ -101,6 +142,40 @@ function detectPattern(text) {
   };
 }
 
+function splitProfileList(value) {
+  return String(value || "")
+    .split(/[,;\n]/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function profileChipValues(group) {
+  return Array.from(document.querySelectorAll(`.profile-chip[data-profile-group="${group}"].selected`))
+    .map((chip) => chip.dataset.value)
+    .filter(Boolean);
+}
+
+function currentProfile() {
+  return {
+    industries: profileChipValues("industries"),
+    operatingJurisdictions: splitProfileList($("profile-operating")?.value),
+    exposureJurisdictions: splitProfileList($("profile-exposure")?.value)
+  };
+}
+
+function profileContextLines() {
+  const profile = currentProfile();
+  const format = (items) => items.length ? items.join(", ") : "not set";
+  return [
+    "User context:",
+    `- Industries: ${format(profile.industries)}`,
+    `- Operating jurisdictions: ${format(profile.operatingJurisdictions)}`,
+    `- Exposure jurisdictions: ${format(profile.exposureJurisdictions)}`,
+    "- Use profile to calibrate examples, vertical patterns, and jurisdiction depth.",
+    "- Profile never narrows distress, escalation, sanctions, or safety behavior."
+  ];
+}
+
 function buildPrompt() {
   const q = getQuestion();
   if (!q) {
@@ -108,16 +183,20 @@ function buildPrompt() {
     return;
   }
   conversationTurns = [];
+  const detectedDeadline = updateDetectedDeadline(q);
 
   const prompt = [
     `${requestCode()} ${q}`,
     "",
     "Context for answer calibration:",
-    `- Deadline: ${$("deadline").value}`,
-    `- Audience: ${$("audience").value}`,
+    `- Audience: ${displayAudience()}`,
+    `- Shape: ${displayShape()}`,
+    `- Detected deadline: ${detectedDeadline}`,
+    ...profileContextLines(),
     "- No real names or confidential details included.",
     "- Start short. Ask only answer-changing questions if needed.",
-    "- If this is live, safest next action first."
+    "- If this is live, safest next action first.",
+    "- If shape is Auto, classify the question before answering."
   ].join("\n");
 
   askBackend(prompt, { displayQuestion: q }).catch(() => {
@@ -126,6 +205,7 @@ function buildPrompt() {
 }
 
 function buildFollowUpPrompt(followUp) {
+  const detectedDeadline = updateDetectedDeadline(followUp);
   const recentTurns = conversationTurns.slice(-3).map((turn, index) => [
     `Prior turn ${index + 1} question:`,
     turn.prompt,
@@ -144,11 +224,14 @@ function buildFollowUpPrompt(followUp) {
     recentTurns,
     "",
     "Context for answer calibration:",
-    `- Deadline: ${$("deadline").value}`,
-    `- Audience: ${$("audience").value}`,
+    `- Audience: ${displayAudience()}`,
+    `- Shape: ${displayShape()}`,
+    `- Detected deadline: ${detectedDeadline}`,
+    ...profileContextLines(),
     "- No real names or confidential details included.",
     "- Start short. Ask only answer-changing questions if needed.",
-    "- If this is live, safest next action first."
+    "- If this is live, safest next action first.",
+    "- If shape is Auto, classify the question before answering."
   ].join("\n");
 }
 
@@ -163,6 +246,57 @@ function continueConversation() {
   askBackend(prompt, { displayQuestion: followUp, followUp }).catch(() => {
     renderConversation(`Could not send the follow-up. Copy the prepared prompt below if needed.`, prompt);
   });
+}
+
+function resetFeedbackForm() {
+  ["feedback-worked", "feedback-failed", "feedback-fix"].forEach((id) => {
+    const field = $(id);
+    if (field) field.value = "";
+  });
+  const verdict = $("feedback-verdict");
+  if (verdict) verdict.value = "Good";
+  document.querySelectorAll(".verdict-chip").forEach((chip) => {
+    chip.classList.toggle("selected", chip.dataset.verdict === "Good");
+  });
+}
+
+function initialComposerHtml() {
+  return `
+    <div class="initial-composer">
+      <p class="helper">Type here. Enter sends. Shift+Enter adds a new line.</p>
+      <label class="sr-only" for="question">Question</label>
+      <textarea id="question" rows="7" placeholder="Example: CEO wants a yes/no answer today on a distributor payment with a new payer."></textarea>
+      <div class="button-row">
+        <button id="prepare-btn" class="primary">Ask</button>
+        <button id="preview-btn" class="secondary">Router preview</button>
+      </div>
+    </div>
+  `;
+}
+
+function bindQuestionInput() {
+  const question = $("question");
+  if (!question) return;
+  question.addEventListener("input", () => updateDetectedDeadline(getQuestion()));
+}
+
+function bindAskControls() {
+  bindQuestionInput();
+  $("prepare-btn")?.addEventListener("click", buildPrompt);
+  $("preview-btn")?.addEventListener("click", routerPreview);
+}
+
+function startNewTask() {
+  conversationTurns = [];
+  lastAnswerForJournal = null;
+  resetFeedbackForm();
+  const result = $("result");
+  if (result) result.innerHTML = initialComposerHtml();
+  updateDetectedDeadline("");
+  updateLearningControls();
+  bindAskControls();
+  switchPanel("ask-panel");
+  $("question")?.focus();
 }
 
 function splitMarkdownRow(line) {
@@ -201,14 +335,42 @@ function renderMarkdownTable(lines) {
   `;
 }
 
+function getVerdictKind(line) {
+  const text = String(line || "").trim();
+  const lower = text.toLowerCase();
+  if (!text) return "";
+  if (text.startsWith("\u{1F534}") || /^(red|stop|escalation mandatory)\b/i.test(text)) return "red";
+  if (text.startsWith("\u{1F7E0}") || /^(amber|hold|pause)\b/i.test(text)) return "amber";
+  if (text.startsWith("\u{1F7E2}") || /^(green|advisory)\b/i.test(text)) return "green";
+  return "";
+}
+
 function renderAnswerContent(value) {
   const lines = String(value || "").replace(/\r\n/g, "\n").split("\n");
   const blocks = [];
   let paragraph = [];
 
   function flushParagraph() {
-    const text = paragraph.join("\n").trim();
-    if (text) blocks.push(`<div class="answer-text">${escapeHtml(text)}</div>`);
+    const paragraphLines = paragraph.join("\n").split("\n");
+    let textBuffer = [];
+
+    function flushTextBuffer() {
+      const text = textBuffer.join("\n").trim();
+      if (text) blocks.push(`<div class="answer-text">${escapeHtml(text)}</div>`);
+      textBuffer = [];
+    }
+
+    paragraphLines.forEach((line) => {
+      const kind = getVerdictKind(line);
+      if (kind) {
+        flushTextBuffer();
+        blocks.push(`<div class="verdict-banner verdict-${kind}">${escapeHtml(line.trim())}</div>`);
+        return;
+      }
+      textBuffer.push(line);
+    });
+
+    flushTextBuffer();
     paragraph = [];
   }
 
@@ -274,7 +436,8 @@ async function askBackend(prompt, options = {}) {
   lastAnswerForJournal = {
     prompt,
     answer: data.answer || "No answer returned.",
-    question: options.displayQuestion || prompt.split(/\r?\n/).find(Boolean) || "Question"
+    question: options.displayQuestion || prompt.split(/\r?\n/).find(Boolean) || "Question",
+    calibration: currentCalibration()
   };
   conversationTurns.push(lastAnswerForJournal);
   if (conversationTurns.length > 20) conversationTurns = conversationTurns.slice(-20);
@@ -302,10 +465,24 @@ function renderConversation(statusText = "", fallbackPrompt = "") {
           </div>
           <div class="message assistant-message">
             <div class="message-label">ACI-OS</div>
+            <div class="routed-chip">Routed: ${escapeHtml(routeSummary(turn.calibration))}</div>
             <div class="answer-box message-body">${renderAnswerContent(turn.answer || "")}</div>
+            <div class="answer-card-actions">
+              <button type="button" class="tiny-action" data-feedback-event="thumb_up" data-turn="${index}">Good</button>
+              <button type="button" class="tiny-action" data-feedback-event="thumb_down" data-turn="${index}">Issue</button>
+              <button type="button" class="tiny-action" data-copy="${escapeAttr(turn.answer || "")}">Copy</button>
+            </div>
           </div>
         </article>
       `).join("")}
+    </div>
+  ` : "";
+
+  const postActions = conversationTurns.length ? `
+    <div class="post-answer-actions">
+      <button type="button" class="secondary" data-post-action="deeper">Deeper</button>
+      <button type="button" class="secondary" data-post-action="checklist">Make checklist</button>
+      <button type="button" class="secondary" data-post-action="memo">Turn into memo</button>
     </div>
   ` : "";
 
@@ -318,6 +495,7 @@ function renderConversation(statusText = "", fallbackPrompt = "") {
     <strong>ACI-OS discussion</strong>
     ${statusText ? `<p class="helper thinking">${escapeHtml(statusText)}</p>` : ""}
     ${discussion}
+    ${postActions}
     <div class="continue-box">
       <label class="field-label" for="follow-up">Continue this discussion</label>
       <textarea id="follow-up" rows="3" placeholder="Example: draft the short message to my CEO."></textarea>
@@ -453,10 +631,12 @@ function updateLearningControls() {
 function currentCalibration() {
   return {
     speed: $("speed").value,
-    shape: $("shape").value,
+    shape: displayShape(),
     output: $("output").value,
     deadline: $("deadline").value,
-    audience: $("audience").value
+    audience: displayAudience(),
+    requestCode: requestCode(),
+    profile: currentProfile()
   };
 }
 
@@ -508,6 +688,31 @@ async function postLearning(payload) {
     throw new Error(data.error || "Could not send learning signal.");
   }
   return response.json();
+}
+
+function postActionPrompt(action) {
+  if (action === "deeper") return "Go one layer deeper. Keep the first line short, then add the missing reasoning.";
+  if (action === "checklist") return "Turn the last answer into a practical numbered checklist with owners, evidence, and next actions.";
+  if (action === "memo") return "Turn the last answer into a short memo skeleton with purpose, facts, risk view, decision needed, and sources.";
+  return "";
+}
+
+async function sendQuickFeedback(eventType, turnIndex) {
+  const turn = conversationTurns[Number(turnIndex)] || lastAnswerForJournal;
+  if (!turn) return;
+  await postLearning({
+    timestamp: zurichTimestamp(),
+    source: "ACI-OS mobile/web app quick feedback",
+    event_type: eventType,
+    verdict: eventType === "thumb_up" ? "Good" : "Issue",
+    question: turn.question || "Question",
+    answerFirstLine: (turn.answer || "").split(/\r?\n/).find((line) => line.trim()) || "Answer saved",
+    worked: eventType === "thumb_up" ? "One-tap positive signal." : "[not stated]",
+    failed: eventType === "thumb_down" ? "One-tap issue signal. Builder details not provided." : "[not stated]",
+    fix: "[not stated]",
+    discussion: fullDiscussionText(),
+    calibration: turn.calibration || currentCalibration()
+  });
 }
 
 async function saveLastAnswerToJournal() {
@@ -583,8 +788,27 @@ function loadSettings() {
   }
 }
 
+function setProfileChips(values = []) {
+  const selected = new Set(values);
+  document.querySelectorAll(".profile-chip").forEach((chip) => {
+    chip.classList.toggle("selected", selected.has(chip.dataset.value));
+  });
+}
+
+function loadProfileSettings(settings = {}) {
+  const profile = settings.profile || {};
+  setProfileChips(profile.industries || []);
+  const operating = $("profile-operating");
+  const exposure = $("profile-exposure");
+  if (operating) operating.value = (profile.operatingJurisdictions || []).join(", ");
+  if (exposure) exposure.value = (profile.exposureJurisdictions || []).join(", ");
+}
+
 function saveSettings() {
-  const settings = { gptLink: $("gpt-link").value.trim() };
+  const settings = {
+    gptLink: $("gpt-link").value.trim(),
+    profile: currentProfile()
+  };
   localStorage.setItem(storageKeys.settings, JSON.stringify(settings));
   alert("Settings saved locally.");
 }
@@ -622,6 +846,31 @@ function setupCopyDelegation() {
       return;
     }
 
+    const postAction = event.target.closest("[data-post-action]");
+    if (postAction) {
+      const prompt = postActionPrompt(postAction.dataset.postAction);
+      const followUp = $("follow-up");
+      if (followUp && prompt) {
+        followUp.value = prompt;
+        continueConversation();
+      }
+      return;
+    }
+
+    const feedbackEvent = event.target.closest("[data-feedback-event]");
+    if (feedbackEvent) {
+      const originalText = feedbackEvent.textContent;
+      feedbackEvent.textContent = "Saved";
+      try {
+        await sendQuickFeedback(feedbackEvent.dataset.feedbackEvent, feedbackEvent.dataset.turn);
+      } catch {
+        feedbackEvent.textContent = "Retry";
+        return;
+      }
+      setTimeout(() => { feedbackEvent.textContent = originalText; }, 1200);
+      return;
+    }
+
     const jump = event.target.closest("[data-panel-jump]");
     if (!jump) return;
     switchPanel(jump.dataset.panelJump);
@@ -654,12 +903,58 @@ function setupVerdictChips() {
   });
 }
 
+function updateAutoState() {
+  const auto = $("auto-pill");
+  if (!auto) return;
+  const isAuto = $("audience").value === "Auto" && $("shape").value === "Auto";
+  auto.classList.toggle("active", isAuto);
+  auto.textContent = isAuto ? "Auto - router decides" : "Auto off - tap to release";
+}
+
+function setChipValue(group, value) {
+  const input = $(group);
+  if (input) input.value = value;
+  document.querySelectorAll(`[data-chip-group="${group}"] .choice-chip`).forEach((chip) => {
+    chip.classList.toggle("selected", chip.dataset.value === value);
+  });
+  updateAutoState();
+}
+
+function setupChoiceChips() {
+  document.querySelectorAll(".choice-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const group = chip.closest("[data-chip-group]")?.dataset.chipGroup;
+      if (!group) return;
+      setChipValue(group, chip.dataset.value || "Auto");
+    });
+  });
+
+  $("auto-pill")?.addEventListener("click", () => {
+    setChipValue("audience", "Auto");
+    setChipValue("shape", "Auto");
+  });
+}
+
+function setupProfileChips() {
+  document.querySelectorAll(".profile-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chip.classList.toggle("selected");
+    });
+  });
+}
+
+function applyBuilderMode() {
+  const panel = $("builder-learning-box");
+  if (panel) panel.hidden = false;
+}
+
 function switchPanel(panelId) {
   document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
   document.querySelectorAll(".panel").forEach((panel) => panel.classList.remove("active"));
   const tab = document.querySelector(`.tab[data-panel="${panelId}"]`);
   if (tab) tab.classList.add("active");
   $(panelId).classList.add("active");
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 }
 
 function setupTabs() {
@@ -673,16 +968,22 @@ function setupTabs() {
 function boot() {
   $("local-time").textContent = zurichTimestamp();
   setInterval(() => { $("local-time").textContent = zurichTimestamp(); }, 1000);
-  $("prepare-btn").addEventListener("click", buildPrompt);
-  $("preview-btn").addEventListener("click", routerPreview);
+  updateDetectedDeadline("");
+  bindAskControls();
+  $("new-task-btn")?.addEventListener("click", startNewTask);
   $("save-journal-btn").addEventListener("click", addJournalEntry);
   $("export-btn").addEventListener("click", exportJournal);
   $("save-settings-btn").addEventListener("click", saveSettings);
-  $("gpt-link").value = loadSettings().gptLink || "";
+  const settings = loadSettings();
+  $("gpt-link").value = settings.gptLink || "";
+  loadProfileSettings(settings);
   setupTabs();
   setupCopyDelegation();
   setupKeyboardSubmit();
   setupVerdictChips();
+  setupChoiceChips();
+  setupProfileChips();
+  applyBuilderMode();
   renderJournal();
   loadBasis();
   updateLearningControls();

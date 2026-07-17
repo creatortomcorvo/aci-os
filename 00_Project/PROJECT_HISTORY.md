@@ -212,3 +212,7 @@ Extrapolated Compliance Taxonomy Two-Tier App DNA v0.2 into the Chief Consiglier
 ## Version 0.1.51
 
 Accepted the later enterprise-taxonomy approach and created `04_Methodology/Compliance_Taxonomy_Two_Tier_App_DNA_v0.3.md`. v0.3 keeps the internal product routing view and adds a user-facing enterprise compliance view with compliance families, core topics, sector additions, and document architecture. Updated product principles, Expert Map, instrumentation, and decision journal to v0.3. Created `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.14_under8000.md`, switched the GPT Knowledge bundle source from taxonomy v0.2 to v0.3, updated the Knowledge Pack and GPT Editor Config to v2.14, and logged the package change in `10_Product/GPT_Package_Review_2026-07-11_v1.3.md`.
+
+## Version 0.1.52
+
+Implemented CAL-4 Profile Layer and Workflow Doctrine. Added local app profile fields for industries, operating jurisdictions, and exposure jurisdictions; injected profile context into Ask and follow-up prompts; added profile details to learning notes; created `10_Product/Profile_Context_Layer_v0.1.md`; updated `04_Methodology/Router_Spec_v1.0.md` with Profile Layer and FRAME -> ANALYZE -> STRUCTURE -> REFINE -> DEPLOY workflow doctrine; added profile behavior to front-door rules and GPT Knowledge bundle; parked related brand/commercial notes in `99_Parked/INBOX.md`.

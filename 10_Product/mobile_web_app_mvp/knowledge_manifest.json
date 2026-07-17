@@ -11,8 +11,16 @@
       "label": "Response front-door rules"
     },
     {
+      "path": "10_Product/Profile_Context_Layer_v0.1.md",
+      "label": "Profile context layer"
+    },
+    {
       "path": "10_Product/ACI_OS_Document_Standards_v1_0.md",
       "label": "Document standards"
+    },
+    {
+      "path": "10_Product/Country_Local_Law_Gap_Rule_v0.1.md",
+      "label": "Country / local-law gap rule"
     },
     {
       "path": "07_Research/Source_Register_v0.1.md",
@@ -25,6 +33,10 @@
     {
       "path": "03_Kruk_Principles/Kruk_Way_Operating_Doctrines_v0.1.md",
       "label": "Kruk operating doctrines"
+    },
+    {
+      "path": "03_Kruk_Principles/Regulatory_Design_Rules_D28_v1.0.md",
+      "label": "Regulatory design rules D28"
     },
     {
       "path": "04_Methodology/Decision_Front_Door_Spec_v0.1.md",

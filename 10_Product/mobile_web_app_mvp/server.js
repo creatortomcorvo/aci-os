@@ -90,15 +90,19 @@ function appendLearningEntry(body) {
   ensureLearningInbox();
   const timestamp = cleanField(body.timestamp) || new Date().toISOString();
   const calibration = body.calibration || {};
+  const profile = calibration.profile || {};
+  const list = (items) => Array.isArray(items) && items.length ? items.map((item) => cleanField(item)).join(", ") : "not set";
   const lines = [
     "",
     `## ${timestamp} - app learning signal`,
     "",
     `Source: ${cleanField(body.source || "ACI-OS mobile/web app")}`,
+    `Event type: ${cleanField(body.event_type || body.eventType || "builder_note")}`,
     `Verdict: ${cleanField(body.verdict || "not rated")}`,
     `Question pattern: ${cleanField(body.question || "not stated", 500)}`,
     `Answer first line: ${cleanField(body.answerFirstLine || "not stated", 500)}`,
-    `Calibration: speed=${cleanField(calibration.speed)}; shape=${cleanField(calibration.shape)}; output=${cleanField(calibration.output)}; deadline=${cleanField(calibration.deadline)}; audience=${cleanField(calibration.audience)}`,
+    `Calibration: speed=${cleanField(calibration.speed)}; shape=${cleanField(calibration.shape)}; output=${cleanField(calibration.output)}; deadline=${cleanField(calibration.deadline)}; audience=${cleanField(calibration.audience)}; requestCode=${cleanField(calibration.requestCode)}`,
+    `Profile: industries=${list(profile.industries)}; operating=${list(profile.operatingJurisdictions)}; exposure=${list(profile.exposureJurisdictions)}`,
     "",
     markdownBlock("What worked", body.worked || "[not stated]"),
     markdownBlock("What failed", body.failed || "[not stated]"),
@@ -112,7 +116,7 @@ function appendLearningEntry(body) {
 }
 
 function getInstructions() {
-  const configured = process.env.ACI_OS_INSTRUCTIONS_FILE || "../Chief_Consigliere_GPT_Instructions_Gate2_v2.15_under8000.md";
+  const configured = process.env.ACI_OS_INSTRUCTIONS_FILE || "../Chief_Consigliere_GPT_Instructions_Gate2_v2.16_under8000.md";
   const file = path.resolve(ROOT, configured);
   if (!fs.existsSync(file)) {
     throw new Error(`Instruction file not found: ${file}`);

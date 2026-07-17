@@ -579,3 +579,22 @@ Source: Tom asked whether `Sanctions GPT (Second Agent)` can be utilized or buil
 - Blind merge into Chief Consigliere.
 - Old agent source hierarchy that prioritizes uploaded/internal knowledge over ACI-OS source discipline.
 - Long sanctions report as default conversational answer.
+
+## 2026-07-17 - CAL-4 Parked Positioning and User-Research Notes
+
+Source: Tom via Claude, CAL-4 Profile Layer + Workflow Doctrine.
+
+### Parked Brand Note
+
+- Positioning copy: "Compliance Officer Sparring Partner - helps structure thinking, challenge assumptions, reduce panic, identify escalation paths, and document defensible reasoning before critical decisions."
+
+### Parked Commercial / User-Research Validation
+
+- Decision-first use: users come for a safer next decision, not a general lecture.
+- Progressive refinement: first answer, then sharper follow-up, then artifact.
+- Dual altitude: the same system must support both practical next action and board/CEO framing, but not mix altitudes in one first answer.
+- Artifact endpoints: useful outputs become copyable text, memo, checklist, journal entry, or reasoning record.
+
+### Routing
+
+- Parked only. These items support future brand/commercial work after methodology and internal product loop remain stable.

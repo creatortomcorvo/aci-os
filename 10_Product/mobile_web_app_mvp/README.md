@@ -18,6 +18,7 @@ This is the first private web app shell for ACI-OS. It gives Tom an iPhone-frien
 - keeps raw learning in the inbox and tracks accepted actions in `10_Product/App_Learning_Processed_Log.md`;
 - supports simple follow-up turns by sending recent local conversation context with the next question;
 - injects only an approved local knowledge whitelist into Direct Ask;
+- supports a local profile layer: industries, operating jurisdictions, and exposure jurisdictions;
 - uses a two-column desktop layout while preserving the same mobile flow on iPhone;
 - exports journal entries as markdown via clipboard;
 - can be added to iPhone Home Screen when served over `localhost` or HTTPS.
@@ -101,6 +102,7 @@ The next version should add a secure backend:
 
 ## Change Log
 
+v0.24 - added CAL-4 profile layer: industry chips, operating jurisdictions, exposure jurisdictions, prompt injection, and profile-aware learning notes.
 v0.23 - clarified the learning loop: full discussion is sent to the inbox; local journal shows a summary; processed lessons are tracked in `App_Learning_Processed_Log.md`; Direct Ask now defaults to GPT instruction v2.15.
 v0.22 - applied safe E15 visual patch: quiet learning card, verdict chips, refined buttons, subdued tab bar, sticky continue bar, thin scrollbars, and tighter desktop rhythm.
 v0.21 - moved "Send learning to ACI-OS" into the left calibration column and kept the right side for the conversation only.
