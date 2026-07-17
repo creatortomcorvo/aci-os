@@ -2814,4 +2814,96 @@ I can help draft questions or a checklist for your company contacts.
 
 SOURCES / BASIS: [practitioner method - Kruk], [Country / Local-Law Gap Rule v0.1]
 
+Next handling: Codex should convert this into a concrete improvement, test, or documentation update unless the signal is clearly duplicate or unsafe.## 2026-07-17 16:52:01 Europe/Zurich - app learning signal
+Source: ACI-OS mobile/web app answer feedback
+Verdict: Good
+Question pattern: 2BY why are you writing 2BY means: short first answer + table checklist + two calibration questions.
+Answer first line: Response timestamp: 2026-07-17 14:45:00 +02 Europe/Zurich
+Calibration: speed=2; shape=Auto; output=Y; deadline=Auto; audience=Auto
+### What worked
+
+[not stated]
+
+### What failed
+
+[not stated]
+
+### Suggested fix
+
+bad , no colors, stupid explanations instead of alignment 2by?????
+
+### Full discussion
+
+TURN 1 QUESTION
+my boss paid unchecked invoice now we are looking for a contract that very likely does not exist, bank account also is srrange but money is gone
+
+TURN 1 ANSWER
+Response timestamp: 2026-07-17 14:23:00 +02 Europe/Zurich
+
+> HOLD - stop any further payments or related transactions immediately. Preserve all records and communications about the invoice and payment. Escalate to your Compliance Officer or Legal Counsel now for urgent review and investigation.
+
+To help you best:
+
+1. Was the invoice payment authorized by policy or management, or was it outside normal controls?
+2. What steps have been taken to trace the bank account and payment route?
+3. Is there any suspicion of fraud, internal error, or external scam?
+4. Does your company have a whistleblower or incident-reporting channel?
+5. What internal documents or controls govern invoice approval and payment?
+
+I can provide a checklist for evidence preservation and escalation steps once you answer.
+
+SOURCES / BASIS: [practitioner method - Kruk], [ECCP 2024], [ISO 37301]
+
+---
+
+TURN 2 QUESTION
+whe there are no colors?
+
+TURN 2 ANSWER
+Response timestamp: 2026-07-17 14:35:00 +02 Europe/Zurich
+
+2BY means: short first answer + table checklist + two calibration questions.
+
+No colors means no risk marker was assigned yet or the system is waiting for your facts.
+
+If you want, I can provide a detailed checklist for evidence, escalation, and next steps now.
+
+1. Has any internal or external investigation started?
+2. Who currently owns the case internally (Compliance, Legal, Finance)?
+
+I can go deeper once you answer these.
+
+SOURCES / BASIS: [practitioner method - Kruk], [ECCP 2024], [ISO 37301]
+
+---
+
+TURN 3 QUESTION
+why are you writing 2BY means: short first answer + table checklist + two calibration questions.
+
+No colors means no risk marker was assigned yet or the system is waiting for your facts. just amend
+
+TURN 3 ANSWER
+Response timestamp: 2026-07-17 14:45:00 +02 Europe/Zurich
+
+No colors means no risk marker is assigned yet or the system awaits your facts to assess risk. 2BY means: short first answer, a checklist table, plus two calibration questions to clarify facts and needs.
+
+To proceed:
+
+| No. | Check | What to verify | Evidence / Owner |
+| --- | --- | --- | --- |
+| 1 | Payment authorization | Was payment per policy or ad hoc? | Payment records / Finance |
+| 2 | Contract existence | Confirm contract or document absence | Contract files / Legal |
+| 3 | Bank account legitimacy | Verify account details and ownership | Bank statements / Finance |
+| 4 | Payment trail | Trace payment route and timing | Bank/payment records / Finance |
+| 5 | Incident reporting | Has case been reported internally? | Incident logs / Compliance |
+
+Please answer:
+
+1. Has any internal or external investigation started yet?  
+2. Who is managing the case internally (Compliance, Legal, Finance)?
+
+I can provide a detailed escalation and evidence-preservation checklist once you reply.
+
+SOURCES / BASIS: [practitioner method - Kruk], [ECCP 2024], [ISO 37301]
+
 Next handling: Codex should convert this into a concrete improvement, test, or documentation update unless the signal is clearly duplicate or unsafe.
