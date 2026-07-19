@@ -2907,3 +2907,42 @@ I can provide a detailed escalation and evidence-preservation checklist once you
 SOURCES / BASIS: [practitioner method - Kruk], [ECCP 2024], [ISO 37301]
 
 Next handling: Codex should convert this into a concrete improvement, test, or documentation update unless the signal is clearly duplicate or unsafe.
+
+## 2026-07-19 18:05:34 Europe/Zurich - app learning signal
+Source: ACI-OS mobile/web app answer feedback
+Verdict: Bad
+Question pattern: 2BY boss has mistakenly approved invoice with 9 not 8 digits sum of money
+Answer first line: Response timestamp: 2026-07-18 15:30:00 +02 Europe/Zurich
+Calibration: speed=2; shape=Advice; output=Y; deadline=Auto; audience=Employee
+### What worked
+
+[not stated]
+
+### What failed
+
+are you sure all calibrations work?
+
+### Suggested fix
+
+[not stated]
+
+### Full discussion
+
+TURN 1 QUESTION
+boss has mistakenly approved invoice with 9 not 8 digits sum of money
+
+TURN 1 ANSWER
+Response timestamp: 2026-07-18 15:30:00 +02 Europe/Zurich
+
+HOLD – stop any payment or further processing of the invoice immediately. Notify your Compliance Officer or Finance Controller about the discrepancy. Preserve all related documents and communications as evidence. Do not try to fix or reissue without formal review.
+
+I can help with a checklist for next steps or escalation if you want.
+
+Questions:
+1. Has the invoice already been paid or booked in the system?
+2. Is there an internal policy or procedure for invoice errors or approvals?
+3. Who else has access or oversight of invoice approvals in your company?
+
+SOURCES / BASIS: [practitioner method - Kruk], [ECCP 2024], [ISO 37301]
+
+Next handling: Codex should convert this into a concrete improvement, test, or documentation update unless the signal is clearly duplicate or unsafe.
