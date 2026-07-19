@@ -595,7 +595,7 @@ async function addJournalEntry() {
     });
     if (status) status.textContent = `Learning note sent to ${result.file}.`;
   } catch {
-    if (status) status.textContent = "Saved locally, but not sent to ACI-OS. Check local server and retry.";
+    if (status) status.textContent = "Saved locally in this browser. Local repo learning works only when the backend is running; external pilot needs a secure backend.";
   }
 }
 
@@ -718,7 +718,14 @@ async function sendQuickFeedback(eventType, turnIndex) {
 async function saveLastAnswerToJournal() {
   if (!lastAnswerForJournal) return;
   const payload = makeLearningPayload();
-  const result = await postLearning(payload);
+  let result = null;
+  let sentToRepo = false;
+  try {
+    result = await postLearning(payload);
+    sentToRepo = true;
+  } catch {
+    sentToRepo = false;
+  }
   const entries = loadJournal();
   entries.unshift({
     timestamp: payload.timestamp,
@@ -728,9 +735,11 @@ async function saveLastAnswerToJournal() {
   renderJournal();
   const status = $("answer-save-status");
   if (status) {
-    status.textContent = `Learning sent to ${result.file}. Full discussion was sent; this screen shows a short summary.`;
+    status.textContent = sentToRepo
+      ? `Learning sent to ${result.file}. Full discussion was sent; this screen shows a short summary.`
+      : "Saved locally in this browser. To improve ACI-OS from external pilot feedback, copy full discussion and send it to Codex until remote learning is built.";
     setTimeout(() => {
-      if (status.textContent.startsWith("Learning sent")) {
+      if (sentToRepo && status.textContent.startsWith("Learning sent")) {
         status.textContent = "Saved as a system-improvement signal. Codex will process accepted lessons into rules, tests, docs, or app changes.";
       }
     }, 3000);
@@ -776,7 +785,7 @@ async function loadBasis() {
       <p class="helper">Loaded context: ${Number(data.used || 0).toLocaleString()} / ${Number(data.maxTotal || 0).toLocaleString()} characters.</p>
     `;
   } catch {
-    target.innerHTML = `<p class="empty">Basis list unavailable. Start the Direct Ask server, then refresh.</p>`;
+    target.innerHTML = `<p class="empty">Basis list unavailable. In external pilot mode, local knowledge files are not connected. In local mode, start the Direct Ask server, then refresh.</p>`;
   }
 }
 

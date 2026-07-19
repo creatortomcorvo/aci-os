@@ -31,6 +31,7 @@ This is the first private web app shell for ACI-OS. It gives Tom an iPhone-frien
 - it does not sync memory across devices;
 - it does not replace Chief Consigliere GPT.
 - it does not automatically rewrite methodology or prompts without Codex review.
+- in external static deployment, it does not write learning notes into the local C-drive repo.
 
 ## Learning Loop
 
@@ -89,6 +90,26 @@ http://127.0.0.1:8080
 
 The mobile app will call the local backend at `/api/ask`. The API key stays in `.env`, which is ignored by Git. Direct Ask uses `knowledge_manifest.json` to load only approved local knowledge files.
 
+## Vercel Static Pilot
+
+Deploy only this folder as the Vercel root:
+
+```text
+10_Product/mobile_web_app_mvp
+```
+
+Use this as a safe external UI pilot. Do not deploy the whole ACI-OS repo root.
+
+| Feature | External static pilot behavior |
+| --- | --- |
+| UI / PWA | Works. |
+| Prompt preparation | Works. |
+| Direct Ask | Falls back to GPT-copy mode unless a secure backend is added. |
+| Learning notes | Saved in the browser only; repo-writing requires the local backend or future secure backend. |
+| Basis tab | Local knowledge files are not exposed externally. |
+
+Do not add `OPENAI_API_KEY` to browser code. Future external Direct Ask requires authentication, retention rules, and a server-side backend.
+
 ## Next Architecture Step
 
 The next version should add a secure backend:
@@ -102,6 +123,7 @@ The next version should add a secure backend:
 
 ## Change Log
 
+v0.25 - prepared safe external static pilot behavior: browser-only learning fallback, no local-repo promise in public UI, Vercel guidance, and default GPT instruction v2.17 for local backend.
 v0.24 - added CAL-4 profile layer: industry chips, operating jurisdictions, exposure jurisdictions, prompt injection, and profile-aware learning notes.
 v0.23 - clarified the learning loop: full discussion is sent to the inbox; local journal shows a summary; processed lessons are tracked in `App_Learning_Processed_Log.md`; Direct Ask now defaults to GPT instruction v2.15.
 v0.22 - applied safe E15 visual patch: quiet learning card, verdict chips, refined buttons, subdued tab bar, sticky continue bar, thin scrollbars, and tighter desktop rhythm.

@@ -116,7 +116,7 @@ function appendLearningEntry(body) {
 }
 
 function getInstructions() {
-  const configured = process.env.ACI_OS_INSTRUCTIONS_FILE || "../Chief_Consigliere_GPT_Instructions_Gate2_v2.16_under8000.md";
+  const configured = process.env.ACI_OS_INSTRUCTIONS_FILE || "../Chief_Consigliere_GPT_Instructions_Gate2_v2.17_under8000.md";
   const file = path.resolve(ROOT, configured);
   if (!fs.existsSync(file)) {
     throw new Error(`Instruction file not found: ${file}`);

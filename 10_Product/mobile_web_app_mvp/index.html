@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#111111" />
     <title>ACI-OS Web App</title>
     <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="stylesheet" href="./styles.css?v=32" />
+    <link rel="stylesheet" href="./styles.css?v=33" />
   </head>
   <body>
     <div class="app-shell">
@@ -21,7 +21,7 @@
       <main>
         <section class="notice" aria-label="privacy notice">
           <strong>Do not enter names, client facts, whistleblower identity, privileged content, or live matter details.</strong>
-          Use pattern facts only. This prototype can send learning notes into the local ACI-OS repo.
+          Use pattern facts only. Local mode can send learning notes into the ACI-OS repo; external pilot mode stores feedback only in this browser until a secure backend is added.
         </section>
 
         <section class="panel active" id="ask-panel" aria-labelledby="ask-title">
@@ -139,7 +139,7 @@
             <li>Decision support only. No legal advice. No clearance.</li>
             <li>Company documents govern. ACI-OS compares, improves, or fills gaps.</li>
             <li>Direct Ask uses a selected local knowledge whitelist, not the whole repo.</li>
-            <li>OpenAI API key stays in the local server `.env`, never in the browser.</li>
+            <li>OpenAI API key stays in the local server `.env` or future secure backend, never in the browser.</li>
           </ul>
           <div id="basis-list" class="basis-list">
             <p class="empty">Loading selected knowledge files...</p>
@@ -186,6 +186,6 @@
       </nav>
     </div>
 
-    <script src="./app.js?v=32"></script>
+    <script src="./app.js?v=33"></script>
   </body>
 </html>
