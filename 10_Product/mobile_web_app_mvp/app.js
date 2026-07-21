@@ -199,8 +199,8 @@ function buildPrompt() {
     "- If shape is Auto, classify the question before answering."
   ].join("\n");
 
-  askBackend(prompt, { displayQuestion: q }).catch(() => {
-    renderPreparedPrompt(prompt);
+  askBackend(prompt, { displayQuestion: q }).catch((error) => {
+    renderPreparedPrompt(prompt, error);
   });
 }
 
@@ -243,8 +243,8 @@ function continueConversation() {
     return;
   }
   const prompt = buildFollowUpPrompt(followUp);
-  askBackend(prompt, { displayQuestion: followUp, followUp }).catch(() => {
-    renderConversation(`Could not send the follow-up. Copy the prepared prompt below if needed.`, prompt);
+  askBackend(prompt, { displayQuestion: followUp, followUp }).catch((error) => {
+    renderPreparedPrompt(prompt, error);
   });
 }
 
@@ -394,16 +394,108 @@ function renderAnswerContent(value) {
   return blocks.join("") || `<div class="answer-text"></div>`;
 }
 
-function renderPreparedPrompt(prompt) {
+async function readBackendError(response) {
+  const text = await response.text().catch(() => "");
+  if (!text) return {};
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { error: text.slice(0, 500) };
+  }
+}
+
+function makeBackendError(response, payload = {}) {
+  const message = payload.error || payload.message || `Direct Ask failed (${response.status}).`;
+  const error = new Error(message);
+  error.status = response.status;
+  error.statusText = response.statusText || "";
+  error.serverMessage = message;
+  error.payload = payload;
+  return error;
+}
+
+function directAskDiagnostic(error) {
+  const status = error && error.status ? `${error.status} ${error.statusText || ""}`.trim() : "network / browser error";
+  const serverMessage = (error && (error.serverMessage || error.message)) || "No backend error message returned.";
+  const rows = [
+    ["Status", status],
+    ["Backend message", serverMessage]
+  ];
+
+  if (error && error.status === 401) {
+    return {
+      title: ">_< Direct Ask is locked.",
+      body: "Unlock the pilot in Settings, then ask again.",
+      rows: [["Next action", "Use the pilot passcode in the app Settings."], ...rows]
+    };
+  }
+
+  if (error && error.status === 423) {
+    return {
+      title: ">_< Vercel access lock is not configured.",
+      body: "The public backend requires a pilot passcode and cookie secret before it can call OpenAI.",
+      rows: [["Next action", "Add ACI_OS_PILOT_PASSCODE and ACI_OS_PILOT_COOKIE_SECRET in Vercel, then redeploy."], ...rows]
+    };
+  }
+
+  if (error && error.status === 404) {
+    return {
+      title: ">_< Vercel API route was not found.",
+      body: "The app could not reach /api/ask on this deployment.",
+      rows: [["Next action", "Check Vercel root directory and open /api/health on the deployed domain."], ...rows]
+    };
+  }
+
+  if (error && error.status === 503) {
+    return {
+      title: ">_< OpenAI is not configured for this deployment.",
+      body: "The backend is reachable, but it cannot call OpenAI.",
+      rows: [["Next action", "Check OPENAI_API_KEY and OPENAI_MODEL in Vercel, then redeploy."], ...rows]
+    };
+  }
+
+  if (error && error.status === 429) {
+    return {
+      title: ">_< Direct Ask hit a quota or rate limit.",
+      body: "The app reached the backend, but the model provider rejected the request.",
+      rows: [["Next action", "Check OpenAI billing, limits, and Vercel logs."], ...rows]
+    };
+  }
+
+  return {
+    title: ">_< Direct Ask returned an error.",
+    body: "The app could not complete the backend call. The diagnostic below is the part we need now.",
+    rows: [["Next action", "Open /api/health on this deployment and check Vercel logs if needed."], ...rows]
+  };
+}
+
+function diagnosticRowsHtml(rows) {
+  return rows.map(([label, value]) => `
+    <tr>
+      <th>${escapeHtml(label)}</th>
+      <td>${escapeHtml(String(value || ""))}</td>
+    </tr>
+  `).join("");
+}
+
+function renderPreparedPrompt(prompt, error = null) {
   lastAnswerForJournal = null;
   updateLearningControls();
   const gptLink = loadSettings().gptLink || "";
+  const diagnostic = directAskDiagnostic(error);
   const openAction = gptLink
     ? `<a class="primary nav-link" href="${escapeAttr(gptLink)}" target="_blank" rel="noreferrer">Open GPT</a>`
     : `<button class="primary" data-panel-jump="settings-panel">Set GPT link</button>`;
   $("result").innerHTML = `
     <strong>Prepared for GPT</strong>
-    <p class="helper">Direct Ask is unavailable or returned an error. Copy this prompt into Chief Consigliere GPT.</p>
+    <div class="diagnostic-card">
+      <div class="diagnostic-title">${escapeHtml(diagnostic.title)}</div>
+      <p>${escapeHtml(diagnostic.body)}</p>
+      <table class="diagnostic-table">
+        <tbody>${diagnosticRowsHtml(diagnostic.rows)}</tbody>
+      </table>
+    </div>
+    <p class="helper">Copy this prompt into Chief Consigliere GPT while Direct Ask is being fixed.</p>
     <div class="prompt-box">${escapeHtml(prompt)}</div>
     <div class="actions">
       <button class="secondary" data-copy="${escapeAttr(prompt)}">Copy for GPT</button>
@@ -429,10 +521,17 @@ async function askBackend(prompt, options = {}) {
   });
 
   if (!response.ok) {
-    throw new Error("Backend unavailable");
+    const payload = await readBackendError(response);
+    throw makeBackendError(response, payload);
   }
 
-  const data = await response.json();
+  const data = await response.json().catch(() => ({}));
+  if (data && data.ok === false) {
+    const error = new Error(data.error || "Direct Ask returned no answer.");
+    error.serverMessage = data.error || "Direct Ask returned no answer.";
+    error.payload = data;
+    throw error;
+  }
   lastAnswerForJournal = {
     prompt,
     answer: data.answer || "No answer returned.",
