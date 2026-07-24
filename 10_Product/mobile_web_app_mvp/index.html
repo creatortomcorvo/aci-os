@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#111111" />
     <title>ACI-OS Web App</title>
     <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="stylesheet" href="./styles.css?v=33" />
+    <link rel="stylesheet" href="./styles.css?v=38" />
   </head>
   <body>
     <div class="app-shell">
@@ -21,14 +21,13 @@
       <main>
         <section class="notice" aria-label="privacy notice">
           <strong>Do not enter names, client facts, whistleblower identity, privileged content, or live matter details.</strong>
-          Use pattern facts only. Local mode can send learning notes into the ACI-OS repo; external pilot mode stores feedback only in this browser until a secure backend is added.
+          Use pattern facts only. This prototype can send learning notes into the local ACI-OS repo.
         </section>
 
         <section class="panel active" id="ask-panel" aria-labelledby="ask-title">
           <div class="section-title">
             <h2 id="ask-title">Calibrate</h2>
             <div class="section-actions">
-              <button type="button" id="new-task-btn" class="secondary compact">New task</button>
               <span id="local-time" class="time-chip">--</span>
             </div>
           </div>
@@ -69,6 +68,21 @@
 
               <div class="detected-chip" id="detected-deadline-chip" hidden>Deadline detected</div>
 
+            </div>
+
+            <section class="result" id="result" aria-live="polite">
+              <div class="initial-composer">
+                <p class="helper">Type here. Enter sends. Shift+Enter adds a new line.</p>
+                <label class="sr-only" for="question">Question</label>
+                <textarea id="question" rows="7" placeholder="Example: CEO wants a yes/no answer today on a distributor payment with a new payer."></textarea>
+                <div class="button-row">
+                  <button id="prepare-btn" class="primary">Ask</button>
+                  <button type="button" class="secondary" data-new-task>New task</button>
+                </div>
+              </div>
+            </section>
+
+            <aside class="learning-rail" aria-label="learning controls">
               <div class="feedback-box learning-box" id="builder-learning-box">
                 <strong>Send learning to ACI-OS</strong>
                 <p class="helper">Use this when the answer should improve the system. It writes a learning signal into the local ACI-OS repo.</p>
@@ -100,30 +114,18 @@
                   <button class="secondary" id="copy-full-discussion" data-copy="" disabled>Copy full discussion</button>
                   <button class="primary" id="save-answer-journal" disabled>Send learning</button>
                 </div>
-                <p class="helper" id="answer-save-status">Ask first, then send learning into the local ACI-OS inbox. Pattern facts only.</p>
+                <p class="helper" id="answer-save-status">Ask first, then export learning. Codex will propose the lesson and change for your approval before implementation.</p>
               </div>
-            </div>
-
-            <section class="result" id="result" aria-live="polite">
-              <div class="initial-composer">
-                <p class="helper">Type here. Enter sends. Shift+Enter adds a new line.</p>
-                <label class="sr-only" for="question">Question</label>
-                <textarea id="question" rows="7" placeholder="Example: CEO wants a yes/no answer today on a distributor payment with a new payer."></textarea>
-                <div class="button-row">
-                  <button id="prepare-btn" class="primary">Ask</button>
-                  <button id="preview-btn" class="secondary">Router preview</button>
-                </div>
-              </div>
-            </section>
+            </aside>
           </div>
         </section>
 
         <section class="panel" id="journal-panel" aria-labelledby="journal-title">
           <div class="section-title">
             <h2 id="journal-title">Journal</h2>
-            <button id="export-btn" class="link-button">Export</button>
+            <button id="export-btn" class="link-button">Export to Memory</button>
           </div>
-          <p class="helper">Pattern notes only. Saving here sends a learning signal into ACI-OS for later Codex processing.</p>
+          <p class="helper">Pattern notes only. Export to Memory saves the visible Journal cards to the C-drive project memory, then removes them from this screen. Pending learning remains preserved in the learning inbox.</p>
 
           <label class="field-label" for="journal-note">Short pattern note</label>
           <textarea id="journal-note" rows="4" placeholder="Example: payment reroute pressure; user needed fast hold line and bank inquiry."></textarea>
@@ -139,7 +141,7 @@
             <li>Decision support only. No legal advice. No clearance.</li>
             <li>Company documents govern. ACI-OS compares, improves, or fills gaps.</li>
             <li>Direct Ask uses a selected local knowledge whitelist, not the whole repo.</li>
-            <li>OpenAI API key stays in the local server `.env` or future secure backend, never in the browser.</li>
+            <li>OpenAI API key stays in the local server `.env`, never in the browser.</li>
           </ul>
           <div id="basis-list" class="basis-list">
             <p class="empty">Loading selected knowledge files...</p>
@@ -186,6 +188,6 @@
       </nav>
     </div>
 
-    <script src="./app.js?v=33"></script>
+    <script src="./app.js?v=38"></script>
   </body>
 </html>

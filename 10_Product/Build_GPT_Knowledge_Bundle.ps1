@@ -22,6 +22,7 @@ $files = @(
   "04_Methodology\Question_Mode_Router_v0.1.md",
   "04_Methodology\Response_Pattern_Cards_v0.2.md",
   "04_Methodology\Legal_Compliance_Role_Boundary_v0.1.md",
+  "04_Methodology\Personal_Legal_Representation_Trigger_v0.1.md",
   "04_Methodology\Compliance_Relationship_Lifecycle_v0.1.md",
   "04_Methodology\Third_Party_Lifecycle_Kruk_Method_v1_0.md",
   "04_Methodology\Compliance_Risk_Assessment_Standards_First_v0.1.md",
@@ -45,7 +46,7 @@ Generated: $(Get-Date -Format "yyyy-MM-dd HH:mm")
 
 Purpose: upload this single file instead of many separate Knowledge files. Do not upload Gate 2 tests, transcripts, failure logs, journal, parked inbox, raw attachments, or private notes.
 
-Instruction file remains separate: paste `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.16_under8000.md` into the GPT Instructions box.
+Instruction file remains separate: paste `10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.28_under8000.md` into the GPT Instructions box.
 
 ---
 

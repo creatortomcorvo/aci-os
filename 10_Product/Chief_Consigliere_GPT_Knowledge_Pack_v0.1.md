@@ -18,7 +18,7 @@ Regenerate the bundle after methodology changes by running:
 
 The GPT instruction file remains separate. Paste this into the GPT Instructions box:
 
-`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.16_under8000.md`
+`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.28_under8000.md`
 
 ## Bundle Source Set
 
@@ -41,18 +41,19 @@ The bundle builder currently includes:
 15. `04_Methodology/Question_Mode_Router_v0.1.md`
 16. `04_Methodology/Response_Pattern_Cards_v0.2.md`
 17. `04_Methodology/Legal_Compliance_Role_Boundary_v0.1.md`
-18. `04_Methodology/Compliance_Relationship_Lifecycle_v0.1.md`
-19. `04_Methodology/Third_Party_Lifecycle_Kruk_Method_v1_0.md`
-20. `04_Methodology/Compliance_Risk_Assessment_Standards_First_v0.1.md`
-21. `04_Methodology/Training_Design_Schema_Kruk_v1_0.md`
-22. `04_Methodology/Culture_Of_Integrity_Diagnostic_v0.1.md`
-23. `04_Founder_Method/Upward_Management_Kit_v0.1.md`
-24. `04_Founder_Method/Compliance_Organization_Person_First_v0.1.md`
-25. `04_Founder_Method/Risk_Assessment_After_Joining_v0.1.md`
-26. `05_Experts/Cultural_Calibration_Pack_v0.1.md`
-27. `05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md`
-28. `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`
-29. `05_Experts/Sanctions_Expert_Route_v0.1.1.md`
+18. `04_Methodology/Personal_Legal_Representation_Trigger_v0.1.md`
+19. `04_Methodology/Compliance_Relationship_Lifecycle_v0.1.md`
+20. `04_Methodology/Third_Party_Lifecycle_Kruk_Method_v1_0.md`
+21. `04_Methodology/Compliance_Risk_Assessment_Standards_First_v0.1.md`
+22. `04_Methodology/Training_Design_Schema_Kruk_v1_0.md`
+23. `04_Methodology/Culture_Of_Integrity_Diagnostic_v0.1.md`
+24. `04_Founder_Method/Upward_Management_Kit_v0.1.md`
+25. `04_Founder_Method/Compliance_Organization_Person_First_v0.1.md`
+26. `04_Founder_Method/Risk_Assessment_After_Joining_v0.1.md`
+27. `05_Experts/Cultural_Calibration_Pack_v0.1.md`
+28. `05_Experts/Sports_Media_Compliance_Source_Routing_v0.1.md`
+29. `05_Experts/Sanctions_Report_Mode_Bridge_v0.1.md`
+30. `05_Experts/Sanctions_Expert_Route_v0.1.1.md`
 
 ## Why These Files
 
@@ -89,10 +90,18 @@ Reason: the GPT must know how to behave, but it must not see the exam paper, pri
 
 Paste this file into the GPT instruction box:
 
-`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.16_under8000.md`
+`10_Product/Chief_Consigliere_GPT_Instructions_Gate2_v2.28_under8000.md`
 
 ## Change Log
 
+v0.1.42 - added the Personal Legal Representation Trigger to Knowledge and updated the current GPT instruction reference to v2.28.
+v0.1.41 - updated the current GPT instruction reference to v2.27 after live testing required one-or-more menu wording and explicit exclusion of unselected options.
+v0.1.40 - updated the current GPT instruction reference to v2.26 after live multi-selection testing required immediate execution with provisional gaps.
+v0.1.39 - updated the current GPT instruction reference to v2.25 for numbered choice menus and compact multi-selection replies.
+v0.1.38 - updated the current GPT instruction reference to v2.24 after live testing required deterministic accepted-offer execution.
+v0.1.37 - updated the current GPT instruction reference to v2.23 after approved true-deepening and affirmative-follow-through learning.
+v0.1.36 - updated the current GPT instruction reference to v2.22 after approved Good-signal consolidation.
+v0.1.35 - updated the current GPT instruction reference to v2.21 after approved conversation-repair learning and live regression tightening.
 v0.1.34 - added CAL-4 Profile Context Layer to the GPT Knowledge bundle source set.
 v0.1.33 - added D28 regulatory design rules to the bundle and updated current GPT instruction reference to v2.16.
 v0.1.32 - updated current GPT instruction file to v2.15; added app-learning rules for numbered intake memory, advice-now stop-questioning, and numbered practical tables/checklists.

@@ -10,12 +10,13 @@ This is the first private web app shell for ACI-OS. It gives Tom an iPhone-frien
 
 ## What It Does Now
 
-- prepares a clean Chief Consigliere GPT prompt with request code, deadline, audience, and no-secret reminder;
+- prepares a clean Chief Consigliere GPT prompt with silent control metadata, deadline, audience, and no-secret reminder;
 - can return a direct answer when run through the local backend with `OPENAI_API_KEY`;
 - gives a local router preview for common patterns;
 - stores a local pattern journal in the browser and can send learning notes into the ACI-OS repo;
 - sends direct-answer feedback to `10_Product/App_Learning_Inbox.md` for future system improvement;
-- keeps raw learning in the inbox and tracks accepted actions in `10_Product/App_Learning_Processed_Log.md`;
+- assigns every new export a Learning ID and keeps it pending until Tom decides `OK`, `MODIFY`, or `DISCARD`;
+- removes completed local journal cards after the approved change is implemented and recorded in `10_Product/App_Learning_Processed_Log.md`;
 - supports simple follow-up turns by sending recent local conversation context with the next question;
 - injects only an approved local knowledge whitelist into Direct Ask;
 - supports a local profile layer: industries, operating jurisdictions, and exposure jurisdictions;
@@ -31,7 +32,6 @@ This is the first private web app shell for ACI-OS. It gives Tom an iPhone-frien
 - it does not sync memory across devices;
 - it does not replace Chief Consigliere GPT.
 - it does not automatically rewrite methodology or prompts without Codex review.
-- in external static deployment, it does not write learning notes into the local C-drive repo.
 
 ## Learning Loop
 
@@ -39,10 +39,11 @@ This is the first private web app shell for ACI-OS. It gives Tom an iPhone-frien
 
 | Step | What happens |
 | --- | --- |
-| 1 | The app sends the latest answer feedback plus the full available discussion to `10_Product/App_Learning_Inbox.md`. |
-| 2 | Codex deduplicates the signals and records accepted actions in `10_Product/App_Learning_Processed_Log.md`. |
-| 3 | Accepted lessons become rules, tests, documentation updates, or app changes. |
-| 4 | GPT Chief Consigliere gets the behavior change through the instruction file and regenerated Knowledge bundle. |
+| 1 | The app exports the latest answer feedback plus the full available discussion with a unique Learning ID. |
+| 2 | Codex explains what it learned, proposes exact changes, and asks Tom for `OK`, `MODIFY`, or `DISCARD`. |
+| 3 | Only an approved proposal becomes a rule, test, documentation update, or app change. |
+| 4 | Codex records the durable result and marks the Learning ID complete. |
+| 5 | The app removes the completed local journal card; unresolved items remain pending. |
 
 ## Safety Boundary
 
@@ -90,26 +91,6 @@ http://127.0.0.1:8080
 
 The mobile app will call the local backend at `/api/ask`. The API key stays in `.env`, which is ignored by Git. Direct Ask uses `knowledge_manifest.json` to load only approved local knowledge files.
 
-## Vercel Static Pilot
-
-Deploy only this folder as the Vercel root:
-
-```text
-10_Product/mobile_web_app_mvp
-```
-
-Use this as a safe external UI pilot. Do not deploy the whole ACI-OS repo root.
-
-| Feature | External static pilot behavior |
-| --- | --- |
-| UI / PWA | Works. |
-| Prompt preparation | Works. |
-| Direct Ask | Falls back to GPT-copy mode unless a secure backend is added. |
-| Learning notes | Saved in the browser only; repo-writing requires the local backend or future secure backend. |
-| Basis tab | Local knowledge files are not exposed externally. |
-
-Do not add `OPENAI_API_KEY` to browser code. Future external Direct Ask requires authentication, retention rules, and a server-side backend.
-
 ## Next Architecture Step
 
 The next version should add a secure backend:
@@ -123,8 +104,52 @@ The next version should add a secure backend:
 
 ## Change Log
 
-v0.25 - prepared safe external static pilot behavior: browser-only learning fallback, no local-repo promise in public UI, Vercel guidance, and default GPT instruction v2.17 for local backend.
+v0.51 - moved Direct Ask to GPT instruction v2.28 and added deterministic Personal protection consideration enforcement for credible individual exposure, with ordinary company-side questions excluded.
+
+v0.50 - Copy includes sources for any answer whose Sources panel is open; hidden or unrequested sources remain excluded.
+
+v0.49 - reorganized answer actions into Explore further (Deeper) and Convert current discussion into (Decision snapshot, Checklist, Memo, Email); Email creates a draft only and never sends.
+
+v0.48 - moved New task from the small section header into the prominent composer action area: beside Ask initially and beside Continue during a discussion.
+
+v0.47 - numbered menus now invite one or more selections; deterministic execution explicitly excludes every unselected option and uses instruction v2.27.
+
+v0.46 - added deterministic app-level execution for compact numbered selections after instruction-only live tests still confirmed choices instead of producing all selected outputs.
+
+v0.45 - moved Direct Ask to instruction v2.26 after live testing: numeric multi-selections now execute immediately using available context, with provisional gaps instead of another context request.
+
+v0.44 - moved Direct Ask to instruction v2.25: every selectable menu is numbered, and compact numeric replies can select and execute multiple options.
+
+v0.43 - removed the development-only Router preview button and its unused local preview behavior; Ask is now the single initial action.
+
+v0.42 - stopped follow-up history from nesting constructed backend prompts: conversation context now uses only the visible user question and assistant answer, with bounded context length.
+
+v0.41 - made accepted offers deterministic in follow-up prompts after live v2.23 testing still repeated a checklist offer; moved Direct Ask to instruction v2.24.
+
+v0.40 - moved Direct Ask to instruction v2.23; Deeper now develops one decision-critical point, and affirmative replies immediately execute the most recent offered artifact.
+
+v0.39 - moved Direct Ask to instruction v2.22 after approved Good-signal consolidation: backbone-correct program overviews and concrete plans after numbered replies.
+
+v0.38 - kept the existing source-selection logic but hid Sources / Basis by default; each answer now has its own Sources / Hide sources toggle beside Good and Copy.
+
+v0.37 - removed the incomplete one-tap Issue signal; each answer-card Copy button now copies the full discussion through that answer.
+
+v0.36 - made Decision Snapshot truly on demand: the option is always visible beside the other answer actions, ordinary answers no longer request snapshot metadata, and clicking the button generates, displays, and then toggles the snapshot.
+v0.35 - hardened Decision Snapshot extraction in both backend and browser: marker blocks may appear anywhere or inside a text fence, are always removed from the visible answer, and still feed the optional snapshot button.
+v0.34 - changed Decision Snapshot from default display to an optional post-answer button beside Deeper, Make checklist, and Turn into memo; clicking reveals or hides the latest snapshot.
+v0.33 - added an optional, non-sticky Decision Snapshot above the latest live-decision answer with Do now, What would change this, Owner, and Open gap; the full answer and safe fallback remain unchanged.
+v0.25 - added approval-gated Learning IDs, pending journal status, processed-state synchronization, and automatic cleanup of completed local learning cards.
 v0.24 - added CAL-4 profile layer: industry chips, operating jurisdictions, exposure jurisdictions, prompt injection, and profile-aware learning notes.
+v0.27 - replaced clipboard Export with Export to Memory: Journal cards are durably appended to `10_Product/App_Journal_Memory.md` and cleared locally only after a successful server write.
+v0.28 - added Codex-style desktop mechanics: independently fixed left calibration and right learning rails, center-only conversation scrolling, and a stronger pinned composer; mobile remains stacked.
+v0.29 - hard-locked the desktop shell to the viewport and removed result `scrollIntoView`, so header, warning, calibration, learning rail, composer, and bottom navigation cannot be pulled away when a new answer renders.
+
+v0.30 - restored a centered readable desktop width and larger desktop controls while preserving the locked three-zone shell and stationary composer.
+
+v0.31 - moved the continuation composer into its own compact bottom row, ChatGPT-style, so the conversation scrolls above it and no answer content is hidden behind the composer.
+
+v0.32 - moved Direct Ask to GPT instruction v2.21 and added approved conversation repair for terse or frustrated correction signals, tightened by live regression to a deterministic two-sentence repair.
+v0.26 - made request/control codes silent internal metadata and moved Direct Ask to GPT instruction v2.18.
 v0.23 - clarified the learning loop: full discussion is sent to the inbox; local journal shows a summary; processed lessons are tracked in `App_Learning_Processed_Log.md`; Direct Ask now defaults to GPT instruction v2.15.
 v0.22 - applied safe E15 visual patch: quiet learning card, verdict chips, refined buttons, subdued tab bar, sticky continue bar, thin scrollbars, and tighter desktop rhythm.
 v0.21 - moved "Send learning to ACI-OS" into the left calibration column and kept the right side for the conversation only.

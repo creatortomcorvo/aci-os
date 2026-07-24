@@ -598,3 +598,35 @@ Source: Tom via Claude, CAL-4 Profile Layer + Workflow Doctrine.
 ### Routing
 
 - Parked only. These items support future brand/commercial work after methodology and internal product loop remain stable.
+
+## 2026-07-23 - Decision Panel Specification v2.0
+
+Source: proposed future replacement for the current ACI-OS decision panel.
+
+### Parked Item
+
+- Full specification parked as `99_Parked/ACI-OS_Decision_Panel_Specification_v2.md`.
+- Preserve as future product direction, but do not treat it as build-ready or as a replacement for the active Core Specification.
+- Revisit after the present app and journal provide enough evidence to validate the proposed verdict engine, gap taxonomy, matter memory, artifact handling, permissions, and audit architecture.
+
+### Possible Near-Term Extraction
+
+- A small, reversible decision-summary element may be tested in the current app without adopting the full specification.
+
+## 2026-07-23 - Flash Memo Addendum v1.0
+
+Source: Tom's proposed Flash-depth addendum for the future structured Memo Module.
+
+### Parked Item
+
+- Full specification parked as `99_Parked/ACI-OS_Flash_Memo_Addendum_v1.0.md`.
+- Approved as future product direction, but not active app behavior.
+- Flash preserves the memo's protected decision floor while omitting nonessential Standard blocks.
+- Flash → Standard expansion is additive and byte-stable within the same memo family and snapshot lineage.
+- M4 has no Flash depth.
+
+### Activation Lock
+
+- Memo Module Spec v1.1 is not currently present in the repository.
+- Do not change the current prompt-based Memo button until v1.1 is supplied and its classes, readiness gate, snapshots, invariants, and API behavior are reconciled with this addendum.
+- Do not implement the superseded v1.2 depth system.

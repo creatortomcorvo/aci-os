@@ -6,6 +6,9 @@ const storageKeys = {
 const $ = (id) => document.getElementById(id);
 let lastAnswerForJournal = null;
 let conversationTurns = [];
+let decisionSnapshotVisible = false;
+let decisionSnapshotLoading = false;
+let decisionSnapshotError = "";
 
 function zurichTimestamp() {
   const date = new Date();
@@ -23,6 +26,14 @@ function zurichTimestamp() {
     return acc;
   }, {});
   return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}:${parts.second} Europe/Zurich`;
+}
+
+function createLearningId(timestamp = zurichTimestamp()) {
+  const stamp = String(timestamp).replace(/\D/g, "").slice(0, 14);
+  const random = globalThis.crypto?.randomUUID
+    ? globalThis.crypto.randomUUID().slice(0, 8)
+    : Math.random().toString(36).slice(2, 10);
+  return `AL-${stamp}-${random}`;
 }
 
 function requestCode() {
@@ -183,6 +194,9 @@ function buildPrompt() {
     return;
   }
   conversationTurns = [];
+  decisionSnapshotVisible = false;
+  decisionSnapshotLoading = false;
+  decisionSnapshotError = "";
   const detectedDeadline = updateDetectedDeadline(q);
 
   const prompt = [
@@ -199,19 +213,21 @@ function buildPrompt() {
     "- If shape is Auto, classify the question before answering."
   ].join("\n");
 
-  askBackend(prompt, { displayQuestion: q }).catch((error) => {
-    renderPreparedPrompt(prompt, error);
+  askBackend(prompt, { displayQuestion: q }).catch(() => {
+    renderPreparedPrompt(prompt);
   });
 }
 
 function buildFollowUpPrompt(followUp) {
   const detectedDeadline = updateDetectedDeadline(followUp);
+  const acceptedOfferInstruction = acceptedOfferExecutionLines(followUp);
+  const numberedChoiceInstruction = numberedChoiceExecutionLines(followUp);
   const recentTurns = conversationTurns.slice(-3).map((turn, index) => [
     `Prior turn ${index + 1} question:`,
-    turn.prompt,
+    conversationContextText(turn.question || turn.prompt, 600),
     "",
     `Prior turn ${index + 1} answer:`,
-    turn.answer
+    conversationContextText(turn.answer, 2600)
   ].join("\n")).join("\n\n---\n\n");
 
   return [
@@ -220,6 +236,8 @@ function buildFollowUpPrompt(followUp) {
     "This is a follow-up in the same ACI-OS mobile conversation.",
     "Use the prior turn as context, but do not assume facts not stated.",
     "If the follow-up changes the risk direction, say so clearly.",
+    ...acceptedOfferInstruction,
+    ...numberedChoiceInstruction,
     "",
     recentTurns,
     "",
@@ -235,6 +253,61 @@ function buildFollowUpPrompt(followUp) {
   ].join("\n");
 }
 
+function numberedChoiceExecutionLines(followUp) {
+  const normalized = String(followUp || "").trim();
+  if (!/^\(?\d+\)?(?:[\s,;&+]+\(?\d+\)?)*$/.test(normalized)) return [];
+
+  const selected = [...new Set(normalized.match(/\d+/g) || [])];
+  const priorAnswer = String(conversationTurns.at(-1)?.answer || "");
+  const available = new Set([...priorAnswer.matchAll(/\((\d+)\)/g)].map((match) => match[1]));
+  if (!selected.length || !selected.every((choice) => available.has(choice))) return [];
+  const unselected = [...available].filter((choice) => !selected.includes(choice));
+
+  return [
+    "",
+    "MANDATORY NUMBERED-CHOICE EXECUTION:",
+    `- The user selected choices ${selected.map((choice) => `(${choice})`).join(" and ")} from the immediately preceding numbered menu.`,
+    "- Produce every selected output now, in the selected order, using the conversation context.",
+    `- Do not produce unselected choices${unselected.length ? ` ${unselected.map((choice) => `(${choice})`).join(", ")}` : ""}.`,
+    "- Do not merely confirm the selection, repeat the menu, ask which selected output to do first, or request context already available.",
+    "- If tailoring details are missing, provide useful provisional outputs and label the open gaps."
+  ];
+}
+
+function conversationContextText(value, maxChars) {
+  const text = String(value || "").trim();
+  if (text.length <= maxChars) return text;
+  return `${text.slice(0, maxChars).trimEnd()}\n[Earlier turn shortened for conversation context]`;
+}
+
+function acceptedOfferExecutionLines(followUp) {
+  const normalized = String(followUp || "").trim().toLowerCase().replace(/[.!?]+$/g, "");
+  if (!["yes", "yes please", "go", "go ahead", "do it", "okay", "ok", "please do"].includes(normalized)) {
+    return [];
+  }
+
+  const priorAnswer = String(conversationTurns.at(-1)?.answer || "");
+  const artifactPatterns = [
+    ["checklist", /\bchecklist\b/i],
+    ["memo", /\bmemo\b/i],
+    ["plan", /\bplan\b/i],
+    ["draft", /\bdraft\b/i],
+    ["script", /\bscript\b/i],
+    ["table", /\btable\b/i],
+    ["deeper analysis", /\b(?:go|dig)\s+deeper\b|\bdeeper analysis\b/i]
+  ];
+  const offeredArtifact = artifactPatterns.find(([, pattern]) => pattern.test(priorAnswer))?.[0];
+  if (!offeredArtifact) return [];
+
+  return [
+    "",
+    "MANDATORY ACCEPTED-OFFER EXECUTION:",
+    `- The immediately preceding answer offered a ${offeredArtifact}, and this reply accepts it.`,
+    `- Produce the ${offeredArtifact} now and begin with the promised output itself.`,
+    "- Do not repeat the offer, ask for confirmation again, substitute another general answer, or end by offering the same output."
+  ];
+}
+
 function continueConversation() {
   const followUp = $("follow-up")?.value.trim();
   if (!followUp) return;
@@ -243,8 +316,8 @@ function continueConversation() {
     return;
   }
   const prompt = buildFollowUpPrompt(followUp);
-  askBackend(prompt, { displayQuestion: followUp, followUp }).catch((error) => {
-    renderPreparedPrompt(prompt, error);
+  askBackend(prompt, { displayQuestion: followUp, followUp }).catch(() => {
+    renderConversation(`Could not send the follow-up. Copy the prepared prompt below if needed.`, prompt);
   });
 }
 
@@ -268,7 +341,7 @@ function initialComposerHtml() {
       <textarea id="question" rows="7" placeholder="Example: CEO wants a yes/no answer today on a distributor payment with a new payer."></textarea>
       <div class="button-row">
         <button id="prepare-btn" class="primary">Ask</button>
-        <button id="preview-btn" class="secondary">Router preview</button>
+        <button type="button" class="secondary" data-new-task>New task</button>
       </div>
     </div>
   `;
@@ -283,11 +356,13 @@ function bindQuestionInput() {
 function bindAskControls() {
   bindQuestionInput();
   $("prepare-btn")?.addEventListener("click", buildPrompt);
-  $("preview-btn")?.addEventListener("click", routerPreview);
 }
 
 function startNewTask() {
   conversationTurns = [];
+  decisionSnapshotVisible = false;
+  decisionSnapshotLoading = false;
+  decisionSnapshotError = "";
   lastAnswerForJournal = null;
   resetFeedbackForm();
   const result = $("result");
@@ -394,108 +469,16 @@ function renderAnswerContent(value) {
   return blocks.join("") || `<div class="answer-text"></div>`;
 }
 
-async function readBackendError(response) {
-  const text = await response.text().catch(() => "");
-  if (!text) return {};
-  try {
-    return JSON.parse(text);
-  } catch {
-    return { error: text.slice(0, 500) };
-  }
-}
-
-function makeBackendError(response, payload = {}) {
-  const message = payload.error || payload.message || `Direct Ask failed (${response.status}).`;
-  const error = new Error(message);
-  error.status = response.status;
-  error.statusText = response.statusText || "";
-  error.serverMessage = message;
-  error.payload = payload;
-  return error;
-}
-
-function directAskDiagnostic(error) {
-  const status = error && error.status ? `${error.status} ${error.statusText || ""}`.trim() : "network / browser error";
-  const serverMessage = (error && (error.serverMessage || error.message)) || "No backend error message returned.";
-  const rows = [
-    ["Status", status],
-    ["Backend message", serverMessage]
-  ];
-
-  if (error && error.status === 401) {
-    return {
-      title: ">_< Direct Ask is locked.",
-      body: "Unlock the pilot in Settings, then ask again.",
-      rows: [["Next action", "Use the pilot passcode in the app Settings."], ...rows]
-    };
-  }
-
-  if (error && error.status === 423) {
-    return {
-      title: ">_< Vercel access lock is not configured.",
-      body: "The public backend requires a pilot passcode and cookie secret before it can call OpenAI.",
-      rows: [["Next action", "Add ACI_OS_PILOT_PASSCODE and ACI_OS_PILOT_COOKIE_SECRET in Vercel, then redeploy."], ...rows]
-    };
-  }
-
-  if (error && error.status === 404) {
-    return {
-      title: ">_< Vercel API route was not found.",
-      body: "The app could not reach /api/ask on this deployment.",
-      rows: [["Next action", "Check Vercel root directory and open /api/health on the deployed domain."], ...rows]
-    };
-  }
-
-  if (error && error.status === 503) {
-    return {
-      title: ">_< OpenAI is not configured for this deployment.",
-      body: "The backend is reachable, but it cannot call OpenAI.",
-      rows: [["Next action", "Check OPENAI_API_KEY and OPENAI_MODEL in Vercel, then redeploy."], ...rows]
-    };
-  }
-
-  if (error && error.status === 429) {
-    return {
-      title: ">_< Direct Ask hit a quota or rate limit.",
-      body: "The app reached the backend, but the model provider rejected the request.",
-      rows: [["Next action", "Check OpenAI billing, limits, and Vercel logs."], ...rows]
-    };
-  }
-
-  return {
-    title: ">_< Direct Ask returned an error.",
-    body: "The app could not complete the backend call. The diagnostic below is the part we need now.",
-    rows: [["Next action", "Open /api/health on this deployment and check Vercel logs if needed."], ...rows]
-  };
-}
-
-function diagnosticRowsHtml(rows) {
-  return rows.map(([label, value]) => `
-    <tr>
-      <th>${escapeHtml(label)}</th>
-      <td>${escapeHtml(String(value || ""))}</td>
-    </tr>
-  `).join("");
-}
-
-function renderPreparedPrompt(prompt, error = null) {
+function renderPreparedPrompt(prompt) {
   lastAnswerForJournal = null;
   updateLearningControls();
   const gptLink = loadSettings().gptLink || "";
-  const diagnostic = directAskDiagnostic(error);
   const openAction = gptLink
     ? `<a class="primary nav-link" href="${escapeAttr(gptLink)}" target="_blank" rel="noreferrer">Open GPT</a>`
     : `<button class="primary" data-panel-jump="settings-panel">Set GPT link</button>`;
   $("result").innerHTML = `
     <strong>Prepared for GPT</strong>
-    <div class="diagnostic-card">
-      <div class="diagnostic-title">${escapeHtml(diagnostic.title)}</div>
-      <p>${escapeHtml(diagnostic.body)}</p>
-      <table class="diagnostic-table">
-        <tbody>${diagnosticRowsHtml(diagnostic.rows)}</tbody>
-      </table>
-    </div>
-    <p class="helper">Copy this prompt into Chief Consigliere GPT while Direct Ask is being fixed.</p>
+    <p class="helper">Direct Ask is unavailable or returned an error. Copy this prompt into Chief Consigliere GPT.</p>
     <div class="prompt-box">${escapeHtml(prompt)}</div>
     <div class="actions">
       <button class="secondary" data-copy="${escapeAttr(prompt)}">Copy for GPT</button>
@@ -521,35 +504,184 @@ async function askBackend(prompt, options = {}) {
   });
 
   if (!response.ok) {
-    const payload = await readBackendError(response);
-    throw makeBackendError(response, payload);
+    throw new Error("Backend unavailable");
   }
 
-  const data = await response.json().catch(() => ({}));
-  if (data && data.ok === false) {
-    const error = new Error(data.error || "Direct Ask returned no answer.");
-    error.serverMessage = data.error || "Direct Ask returned no answer.";
-    error.payload = data;
-    throw error;
-  }
+  const data = await response.json();
+  const parsedSnapshot = parseDecisionSnapshotText(data.answer || "No answer returned.");
+  const parsedSources = parseAnswerSources(parsedSnapshot.answer);
+  const userQuestion = options.displayQuestion || prompt.split(/\r?\n/).find(Boolean) || "Question";
   lastAnswerForJournal = {
-    prompt,
-    answer: data.answer || "No answer returned.",
-    question: options.displayQuestion || prompt.split(/\r?\n/).find(Boolean) || "Question",
+    prompt: userQuestion,
+    answer: parsedSources.answer,
+    sources: parsedSources.sources,
+    sourcesVisible: false,
+    decisionSnapshot: normalizeDecisionSnapshot(data.decisionSnapshot) || parsedSnapshot.decisionSnapshot,
+    question: userQuestion,
     calibration: currentCalibration()
   };
   conversationTurns.push(lastAnswerForJournal);
   if (conversationTurns.length > 20) conversationTurns = conversationTurns.slice(-20);
+  decisionSnapshotVisible = false;
+  decisionSnapshotLoading = false;
+  decisionSnapshotError = "";
   renderConversation();
 }
 
-function fullDiscussionText() {
-  return conversationTurns.map((turn, index) => [
+function normalizeDecisionSnapshot(snapshot) {
+  if (!snapshot || typeof snapshot !== "object") return null;
+  const normalized = {
+    doNow: String(snapshot.doNow || "").trim(),
+    pathway: String(snapshot.pathway || "").trim(),
+    owner: String(snapshot.owner || "").trim(),
+    openGap: String(snapshot.openGap || "").trim()
+  };
+  return Object.values(normalized).every(Boolean) ? normalized : null;
+}
+
+function parseDecisionSnapshotText(rawAnswer) {
+  const answer = String(rawAnswer || "").trim();
+  const blockPattern = /(?:```(?:text)?\s*)?\[\[ACI_DECISION_SNAPSHOT\]\]\s*([\s\S]*?)\s*\[\[\/ACI_DECISION_SNAPSHOT\]\](?:\s*```)?/i;
+  const match = answer.match(blockPattern);
+  if (!match) return { answer, decisionSnapshot: null };
+
+  const fields = {};
+  match[1].split(/\r?\n/).forEach((line) => {
+    const separator = line.indexOf(":");
+    if (separator < 0) return;
+    const key = line.slice(0, separator).trim().toUpperCase();
+    const value = line.slice(separator + 1).trim();
+    if (value) fields[key] = value;
+  });
+
+  return {
+    answer: answer.replace(blockPattern, "").replace(/\n{3,}/g, "\n\n").trim(),
+    decisionSnapshot: normalizeDecisionSnapshot({
+      doNow: fields.DO_NOW,
+      pathway: fields.WHAT_CHANGES_THIS,
+      owner: fields.OWNER,
+      openGap: fields.OPEN_GAP
+    })
+  };
+}
+
+function parseAnswerSources(rawAnswer) {
+  const answer = String(rawAnswer || "").trim();
+  const combinedMarker = /\bSOURCES?\s*\/\s*BASIS\s*:\s*/i;
+  const sourceHeading = /(?:^|\n)\s*(?:#{1,6}\s*)?SOURCES?\s*:\s*/i;
+  const match = answer.match(combinedMarker) || answer.match(sourceHeading);
+  if (!match || match.index === undefined) return { answer, sources: "" };
+
+  return {
+    answer: answer.slice(0, match.index).trim(),
+    sources: answer.slice(match.index + match[0].length).trim()
+  };
+}
+
+function renderDecisionSnapshot(snapshot) {
+  const normalized = normalizeDecisionSnapshot(snapshot);
+  if (!normalized) return "";
+  const fields = [
+    ["Do now", normalized.doNow],
+    ["What would change this", normalized.pathway],
+    ["Owner", normalized.owner],
+    ["Open gap", normalized.openGap]
+  ];
+  return `
+    <section class="decision-snapshot" aria-label="Decision snapshot">
+      <div class="decision-snapshot-head">
+        <strong>Decision snapshot</strong>
+        <span>Compact · not sticky</span>
+      </div>
+      <div class="decision-snapshot-grid">
+        ${fields.map(([label, value]) => `
+          <div class="decision-snapshot-item">
+            <span class="decision-snapshot-label">${escapeHtml(label)}</span>
+            <p>${escapeHtml(value)}</p>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function decisionSnapshotPrompt(turn) {
+  return [
+    "Create a compact Decision Snapshot from the latest ACI-OS question and answer below.",
+    "Do not add analysis, commentary, markdown, or request/control metadata.",
+    "Return only this block, with every value on one line:",
+    "[[ACI_DECISION_SNAPSHOT]]",
+    "DO_NOW: one immediate practical instruction, maximum 180 characters",
+    "WHAT_CHANGES_THIS: the fact, control, or approval that could change the direction, maximum 180 characters",
+    "OWNER: the decision owner or Owner not yet verified, maximum 120 characters",
+    "OPEN_GAP: the single most important unresolved issue, or No decision-critical gap identified, maximum 160 characters",
+    "[[/ACI_DECISION_SNAPSHOT]]",
+    "",
+    "Latest question:",
+    turn.question || "Question not available.",
+    "",
+    "Latest answer:",
+    turn.answer || "Answer not available."
+  ].join("\n");
+}
+
+async function toggleDecisionSnapshot() {
+  const turn = conversationTurns.at(-1);
+  if (!turn || decisionSnapshotLoading) return;
+
+  const existing = normalizeDecisionSnapshot(turn.decisionSnapshot);
+  if (existing) {
+    decisionSnapshotVisible = !decisionSnapshotVisible;
+    decisionSnapshotError = "";
+    renderConversation();
+    return;
+  }
+
+  decisionSnapshotLoading = true;
+  decisionSnapshotError = "";
+  renderConversation();
+
+  try {
+    const response = await fetch("/api/ask", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ prompt: decisionSnapshotPrompt(turn) })
+    });
+    if (!response.ok) throw new Error("Snapshot unavailable");
+
+    const data = await response.json();
+    const parsed = parseDecisionSnapshotText(data.answer || "");
+    const snapshot = normalizeDecisionSnapshot(data.decisionSnapshot) || parsed.decisionSnapshot;
+    if (!snapshot) throw new Error("Snapshot unavailable");
+
+    turn.decisionSnapshot = snapshot;
+    if (turn === conversationTurns.at(-1)) lastAnswerForJournal = turn;
+    decisionSnapshotVisible = true;
+  } catch {
+    decisionSnapshotVisible = false;
+    decisionSnapshotError = "Could not create the snapshot. Try again.";
+  } finally {
+    decisionSnapshotLoading = false;
+    renderConversation();
+  }
+}
+
+function answerCopyText(turn, includeVisibleSources = false) {
+  const parts = [turn?.answer || ""];
+  if (includeVisibleSources && turn?.sourcesVisible && turn?.sources) {
+    parts.push(`SOURCES / BASIS\n${turn.sources}`);
+  }
+  return parts.filter(Boolean).join("\n\n");
+}
+
+function fullDiscussionText(throughIndex = conversationTurns.length - 1, options = {}) {
+  const includeVisibleSources = Boolean(options.includeVisibleSources);
+  return conversationTurns.slice(0, throughIndex + 1).map((turn, index) => [
     `TURN ${index + 1} QUESTION`,
     turn.question || "Question",
     "",
     `TURN ${index + 1} ANSWER`,
-    turn.answer || ""
+    answerCopyText(turn, includeVisibleSources)
   ].join("\n")).join("\n\n---\n\n");
 }
 
@@ -568,21 +700,49 @@ function renderConversation(statusText = "", fallbackPrompt = "") {
             <div class="answer-box message-body">${renderAnswerContent(turn.answer || "")}</div>
             <div class="answer-card-actions">
               <button type="button" class="tiny-action" data-feedback-event="thumb_up" data-turn="${index}">Good</button>
-              <button type="button" class="tiny-action" data-feedback-event="thumb_down" data-turn="${index}">Issue</button>
-              <button type="button" class="tiny-action" data-copy="${escapeAttr(turn.answer || "")}">Copy</button>
+              <button type="button" class="tiny-action" data-copy="${escapeAttr(fullDiscussionText(index, { includeVisibleSources: true }))}">Copy</button>
+              ${turn.sources ? `<button type="button" class="tiny-action" data-source-toggle="${index}" aria-expanded="${Boolean(turn.sourcesVisible)}">${turn.sourcesVisible ? "Hide sources" : "Sources"}</button>` : ""}
             </div>
+            ${turn.sourcesVisible && turn.sources ? `
+              <section class="answer-sources" aria-label="Sources for answer ${index + 1}">
+                <strong>Sources / basis</strong>
+                <div>${renderAnswerContent(turn.sources)}</div>
+              </section>
+            ` : ""}
           </div>
         </article>
       `).join("")}
     </div>
   ` : "";
 
+  const latestSnapshot = normalizeDecisionSnapshot(conversationTurns.at(-1)?.decisionSnapshot);
+  const snapshotButtonLabel = decisionSnapshotLoading
+    ? "Creating snapshot..."
+    : decisionSnapshotVisible && latestSnapshot
+      ? "Hide snapshot"
+      : decisionSnapshotError
+        ? "Retry snapshot"
+        : "Decision snapshot";
   const postActions = conversationTurns.length ? `
-    <div class="post-answer-actions">
-      <button type="button" class="secondary" data-post-action="deeper">Deeper</button>
-      <button type="button" class="secondary" data-post-action="checklist">Make checklist</button>
-      <button type="button" class="secondary" data-post-action="memo">Turn into memo</button>
+    <div class="post-action-groups" aria-label="answer options">
+      <section class="post-action-group" aria-label="explore further">
+        <div class="post-action-label">Explore further</div>
+        <div class="post-answer-actions">
+          <button type="button" class="secondary" data-post-action="deeper">Deeper</button>
+        </div>
+      </section>
+      <section class="post-action-group" aria-label="convert current discussion">
+        <div class="post-action-label">Convert current discussion into</div>
+        <div class="post-answer-actions">
+          <button type="button" class="secondary" data-post-action="snapshot" aria-pressed="${decisionSnapshotVisible}" ${decisionSnapshotLoading ? "disabled" : ""}>${snapshotButtonLabel}</button>
+          <button type="button" class="secondary" data-post-action="checklist">Checklist</button>
+          <button type="button" class="secondary" data-post-action="memo">Memo</button>
+          <button type="button" class="secondary" data-post-action="email">Email</button>
+        </div>
+      </section>
     </div>
+    ${decisionSnapshotError ? `<p class="helper">${escapeHtml(decisionSnapshotError)}</p>` : ""}
+    ${decisionSnapshotVisible && latestSnapshot ? renderDecisionSnapshot(latestSnapshot) : ""}
   ` : "";
 
   const fallback = fallbackPrompt
@@ -591,39 +751,28 @@ function renderConversation(statusText = "", fallbackPrompt = "") {
     : "";
 
   $("result").innerHTML = `
-    <strong>ACI-OS discussion</strong>
-    ${statusText ? `<p class="helper thinking">${escapeHtml(statusText)}</p>` : ""}
-    ${discussion}
-    ${postActions}
+    <div class="conversation-scroll">
+      <strong>ACI-OS discussion</strong>
+      ${statusText ? `<p class="helper thinking">${escapeHtml(statusText)}</p>` : ""}
+      ${discussion}
+      ${postActions}
+      ${fallback}
+    </div>
     <div class="continue-box">
       <label class="field-label" for="follow-up">Continue this discussion</label>
-      <textarea id="follow-up" rows="3" placeholder="Example: draft the short message to my CEO."></textarea>
-      <p class="helper">Enter sends. Shift+Enter adds a new line.</p>
-      <button class="primary full" id="continue-btn">Continue</button>
+      <textarea id="follow-up" rows="2" placeholder="Example: draft the short message to my CEO."></textarea>
+      <div class="continue-footer">
+        <p class="helper">Enter sends. Shift+Enter adds a new line.</p>
+        <div class="continue-actions">
+          <button type="button" class="secondary" data-new-task>New task</button>
+          <button class="primary" id="continue-btn">Continue</button>
+        </div>
+      </div>
     </div>
-    ${fallback}
   `;
-  $("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
-  $("result").scrollTop = $("result").scrollHeight;
+  const conversationScroll = $("result").querySelector(".conversation-scroll");
+  if (conversationScroll) conversationScroll.scrollTop = conversationScroll.scrollHeight;
   updateLearningControls();
-}
-
-function routerPreview() {
-  const q = getQuestion();
-  if (!q) {
-    showMessage("Add a situation first.");
-    return;
-  }
-  const pattern = detectPattern(q);
-  const rows = pattern.rows.map(([a, b]) => `<tr><th>${escapeHtml(a)}</th><td>${escapeHtml(b)}</td></tr>`).join("");
-  $("result").innerHTML = `
-    <div class="risk ${pattern.level}">${escapeHtml(pattern.title)}</div>
-    <p><strong>${escapeHtml(pattern.first)}</strong></p>
-    <table class="check-table">
-      <tbody>${rows}</tbody>
-    </table>
-    <p class="helper">Local router preview only. Use Chief Consigliere GPT for the real answer.</p>
-  `;
 }
 
 function showMessage(message) {
@@ -663,17 +812,39 @@ function renderJournal() {
   $("journal-list").innerHTML = entries.map((entry) => `
     <article class="journal-entry">
       <time>${escapeHtml(entry.timestamp)}</time>
+      ${entry.learningId ? `<span class="learning-state">${escapeHtml(entry.state || "pending approval")}</span>` : ""}
       <div>${escapeHtml(entry.note)}</div>
     </article>
   `).join("");
+}
+
+async function syncProcessedLearning() {
+  try {
+    const response = await fetch("/api/learning/status", { cache: "no-store" });
+    if (!response.ok) throw new Error("learning status unavailable");
+    const state = await response.json();
+    const completedIds = new Set(state.completedLearningIds || []);
+    const completedTimestamps = new Set(state.completedTimestamps || []);
+    const entries = loadJournal();
+    const active = entries.filter((entry) => {
+      if (entry.learningId && completedIds.has(entry.learningId)) return false;
+      if (entry.timestamp && completedTimestamps.has(entry.timestamp)) return false;
+      return true;
+    });
+    if (active.length !== entries.length) saveJournal(active);
+  } catch {
+    // Keep pending local entries when the backend is unavailable.
+  }
+  renderJournal();
 }
 
 async function addJournalEntry() {
   const note = $("journal-note").value.trim();
   if (!note) return;
   const timestamp = zurichTimestamp();
+  const learningId = createLearningId(timestamp);
   const entries = loadJournal();
-  entries.unshift({ timestamp, note });
+  entries.unshift({ timestamp, note, learningId, state: "pending approval" });
   saveJournal(entries);
   $("journal-note").value = "";
   renderJournal();
@@ -682,6 +853,7 @@ async function addJournalEntry() {
   try {
     const result = await postLearning({
       timestamp,
+      learningId,
       source: "ACI-OS mobile/web app manual journal",
       verdict: "manual learning note",
       question: note,
@@ -692,9 +864,9 @@ async function addJournalEntry() {
       discussion: note,
       calibration: currentCalibration()
     });
-    if (status) status.textContent = `Learning note sent to ${result.file}.`;
+    if (status) status.textContent = `Learning ${result.learningId} exported. Codex will explain the lesson and proposal, then ask OK / MODIFY / DISCARD.`;
   } catch {
-    if (status) status.textContent = "Saved locally in this browser. Local repo learning works only when the backend is running; external pilot needs a secure backend.";
+    if (status) status.textContent = "Saved locally, but not sent to ACI-OS. Check local server and retry.";
   }
 }
 
@@ -713,8 +885,8 @@ function updateLearningControls() {
   const save = $("save-answer-journal");
   const hasAnswer = Boolean(lastAnswerForJournal);
 
-  if (latest) latest.dataset.copy = hasAnswer ? lastAnswerForJournal.answer || "" : "";
-  if (full) full.dataset.copy = hasAnswer ? fullDiscussionText() : "";
+  if (latest) latest.dataset.copy = hasAnswer ? answerCopyText(lastAnswerForJournal, true) : "";
+  if (full) full.dataset.copy = hasAnswer ? fullDiscussionText(conversationTurns.length - 1, { includeVisibleSources: true }) : "";
 
   setDisabled("copy-latest-answer", !hasAnswer);
   setDisabled("copy-full-discussion", !hasAnswer);
@@ -764,6 +936,7 @@ function makeLearningPayload() {
   const firstAnswerLine = lastAnswerForJournal.answer.split(/\r?\n/).find((line) => line.trim()) || "Answer saved";
   return {
     timestamp: zurichTimestamp(),
+    learningId: createLearningId(),
     source: "ACI-OS mobile/web app answer feedback",
     verdict: valueOf("feedback-verdict") || "Good",
     question: firstPromptLine,
@@ -777,10 +950,14 @@ function makeLearningPayload() {
 }
 
 async function postLearning(payload) {
+  const learning = {
+    ...payload,
+    learningId: payload.learningId || createLearningId(payload.timestamp)
+  };
   const response = await fetch("/api/learning", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(learning)
   });
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));
@@ -790,9 +967,10 @@ async function postLearning(payload) {
 }
 
 function postActionPrompt(action) {
-  if (action === "deeper") return "Go one layer deeper. Keep the first line short, then add the missing reasoning.";
+  if (action === "deeper") return "Go deeper into one decision-critical point from the last answer. Do not widen, repeat, or merely lengthen it. Explain why it matters, the evidence to verify, the owner, the decision consequence, and the open gap. If more points remain, end by asking whether to continue with the next point.";
   if (action === "checklist") return "Turn the last answer into a practical numbered checklist with owners, evidence, and next actions.";
   if (action === "memo") return "Turn the last answer into a short memo skeleton with purpose, facts, risk view, decision needed, and sources.";
+  if (action === "email") return "Turn the current discussion into a concise email draft. Infer the most likely recipient and purpose from context; if uncertain, use bracketed placeholders. Include a clear subject line, recommended action, owner or request, timing, and any necessary caveat. Draft only - do not send.";
   return "";
 }
 
@@ -801,6 +979,7 @@ async function sendQuickFeedback(eventType, turnIndex) {
   if (!turn) return;
   await postLearning({
     timestamp: zurichTimestamp(),
+    learningId: createLearningId(),
     source: "ACI-OS mobile/web app quick feedback",
     event_type: eventType,
     verdict: eventType === "thumb_up" ? "Good" : "Issue",
@@ -817,40 +996,59 @@ async function sendQuickFeedback(eventType, turnIndex) {
 async function saveLastAnswerToJournal() {
   if (!lastAnswerForJournal) return;
   const payload = makeLearningPayload();
-  let result = null;
-  let sentToRepo = false;
-  try {
-    result = await postLearning(payload);
-    sentToRepo = true;
-  } catch {
-    sentToRepo = false;
-  }
+  const result = await postLearning(payload);
   const entries = loadJournal();
   entries.unshift({
     timestamp: payload.timestamp,
+    learningId: result.learningId || payload.learningId,
+    state: "pending approval",
     note: makeAnswerJournalNote(lastAnswerForJournal.prompt, lastAnswerForJournal.answer)
   });
   saveJournal(entries);
   renderJournal();
   const status = $("answer-save-status");
   if (status) {
-    status.textContent = sentToRepo
-      ? `Learning sent to ${result.file}. Full discussion was sent; this screen shows a short summary.`
-      : "Saved locally in this browser. To improve ACI-OS from external pilot feedback, copy full discussion and send it to Codex until remote learning is built.";
+    status.textContent = `Learning ${result.learningId} exported. Codex will explain the lesson and proposed change, then ask OK / MODIFY / DISCARD.`;
     setTimeout(() => {
-      if (sentToRepo && status.textContent.startsWith("Learning sent")) {
-        status.textContent = "Saved as a system-improvement signal. Codex will process accepted lessons into rules, tests, docs, or app changes.";
+      if (status.textContent.startsWith("Learning ")) {
+        status.textContent = "Pending your approval. The journal card will disappear automatically after the approved change is implemented and logged.";
       }
     }, 3000);
   }
 }
 
-function exportJournal() {
+async function exportJournalToMemory() {
   const entries = loadJournal();
-  const markdown = entries.map((entry) => `JOURNAL | ${entry.timestamp} | ${entry.note}`).join("\n\n");
-  navigator.clipboard.writeText(markdown || "No entries.").then(() => {
-    alert("Journal copied to clipboard.");
-  });
+  const status = $("journal-save-status");
+  const button = $("export-btn");
+  if (!entries.length) {
+    if (status) status.textContent = "Nothing to export. The Journal is already empty.";
+    return;
+  }
+
+  button.disabled = true;
+  if (status) status.textContent = `Saving ${entries.length} Journal ${entries.length === 1 ? "card" : "cards"} to C-drive memory...`;
+  try {
+    const response = await fetch("/api/journal/archive", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        archiveId: `JA-${Date.now()}`,
+        exportedAt: zurichTimestamp(),
+        entries
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Could not save Journal memory.");
+
+    saveJournal([]);
+    renderJournal();
+    if (status) status.textContent = `${result.count} Journal ${result.count === 1 ? "card" : "cards"} saved to C-drive memory and removed from this screen.`;
+  } catch (error) {
+    if (status) status.textContent = `Not exported: ${error.message} Journal cards were kept.`;
+  } finally {
+    button.disabled = false;
+  }
 }
 
 async function loadBasis() {
@@ -884,7 +1082,7 @@ async function loadBasis() {
       <p class="helper">Loaded context: ${Number(data.used || 0).toLocaleString()} / ${Number(data.maxTotal || 0).toLocaleString()} characters.</p>
     `;
   } catch {
-    target.innerHTML = `<p class="empty">Basis list unavailable. In external pilot mode, local knowledge files are not connected. In local mode, start the Direct Ask server, then refresh.</p>`;
+    target.innerHTML = `<p class="empty">Basis list unavailable. Start the Direct Ask server, then refresh.</p>`;
   }
 }
 
@@ -923,6 +1121,12 @@ function saveSettings() {
 
 function setupCopyDelegation() {
   document.body.addEventListener("click", async (event) => {
+    const newTask = event.target.closest("[data-new-task]");
+    if (newTask) {
+      startNewTask();
+      return;
+    }
+
     const button = event.target.closest("[data-copy]");
     if (button) {
       const originalText = button.textContent;
@@ -956,6 +1160,10 @@ function setupCopyDelegation() {
 
     const postAction = event.target.closest("[data-post-action]");
     if (postAction) {
+      if (postAction.dataset.postAction === "snapshot") {
+        await toggleDecisionSnapshot();
+        return;
+      }
       const prompt = postActionPrompt(postAction.dataset.postAction);
       const followUp = $("follow-up");
       if (followUp && prompt) {
@@ -976,6 +1184,16 @@ function setupCopyDelegation() {
         return;
       }
       setTimeout(() => { feedbackEvent.textContent = originalText; }, 1200);
+      return;
+    }
+
+    const sourceToggle = event.target.closest("[data-source-toggle]");
+    if (sourceToggle) {
+      const turn = conversationTurns[Number(sourceToggle.dataset.sourceToggle)];
+      if (turn?.sources) {
+        turn.sourcesVisible = !turn.sourcesVisible;
+        renderConversation();
+      }
       return;
     }
 
@@ -1062,6 +1280,7 @@ function switchPanel(panelId) {
   const tab = document.querySelector(`.tab[data-panel="${panelId}"]`);
   if (tab) tab.classList.add("active");
   $(panelId).classList.add("active");
+  if (panelId === "journal-panel") syncProcessedLearning();
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 }
 
@@ -1078,9 +1297,8 @@ function boot() {
   setInterval(() => { $("local-time").textContent = zurichTimestamp(); }, 1000);
   updateDetectedDeadline("");
   bindAskControls();
-  $("new-task-btn")?.addEventListener("click", startNewTask);
   $("save-journal-btn").addEventListener("click", addJournalEntry);
-  $("export-btn").addEventListener("click", exportJournal);
+  $("export-btn").addEventListener("click", exportJournalToMemory);
   $("save-settings-btn").addEventListener("click", saveSettings);
   const settings = loadSettings();
   $("gpt-link").value = settings.gptLink || "";
@@ -1092,7 +1310,7 @@ function boot() {
   setupChoiceChips();
   setupProfileChips();
   applyBuilderMode();
-  renderJournal();
+  syncProcessedLearning();
   loadBasis();
   updateLearningControls();
 
